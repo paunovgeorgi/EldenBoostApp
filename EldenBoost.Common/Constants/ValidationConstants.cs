@@ -41,5 +41,14 @@
             public const int NameMinLength = 2;
             public const int NameMaxLength = 11;
         }
+
+        public static class ApplicationValidations
+        {
+            public const int CountryMinLength = 2;
+            public const int CountryMaxLength = 56;
+
+            public const int ExperienceMinLength = 2;
+            public const int ExperienceMaxLength = 200;
+        }
     }
 }
