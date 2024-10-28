@@ -56,5 +56,19 @@
             public const int CountryMinLength = 2;
             public const int CountryMaxLength = 56;
         }
+
+        public static class ArticleValidations
+        {
+            public const int TitleMinLength = 10;
+            public const int TitleMaxLength = 100;
+
+            public const int ContentMinLength = 100;
+            public const int ContentMaxLength = 10000;
+
+            public const int ArticleTypeMin = 0;
+            public const int ArticleTypeMax = 1;
+
+            public const int ImageURLMaxLength = 2048;
+        }
     }
 }
