@@ -38,6 +38,7 @@ namespace EldenBoost.Infrastructure.Data.Models
         [Comment("Service purchase count.")]
         public int PurchaseCount { get; set; }
 
+        [Comment("Max amount for slider type services.")]
         public int MaxAmount { get; set; }
 
         [Comment("Service type")]
