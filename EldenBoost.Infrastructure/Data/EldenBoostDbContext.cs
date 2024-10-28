@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EldenBoost.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class EldenBoostDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public EldenBoostDbContext(DbContextOptions<EldenBoostDbContext> options)
             : base(options)
         {
         }
