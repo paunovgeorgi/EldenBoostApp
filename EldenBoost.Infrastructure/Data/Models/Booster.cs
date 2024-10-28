@@ -23,6 +23,7 @@ namespace EldenBoost.Infrastructure.Data.Models
         public int RatingCount { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(18,2)")]
         [Comment("Total amount earned by the Booster (completed orders only).")]
         public decimal TotalEarned { get; set; }
 

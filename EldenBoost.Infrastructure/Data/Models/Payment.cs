@@ -10,6 +10,7 @@ namespace EldenBoost.Infrastructure.Data.Models
         [Comment("Unique identifier for the Payment.")]
         public int Id { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         [Comment("Total amount of the Payment.")]
         public decimal Amount { get; set; }
 

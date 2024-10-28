@@ -30,6 +30,7 @@ namespace EldenBoost.Infrastructure.Data.Models
         public ApplicationUser Client { get; set; } = null!;
 
         [Required]
+        [Column(TypeName = "decimal(18,2)")]
         [Comment("Amount to be paid to the Booster.")]
         public decimal BoosterPay { get; set; }
 
