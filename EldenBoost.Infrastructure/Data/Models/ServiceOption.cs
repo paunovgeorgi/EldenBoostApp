@@ -23,6 +23,8 @@ namespace EldenBoost.Infrastructure.Data.Models
         [ForeignKey(nameof(Service))]
         [Comment("Reference to the associated Service entity.")]
         public int ServiceId { get; set; }
+
+        [Comment("Service entity associated with the ServiceOption.")]
         public Service Service { get; set; } = null!;
     }
 }
