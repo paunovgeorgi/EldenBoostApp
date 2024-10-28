@@ -9,7 +9,7 @@ namespace EldenBoost.Infrastructure.Data.Models
     public class Service
     {
         [Key]
-        [Comment("Service identifier.")]
+        [Comment("Unique identifier for the Service.")]
         public int Id { get; set; }
 
         [Required]
@@ -43,6 +43,7 @@ namespace EldenBoost.Infrastructure.Data.Models
         [Comment("Service type")]
         public ServiceType ServiceType { get; set; }
 
+        [Comment("Collection of options for the service.")]
         public ICollection<ServiceOption> Options { get; set; } = new List<ServiceOption>();
     }
 }
