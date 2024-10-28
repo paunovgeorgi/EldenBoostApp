@@ -26,5 +26,14 @@
             public const int NameMinLength = 3;
             public const int NameMaxLength = 80;
         }
+
+        public static class BoosterValidations
+        {
+            public const int CountryMinLength = 2;
+            public const int CountryMaxLength = 56;
+
+            public const int ExperienceMinLength = 2;
+            public const int ExperienceMaxLength = 200;
+        }
     }
 }
