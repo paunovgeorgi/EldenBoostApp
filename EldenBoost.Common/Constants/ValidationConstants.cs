@@ -35,5 +35,11 @@
             public const int ExperienceMinLength = 2;
             public const int ExperienceMaxLength = 200;
         }
+
+        public static class PlatformValidations
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 11;
+        }
     }
 }
