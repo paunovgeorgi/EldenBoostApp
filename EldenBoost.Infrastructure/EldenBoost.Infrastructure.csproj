@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Configurations\" />
+    <Folder Include="Data\Models\" />
+    <Folder Include="Data\Repository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EldenBoost.Common\EldenBoost.Common.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -15,4 +15,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EldenBoost.Common\EldenBoost.Common.csproj" />
+    <ProjectReference Include="..\EldenBoost.Core\EldenBoost.Core.csproj" />
+    <ProjectReference Include="..\EldenBoost.Infrastructure\EldenBoost.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
