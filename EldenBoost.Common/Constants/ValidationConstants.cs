@@ -20,5 +20,11 @@
 
             public const int ImageUrlMaxLength = 2048;
         }
+
+        public static class ServiceOptionValidations
+        {
+            public const int NameMinLength = 3;
+            public const int NameMaxLength = 80;
+        }
     }
 }
