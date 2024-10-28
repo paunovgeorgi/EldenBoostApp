@@ -50,5 +50,11 @@
             public const int ExperienceMinLength = 2;
             public const int ExperienceMaxLength = 200;
         }
+
+        public static class AuthorValidations
+        {
+            public const int CountryMinLength = 2;
+            public const int CountryMaxLength = 56;
+        }
     }
 }
