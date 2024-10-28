@@ -38,6 +38,31 @@ namespace EldenBoost.Data
                     j.IndexerProperty<int>("PlatformId").HasColumnName("PlatformId");
                 });
 
+            builder.Entity<Application>()
+        .HasMany(a => a.Platforms)
+        .WithMany(p => p.Applications)
+        .UsingEntity<Dictionary<string, object>>(
+            "ApplicationPlatform",
+            r => r
+                .HasOne<Platform>()
+                .WithMany()
+                .HasForeignKey("PlatformId")
+                .HasConstraintName("FK_ApplicationPlatform_Platforms_Id")
+                .OnDelete(DeleteBehavior.Cascade),
+            r => r
+                .HasOne<Application>()
+                .WithMany()
+                .HasForeignKey("ApplicationId")
+                .HasConstraintName("FK_ApplicationPlatform_Applications_Id")
+                .OnDelete(DeleteBehavior.Cascade),
+            j =>
+            {
+                j.HasKey("ApplicationId", "PlatformId");
+                j.ToTable("ApplicationsPlatforms");
+                j.IndexerProperty<int>("ApplicationId").HasColumnName("ApplicationId");
+                j.IndexerProperty<int>("PlatformId").HasColumnName("PlatformId");
+            });
+
 
             base.OnModelCreating(builder);
         }
