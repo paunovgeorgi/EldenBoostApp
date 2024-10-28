@@ -11,6 +11,17 @@ namespace EldenBoost.Data
         {
         }
 
+        public DbSet<Booster> Boosters { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Platform> Platforms { get; set; }
+        public DbSet<Application> Applications { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<ServiceOption> ServiceOptions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Booster>()
