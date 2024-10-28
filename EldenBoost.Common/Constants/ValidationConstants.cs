@@ -70,5 +70,11 @@
 
             public const int ImageURLMaxLength = 2048;
         }
+
+        public static class ReviewValidations
+        {
+            public const int ContentMinLength = 4;
+            public const int ContentMaxLength = 248;
+        }
     }
 }

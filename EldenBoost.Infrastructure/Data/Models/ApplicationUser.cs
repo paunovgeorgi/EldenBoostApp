@@ -16,5 +16,7 @@ namespace EldenBoost.Infrastructure.Data.Models
         [MaxLength(ProfilePictureMaxLength)]
         public string? ProfilePicture { get; set; }
 
+        [Comment("Collection of Reviews for the User")]
+        public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }
