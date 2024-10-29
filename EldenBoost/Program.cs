@@ -1,5 +1,6 @@
 using EldenBoost.Data;
 using EldenBoost.Infrastructure.Data.Models;
+using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<EldenBoostDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddScoped<IRepository, Repository>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
