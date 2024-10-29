@@ -1,5 +1,35 @@
+@import url('forms.css');
+
+:root {
+    --main-dark: #004c4c;
+    --main-light: #006666;
+    --secondary-dark: #008080;
+    --secondary-light: #66b2b2;
+    --lightest: #b2d8d8;
+    --dark-grey-correct: rgba(24, 20, 20, 0.987);
+}
+
+* {
+    font-family: "Roboto", serif;
+}
+
 html {
-  font-size: 14px;
+    font: 14px/1.5;
+    scrollbar-color: var(--main-dark) var(--secondary-dark);
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    color: azure;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.7698880235688025) 50%, rgba(0,102,102,1) 74%);
+   
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 @media (min-width: 768px) {
@@ -12,11 +42,42 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.nav-item a:hover, .form-inline button:hover {
+    text-shadow: 0 0 10px var(--secondary-light);
+    color: var(--secondary-light);
 }
 
-body {
-  margin-bottom: 60px;
+.title-glow {
+    text-shadow: 0 0 10px azure;
+}
+
+
+/*--------------------- SWORDS -----------------------*/
+
+.left-border-main {
+    width: 400px;
+    height: 500px;
+    background: url(../images/sword.png);
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0px;
+    top: 240Px;
+    opacity: .7;
+    z-index: -1;
+}
+
+.right-border-main {
+    width: 400px;
+    height: 500px;
+    background: url(../images/sword.png);
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0px;
+    top: 240Px;
+    opacity: .75;
+    z-index: -1;
 }
