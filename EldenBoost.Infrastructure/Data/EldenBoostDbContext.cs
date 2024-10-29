@@ -76,6 +76,8 @@ namespace EldenBoost.Data
             });
 
             builder.ApplyConfiguration(new PlatformConfiguration());
+            builder.ApplyConfiguration(new ServiceConfiguration());
+            builder.ApplyConfiguration(new ServiceOptionConfiguration());
 
             base.OnModelCreating(builder);
         }
