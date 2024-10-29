@@ -1,4 +1,5 @@
-﻿using EldenBoost.Infrastructure.Data.Models;
+﻿using EldenBoost.Infrastructure.Data.Configurations;
+using EldenBoost.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,6 +75,7 @@ namespace EldenBoost.Data
                 j.IndexerProperty<int>("PlatformId").HasColumnName("PlatformId");
             });
 
+            builder.ApplyConfiguration(new PlatformConfiguration());
 
             base.OnModelCreating(builder);
         }
