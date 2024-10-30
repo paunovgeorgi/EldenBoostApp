@@ -14,7 +14,7 @@ namespace EldenBoost.Infrastructure.Data.Models
 
         [Comment("Profile picture application user.")]
         [MaxLength(ProfilePictureMaxLength)]
-        public string? ProfilePicture { get; set; }
+        public string? ProfilePicture { get; set; } = "/images/default-avatar.png";
 
         [Comment("Collection of Reviews for the User")]
         public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
