@@ -1,5 +1,6 @@
 ﻿using EldenBoost.Infrastructure.Data.Configurations;
 using EldenBoost.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -78,6 +79,7 @@ namespace EldenBoost.Data
             builder.ApplyConfiguration(new PlatformConfiguration());
             builder.ApplyConfiguration(new ServiceConfiguration());
             builder.ApplyConfiguration(new ServiceOptionConfiguration());
+            builder.ApplyConfiguration(new ApplicationUserConfiguration(new PasswordHasher<ApplicationUser>()));
 
             base.OnModelCreating(builder);
         }

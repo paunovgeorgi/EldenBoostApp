@@ -13,6 +13,7 @@ builder.Services.AddDbContext<EldenBoostDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddTransient<IPasswordHasher<ApplicationUser>, PasswordHasher<ApplicationUser>>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
