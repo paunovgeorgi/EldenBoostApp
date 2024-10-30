@@ -4,6 +4,7 @@ using EldenBoost.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EldenBoost.Infrastructure.Migrations
 {
     [DbContext(typeof(EldenBoostDbContext))]
-    partial class EldenBoostDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241030153720_Reviews_Seed")]
+    partial class Reviews_Seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,17 +188,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "a13592d9-c4d0-4184-a3f9-dc7c66640808",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "954318ca-20a6-4bde-91c0-70a7704944d3",
+                            ConcurrencyStamp = "c761066a-d4f1-4282-9293-9af41b70c51a",
                             Email = "cloud@booster.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Cloud",
                             NormalizedEmail = "CLOUD@BOOSTER.COM",
                             NormalizedUserName = "CLOUD@BOOSTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKRgRSiVAGMSlSNIeudiHvD5+fV38LahPoIlRUNPS1EdUHXp5+o2nozpoQl5dCTkyA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFx9XKelqOk7GcS8j36UOf0R+/JROrQyu79fCBHwFzsEvx9PMDS3T0a5Vqv3XH7m/g==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/boosters/cloud.jpg",
-                            SecurityStamp = "046f52c1-b702-4ee7-a4b3-3e41233850ca",
+                            SecurityStamp = "9f57ef98-be66-49c2-837a-64e0aabee1d1",
                             TwoFactorEnabled = false,
                             UserName = "cloud@booster.com"
                         },
@@ -203,17 +206,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "b4e77aa9-36ad-4010-987e-9fd6d7b0d6ac",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eecd9319-d325-4e95-ac62-d9b6c7808646",
+                            ConcurrencyStamp = "57cc7663-a9db-4ce7-af18-044f517c0ce7",
                             Email = "heisenberg@booster.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Mr. White",
                             NormalizedEmail = "HEISENBERG@BOOSTER.COM",
                             NormalizedUserName = "HEISENBERG@BOOSTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHgjn2s/irbaRSyfoRbm2ycKoiV75t21M+NHFnP1xGL93CAW7TcV/EmejEPKwb0NdA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED3LZbUNTZb3cIm+Sp2kFOeY0ARddm+wKWGfAeTppo25KbDEUGfZAWFp9jRzfkS60w==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/boosters/heisenberg.jpg",
-                            SecurityStamp = "d38f443d-8303-4728-b6bc-2d1ab864e25f",
+                            SecurityStamp = "d10838a7-1bd1-4474-a743-adc8ca56aaa1",
                             TwoFactorEnabled = false,
                             UserName = "heisenberg@booster.com"
                         },
@@ -221,17 +224,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "54cf5237-4a7c-4050-9570-7cb5cb753aa5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "32baf16e-931c-45e3-9038-38f9a4129130",
+                            ConcurrencyStamp = "75b66b74-10fe-4185-9d50-7ba9f9e7ba46",
                             Email = "dva@booster.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "D.VA",
                             NormalizedEmail = "DVA@BOOSTER.COM",
                             NormalizedUserName = "DVA@BOOSTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPruT804tl2EmiYo4Ugzqm7t71EdLOfuFFHz1NG0rfOgeiklZ5oW213YDKTX1T/dtg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPfjXiBK9nVP1R5/EJPsEumP/2rySFHGh8XCm4wbb3N7JSS65/P1/iqgFlEOX6mTqQ==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/boosters/dva.jpg",
-                            SecurityStamp = "bf9905db-6f39-4b9f-9b22-3bee553343ac",
+                            SecurityStamp = "ec185e31-afb6-4119-8690-5890496ae5e3",
                             TwoFactorEnabled = false,
                             UserName = "dva@booster.com"
                         },
@@ -239,17 +242,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "ca3439dd-d67e-4733-8b72-a497af8b4c64",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "290b84d9-36da-4edf-92cc-8df8dc862706",
+                            ConcurrencyStamp = "2e323d79-9dba-48be-9328-efc9b694c939",
                             Email = "johnwick@booster.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Mr. Wick",
                             NormalizedEmail = "JOHNWICK@BOOSTER.COM",
                             NormalizedUserName = "JOHNWICK@BOOSTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFIQnKuP+Ji1zJnimzcA1Pin12KU0zhyYHSy3dc4Z3tMYIJ4QMXlvGtxcu6+YhgQ7w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGsGWyoh1fVHxzJTPU3aRg492zXj3WwhaV8WCp//90zsxL/QOnOccAksXzfs3vs0dA==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/boosters/john-wick.jpg",
-                            SecurityStamp = "81fb3edf-7675-4ede-915a-7247220978c6",
+                            SecurityStamp = "83442db1-14d7-42c0-91a3-54462999d12e",
                             TwoFactorEnabled = false,
                             UserName = "johnwick@booster.com"
                         },
@@ -257,17 +260,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "362456a6-e52a-4065-a619-7af22c96e1e1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5ec82c6c-5713-48ff-af9d-6c4409b77f30",
+                            ConcurrencyStamp = "1f886451-9508-498f-adcb-b8610e4879b9",
                             Email = "obiwan@author.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Master Kenobi",
                             NormalizedEmail = "OBIWAN@AUTHOR.COM",
                             NormalizedUserName = "OBIWAN@AUTHOR.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPKK1X7IIGKQ34+nkkUIIlFPtEfap/7AjnokP8eofw0HWOZ/BAi/pQacCBBB70LqHw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENFYqb5FJCb9oSM3T4P2BKipQIJJH5AVmPd/y4S8VxNgk0iNrVt9SONH8Y+anQM0/A==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/authors/obiwan.jpg",
-                            SecurityStamp = "3c431a82-bdf3-4953-8519-0a7cc4817cde",
+                            SecurityStamp = "01f58046-36eb-4386-bb5d-583a2eb24b54",
                             TwoFactorEnabled = false,
                             UserName = "obiwan@author.com"
                         },
@@ -275,17 +278,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "851792db-67bb-4b08-8c03-ac2643a0600a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0686e77c-656a-40d8-8f4d-38a358f82f6a",
+                            ConcurrencyStamp = "fb540930-9c56-401a-9635-b2214d10e529",
                             Email = "quigon@author.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Qui-Gon-Jinn",
                             NormalizedEmail = "QUIGON@AUTHOR.COM",
                             NormalizedUserName = "QUIGON@AUTHOR.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAmYGQCaJt66zwkZlyC648UxAdI8vN7G/8PABBj2Z4ndTMt4pTWLNJPJLmQxeVyx1w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJM/WNLyQzXC47pXHezs1dDcB5CGl1dzSnGjphNbAycs82j2oPKcHEGTJmzsyPcLGA==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/authors/quigon.jpg",
-                            SecurityStamp = "ade1f37b-fad2-4401-9d97-045ff0d48650",
+                            SecurityStamp = "9cc01668-6aca-4867-be00-d4be9780b06e",
                             TwoFactorEnabled = false,
                             UserName = "quigon@author.com"
                         },
@@ -293,17 +296,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "2eff52b0-3277-456f-ac78-34553d260ac6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5ca049e4-f2d0-4942-8b8b-e96ffbfdc15d",
+                            ConcurrencyStamp = "ab978fa5-0689-45a4-afa3-fac7db994690",
                             Email = "thebat@client.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Master Wayne",
                             NormalizedEmail = "THEBAT@CLIENT.COM",
                             NormalizedUserName = "THEBAT@CLIENT.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAwiqfa5TyLuyeqIiiNE42Jv6VdytPk2mQGhIJNUL4jrjlsMmmZgFUyzbAOF57ZPhg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDwblvnsxovAWNN5bKbg68S8D77IQ/lTbLx4lgDPp1IdtbHugp07SVXsgrTUZnQu7g==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/clients/thebat.jpg",
-                            SecurityStamp = "413d88b0-8686-4efc-ae03-c0abc9eae240",
+                            SecurityStamp = "1aba14d0-eeda-48d2-86e1-0b9bbdd36d9c",
                             TwoFactorEnabled = false,
                             UserName = "thebat@client.com"
                         },
@@ -311,17 +314,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "1291e6cd-1aac-4f8a-af4d-4980f64aff27",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "037d2753-3411-4f0b-8653-6e8c03f93ebc",
+                            ConcurrencyStamp = "b24f4852-56c7-4598-ba25-524cada76f0d",
                             Email = "theone@client.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Mr. Anderson",
                             NormalizedEmail = "THEONE@CLIENT.COM",
                             NormalizedUserName = "THEONE@CLIENT.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM4PDTDguAwZqYlR2D8gq4vAkvO0dI21JvIvHXgoBBQxhC8SzZS7Y/DwgWqFwkzMxQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBgC9CmMwQMmNLCm7m6qy/naZIwWl13yrRxNSx3ocVIJmm7t1oIzYlSm6CwaXyB9oQ==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/clients/theone.jpg",
-                            SecurityStamp = "ce916fb1-e0eb-4913-bc3f-1017a0146c38",
+                            SecurityStamp = "444a80ec-67f3-43b8-ab39-88e6bddba0f6",
                             TwoFactorEnabled = false,
                             UserName = "theone@client.com"
                         },
@@ -329,17 +332,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "97e8127d-abaf-4980-9938-e388453fcbb4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "82f6eb49-8940-4af8-86a6-40065ac49f39",
+                            ConcurrencyStamp = "73eb0a90-298e-4e23-b268-cb48f71ad308",
                             Email = "leon@client.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Leon S. Kennedy",
                             NormalizedEmail = "LEON@CLIENT.COM",
                             NormalizedUserName = "LEON@CLIENT.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC/33PHX+gIWDcqRazmKs7ftA8ogS0BVOErBC6k40uNZXT2XRpHQgCNywjqVVsYjgg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOYxfvIktmPT7drztztS7SC0XGXSAhBksRxbqujthWcL0e3vEX3OQMLCn/aJMohMAA==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/clients/leon.jpg",
-                            SecurityStamp = "40a19680-92ae-4911-802b-d5bde686c7f8",
+                            SecurityStamp = "dc1815be-a73d-4e1d-802f-eec271c9ef83",
                             TwoFactorEnabled = false,
                             UserName = "leon@client.com"
                         },
@@ -347,17 +350,17 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = "871505e9-3338-487d-8496-760de2e1f2c2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a0d81957-5718-46c1-a084-eb7b1146d344",
+                            ConcurrencyStamp = "ebb1b109-7cb9-4558-ac2d-7a6809b5895e",
                             Email = "dante@client.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Nickname = "Dante",
                             NormalizedEmail = "DANTE@CLIENT.COM",
                             NormalizedUserName = "DANTE@CLIENT.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFALZKUefr0353kNjoHU0Kc/bkkL1WENOWkerfg7JxZjm8Om3erF+6P11119r9eCIQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENUTSOl1BMt1Zh09OAnvGzJVnFko30e3Gb8Tdz5Wabf+HQrHp5VXsa0UDGnXpEaHjA==",
                             PhoneNumberConfirmed = false,
                             ProfilePicture = "images/clients/dante.jpeg",
-                            SecurityStamp = "4b6ce889-d6a0-4ad6-aa6f-23462a18c46c",
+                            SecurityStamp = "1e7032b9-1cb1-42bc-87fb-7223142d4eea",
                             TwoFactorEnabled = false,
                             UserName = "dante@client.com"
                         });
@@ -673,56 +676,56 @@ namespace EldenBoost.Infrastructure.Migrations
                         {
                             Id = 1,
                             Content = "Amazing service! Got my Runes fast, and the booster was super friendly. Helped me clear some tough bosses I’ve been stuck on for weeks. Totally worth it! Will definitely use this service again. 10/10!",
-                            ReviewDate = new DateTime(2024, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "2eff52b0-3277-456f-ac78-34553d260ac6"
                         },
                         new
                         {
                             Id = 2,
                             Content = "Had an awesome experience! The boosting team was professional and kept me updated the whole time. Got all the items I wanted in no time. Highly recommended for anyone looking to enjoy Elden Ring without the grind",
-                            ReviewDate = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "1291e6cd-1aac-4f8a-af4d-4980f64aff27"
                         },
                         new
                         {
                             Id = 3,
                             Content = "I was skeptical at first, but the service was flawless. The booster got me through some difficult areas and my gear is maxed out now. Fast, safe, and affordable. If you need help, this is the place to go!",
-                            ReviewDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "97e8127d-abaf-4980-9938-e388453fcbb4"
                         },
                         new
                         {
                             Id = 4,
                             Content = "I’ve been struggling with some of the harder bosses in Elden Ring, and this boost service saved me a ton of time. Professional, reliable, and quick delivery. If you’re stuck in the game, I highly recommend it!",
-                            ReviewDate = new DateTime(2024, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "871505e9-3338-487d-8496-760de2e1f2c2"
                         },
                         new
                         {
                             Id = 5,
                             Content = "The best boosting service out there! I needed some runes and boss kills, and they delivered everything faster than expected. The process was smooth, and my account was in safe hands. Will definitely come back!",
-                            ReviewDate = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "2eff52b0-3277-456f-ac78-34553d260ac6"
                         },
                         new
                         {
                             Id = 6,
                             Content = "Fantastic job by the team! I got exactly what I asked for in a short time. The Play with a Pro option was especially fun – I learned so much. Super safe and legit, I couldn't have asked for a better experience.",
-                            ReviewDate = new DateTime(2024, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "1291e6cd-1aac-4f8a-af4d-4980f64aff27"
                         },
                         new
                         {
                             Id = 7,
                             Content = "Ordered a boosting service to get past some difficult bosses. The service was quick and efficient, and the booster communicated throughout. Completely satisfied with the results and highly recommend this service!",
-                            ReviewDate = new DateTime(2024, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "97e8127d-abaf-4980-9938-e388453fcbb4"
                         },
                         new
                         {
                             Id = 8,
                             Content = "A flawless service! Elden Ring is tough, but these guys made it easy. My character is leveled up, and I have all the gear I wanted. Great support, timely delivery, and no hassles. Can’t recommend them enough!",
-                            ReviewDate = new DateTime(2024, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "871505e9-3338-487d-8496-760de2e1f2c2"
                         });
                 });
