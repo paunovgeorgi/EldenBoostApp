@@ -81,6 +81,7 @@ namespace EldenBoost.Data
             builder.ApplyConfiguration(new ServiceOptionConfiguration());
             builder.ApplyConfiguration(new ReviewConfiguration());
             builder.ApplyConfiguration(new AuthorConfiguration());
+            builder.ApplyConfiguration(new ArticleConfiguration());
             builder.ApplyConfiguration(new ApplicationUserConfiguration(new PasswordHasher<ApplicationUser>()));
 
             base.OnModelCreating(builder);
