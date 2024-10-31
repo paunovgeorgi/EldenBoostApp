@@ -4,6 +4,7 @@ using EldenBoost.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EldenBoost.Infrastructure.Migrations
 {
     [DbContext(typeof(EldenBoostDbContext))]
-    partial class EldenBoostDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241031145132_Booster_Seed_Attempt")]
+    partial class Booster_Seed_Attempt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +88,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Applications", (string)null);
+                    b.ToTable("Applications");
                 });
 
             modelBuilder.Entity("EldenBoost.Infrastructure.Data.Models.ApplicationUser", b =>
@@ -389,7 +392,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
 
                     b.HasData(
                         new
@@ -478,7 +481,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
 
                     b.HasData(
                         new
@@ -531,7 +534,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Boosters", (string)null);
+                    b.ToTable("Boosters");
 
                     b.HasData(
                         new
@@ -584,7 +587,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("PlatformId");
 
-                    b.ToTable("BoosterPlatform", (string)null);
+                    b.ToTable("BoosterPlatform");
 
                     b.HasData(
                         new
@@ -716,7 +719,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("EldenBoost.Infrastructure.Data.Models.Payment", b =>
@@ -752,7 +755,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("BoosterId");
 
-                    b.ToTable("Payments", (string)null);
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("EldenBoost.Infrastructure.Data.Models.Platform", b =>
@@ -772,7 +775,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Platforms", (string)null);
+                    b.ToTable("Platforms");
 
                     b.HasData(
                         new
@@ -820,7 +823,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
 
                     b.HasData(
                         new
@@ -929,7 +932,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services", (string)null);
+                    b.ToTable("Services");
 
                     b.HasData(
                         new
@@ -1057,7 +1060,7 @@ namespace EldenBoost.Infrastructure.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("ServiceOptions", (string)null);
+                    b.ToTable("ServiceOptions");
 
                     b.HasData(
                         new

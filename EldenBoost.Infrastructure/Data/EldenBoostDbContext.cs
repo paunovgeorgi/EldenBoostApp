@@ -26,30 +26,23 @@ namespace EldenBoost.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<BoosterPlatform>()
+            .HasKey(bp => new { bp.BoosterId, bp.PlatformId });
+
             builder.Entity<Booster>()
                 .HasMany(b => b.Platforms)
                 .WithMany(p => p.Boosters)
-                .UsingEntity<Dictionary<string, object>>(
-                "BoosterPlatform",
-                r => r
-                .HasOne<Platform>()
-                .WithMany()
-                .HasForeignKey("PlatformId")
-                .HasConstraintName("FK_BoosterPlatform_Platforms_Id")
-                .OnDelete(DeleteBehavior.Cascade),
-                r => r
-                .HasOne<Booster>()
-                .WithMany()
-                .HasForeignKey("BoosterId")
-                .HasConstraintName("FK_BoosterPlatform_Boosters_Id")
-                .OnDelete(DeleteBehavior.Cascade),
-                j =>
-                {
-                    j.HasKey("BoosterId", "PlatformId");
-                    j.ToTable("BoostersPlatforms");
-                    j.IndexerProperty<int>("BoosterId").HasColumnName("BoosterId");
-                    j.IndexerProperty<int>("PlatformId").HasColumnName("PlatformId");
-                });
+                .UsingEntity<BoosterPlatform>(
+                    bp => bp.HasOne(bp => bp.Platform)
+                            .WithMany()
+                            .HasForeignKey(bp => bp.PlatformId)
+                            .OnDelete(DeleteBehavior.Cascade),
+                    bp => bp.HasOne(bp => bp.Booster)
+                            .WithMany()
+                            .HasForeignKey(bp => bp.BoosterId)
+                            .OnDelete(DeleteBehavior.Cascade)
+                );
+
 
             builder.Entity<Application>()
         .HasMany(a => a.Platforms)
@@ -82,6 +75,9 @@ namespace EldenBoost.Data
             builder.ApplyConfiguration(new ReviewConfiguration());
             builder.ApplyConfiguration(new AuthorConfiguration());
             builder.ApplyConfiguration(new ArticleConfiguration());
+            builder.ApplyConfiguration(new BoosterConfiguration());
+            builder.ApplyConfiguration(new BoosterPlatformConfiguration());
+
             builder.ApplyConfiguration(new ApplicationUserConfiguration(new PasswordHasher<ApplicationUser>()));
 
             base.OnModelCreating(builder);
