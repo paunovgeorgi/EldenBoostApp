@@ -1,0 +1,22 @@
+﻿@using static EldenBoost.Common.Constants.NotificationConstants;
+
+@if (TempData[SuccessMessage] != null)
+{
+    <script>
+        message.showSuccess('@TempData[SuccessMessage]')
+    </script>
+}
+@if (TempData[ErrorMessage] != null)
+{
+    <script>
+        message.showError('@TempData[ErrorMessage]')
+    </script>
+}
+@if (TempData[InformationMessage] != null)
+{
+    <script>
+        message.showInfo('@TempData[InformationMessage]')
+    </script>
+}
+
+
