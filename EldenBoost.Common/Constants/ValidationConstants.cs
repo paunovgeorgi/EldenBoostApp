@@ -76,5 +76,12 @@
             public const int ContentMinLength = 4;
             public const int ContentMaxLength = 248;
         }
+
+        public static class DecimalUniversalRange
+        {
+            public const string DecimalMin = "0.01";
+            public const string DecimalMax = "999.99";
+        }
+      
     }
 }
