@@ -1,4 +1,5 @@
 @import url('forms.css');
+@import url('cards.css');
 
 :root {
     --main-dark: #004c4c;
@@ -80,4 +81,16 @@ body {
     top: 240Px;
     opacity: .75;
     z-index: -1;
+}
+
+/*===================== Hero image -------------------------*/
+
+
+.hero {
+    width: 100%;
+    height: 280px;
+    background: url(../images/hero.jpg);
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
