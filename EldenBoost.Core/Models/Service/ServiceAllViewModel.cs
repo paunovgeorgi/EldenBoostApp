@@ -1,9 +1,10 @@
 ﻿using EldenBoost.Common.Enumerations;
+using EldenBoost.Core.Models.Service.Contracts;
 using EldenBoost.Core.Models.ServiceOption;
 
 namespace EldenBoost.Core.Models.Service
 {
-    public class ServiceAllViewModel
+    public class ServiceAllViewModel : IServiceModel
     {
         public int Id { get; set; }
         public string Title { get; set; } = null!;

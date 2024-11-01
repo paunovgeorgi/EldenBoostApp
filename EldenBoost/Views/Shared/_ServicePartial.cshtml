@@ -1,0 +1,21 @@
+﻿@model ServiceAllViewModel
+@inject IPlatformService platformService
+
+@{
+	var platforms = await platformService.GetAllPlatformsAsync();
+}
+
+<div class="col-md-3">
+    <div class="card mb-3 custom-card">
+        <img class="card-img-top" src="@Model.ImageURL" alt="Service Image">
+        <div class="card-body text-center">
+            <h4>@Model.Title</h4>
+            <h6>
+                Price: <b>@($"{Model.Price:f2}") USD</b>
+            </h6>          
+            <a asp-controller="Service" asp-area="" asp-action="Details" asp-route-id="@Model.Id"
+               asp-route-information="@Model.GetInformation()" class="btn btn-secondary">Details</a>
+         </div>
+     </div>
+ </div>
+         
