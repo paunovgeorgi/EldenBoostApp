@@ -61,5 +61,21 @@ namespace EldenBoost.Core.Services
                 Services = allServices
             };
         }
+
+        public async Task<IEnumerable<ServiceAllViewModel>> GetPopularServicesAsync()
+        {
+            return await repository.AllReadOnly<Service>()
+               .Where(s => s.IsActive)
+               .OrderByDescending(s => s.PurchaseCount)
+               .Take(8)
+              .Select(s => new ServiceAllViewModel()
+              {
+                  Id = s.Id,
+                  Title = s.Title,
+                  Price = s.Price,
+                  ImageURL = s.ImageURL ?? string.Empty
+              })
+              .ToListAsync();
+        }
     }
 }

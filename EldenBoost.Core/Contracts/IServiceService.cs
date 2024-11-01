@@ -10,5 +10,7 @@ namespace EldenBoost.Core.Contracts
     public interface IServiceService
     {
         Task<AllServicesFilteredAndPagedModel> AllAsync(AllServicesQueryModel model);
+
+        Task<IEnumerable<ServiceAllViewModel>> GetPopularServicesAsync();
     }
 }
