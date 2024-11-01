@@ -1,3 +1,5 @@
+using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Services;
 using EldenBoost.Data;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
@@ -14,6 +16,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddTransient<IPasswordHasher<ApplicationUser>, PasswordHasher<ApplicationUser>>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IPlatformService, PlatformService>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
