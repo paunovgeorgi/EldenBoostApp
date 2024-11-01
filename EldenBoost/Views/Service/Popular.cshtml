@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ServiceAllViewModel>
+
+@{
+    ViewBag.Title = "Popular Services";
+}
+
+<style>
+    .popular {
+        display: none; 
+    }
+
+    #cards-div {
+        display: block; 
+    }
+
+    @@media (min-width: 768px) {
+        .popular {
+            display: grid; 
+        }
+
+        #cards-div {
+            display: none; 
+        }
+    }
+</style>
+
+<div class="hero mb-3">
+
+</div>
+<center>
+    <h2 class="text-center py-2 mb-3" style="background-color: rgba(24, 20, 20, 0.5); border-radius: 16px; border: 1px solid var(--lightest); width: 28%;" id="serviceTitle">Select Service</h2>
+</center>
+<hr />
+
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">No Services found by the given criteria!</h2>
+}
+
+<div class="row" id="cards-div">
+    @foreach (var service in Model)
+    {
+        <partial name="_ServicePartial" model="@service" />
+    }
+</div>
+
+
+<div class="popular mt-4">
+    @foreach (var service in Model)
+    {
+        <a asp-controller="Service" asp-area="" asp-action="Details" asp-route-id="@service.Id"
+           asp-route-information="@service.GetInformation()" class="square-img" data-title="- @service.Title -" data-price="@service.Price">
+            <img src="@service.ImageURL" class="square-img" />
+        </a>
+    }
+</div>
+
+<script src="~/js/popular-services.js"></script>

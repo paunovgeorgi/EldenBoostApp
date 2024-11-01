@@ -26,5 +26,14 @@ namespace EldenBoost.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Popular()
+        {
+            var model = await serviceService.GetPopularServicesAsync();
+
+            return View(model);
+        }
     }
 }

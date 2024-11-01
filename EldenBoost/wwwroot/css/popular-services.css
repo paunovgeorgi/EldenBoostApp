@@ -1,0 +1,47 @@
+﻿/*---------------- POPULAR SERVICE SECTION -------------------*/
+
+.popular {
+    --size: 100px;
+    display: grid;
+    grid-template-columns: repeat(6, var(--size));
+    grid-auto-rows: var(--size);
+    place-items: start center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 120px;
+}
+
+    .popular:has(:hover) img:not(:hover),
+    .popular:has(:focus) img:not(:focus) {
+        filter: brightness(0.5) contrast(0.5);
+    }
+
+.square-img {
+    object-fit: cover;
+    width: calc(var(--size) * 2);
+    height: calc(var(--size) * 2);
+    clip-path: path("M90,10 C100,0 100,0 110,10 190,90 190,90 190,90 200,100 200,100 190,110 190,110 110,190 110,190 100,200 100,200 90,190 90,190 10,110 10,110 0,100 0,100 10,90Z");
+    transition: clip-path 0.2s, filter 0.5s;
+    grid-column: auto / span 2;
+    border-radius: 5px;
+}
+
+    .square-img:hover,
+    .square-img:focus {
+        clip-path: path("M0,0 C0,0 200,0 200,0 200,0 200,100 200,100 200,100 200,200 200,200 200,200 100,200 100,200 100,200 100,200 0,200 0,200 0,100 0,100 0,100 0,100 0,100Z");
+        z-index: 1;
+        transition: clip-path 0.2s, filter 0.2s;
+    }
+
+    .square-img:focus {
+        outline: 1px dashed black;
+        outline-offset: -5px;
+    }
+
+    .square-img:nth-child(5n - 1) {
+        grid-column: 2 / span 2;
+    }
+
+.title-glow {
+    text-shadow: 0 0 6px azure;
+}
