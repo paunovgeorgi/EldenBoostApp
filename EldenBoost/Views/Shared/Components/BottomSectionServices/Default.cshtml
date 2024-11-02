@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ServiceAllViewModel>
+
+<ul style="list-style: none; padding: 0px;">
+    @foreach (var service in Model)
+    {
+        <li>
+            <a asp-controller="Service" asp-area="" asp-action="Details" asp-route-id="@service.Id"
+               asp-route-information="@service.GetInformation()" class="bottom-page-link">@service.Title</a>
+        </li>
+    }
+</ul>
