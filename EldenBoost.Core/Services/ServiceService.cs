@@ -77,5 +77,24 @@ namespace EldenBoost.Core.Services
               })
               .ToListAsync();
         }
+
+        public async Task<ServiceAllViewModel?> GetServiceViewModelByIdAsync(int serviceId)
+        {
+            var service = await repository.AllReadOnly<Service>()
+               .Where(s => s.Id == serviceId)
+               .Select(s => new ServiceAllViewModel()
+               {
+                   Id = s.Id,
+                   Title = s.Title,
+                   Description = s.Description,
+                   ImageURL = s.ImageURL ?? string.Empty,
+                   Price = s.Price,
+                   ServiceType = s.ServiceType,
+                   MaxAmount = s.MaxAmount
+               })
+               .FirstOrDefaultAsync();
+      
+            return service;
+        }
     }
 }
