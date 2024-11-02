@@ -1,6 +1,7 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Models.Service.Enums;
+using EldenBoost.Core.Models.ServiceOption;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,19 @@ namespace EldenBoost.Core.Services
                   ImageURL = s.ImageURL ?? string.Empty
               })
               .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ServiceOptionViewModel>> GetServiceOptionsAsync(int serviceId)
+        {
+            return await repository.AllReadOnly<ServiceOption>()
+               .Where(so => so.ServiceId == serviceId)
+               .Select(so => new ServiceOptionViewModel()
+               {
+                   Id = so.Id,
+                   Name = so.Name,
+                   Price = so.Price
+               })
+               .ToListAsync();
         }
 
         public async Task<ServiceAllViewModel?> GetServiceViewModelByIdAsync(int serviceId)

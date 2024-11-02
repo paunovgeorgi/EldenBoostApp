@@ -1,4 +1,5 @@
 ﻿using EldenBoost.Core.Models.Service;
+using EldenBoost.Core.Models.ServiceOption;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace EldenBoost.Core.Contracts
         Task<AllServicesFilteredAndPagedModel> AllAsync(AllServicesQueryModel model);
         Task<IEnumerable<ServiceAllViewModel>> GetPopularServicesAsync();
         Task<ServiceAllViewModel?> GetServiceViewModelByIdAsync(int serviceId);
+        Task<IEnumerable<ServiceOptionViewModel>> GetServiceOptionsAsync(int serviceId);
 
     }
 }
