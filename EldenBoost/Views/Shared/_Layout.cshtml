@@ -48,6 +48,32 @@
             @RenderBody()
         </main>
     </div>
+        <div class="container-fluid mt-3" style="background-color: var(--dark-grey-correct); color: white;">
+        <div class="row justify-content-center py-5 px-5">
+            <div class="col-lg-4 col-md-6 text-center">
+                <h4>Join our Team</h4>
+                <hr style="color: var(--lightest); width: 50%; margin: 0 auto; margin-bottom: 12px;" />
+                @await Component.InvokeAsync("BottomSectionJoin")
+            </div>
+            <div class="col-lg-4 text-center">
+                <h4>Popular Services</h4>
+                <hr style="color: var(--lightest); width: 50%; margin: 0 auto; margin-bottom: 12px;" />
+                @await Component.InvokeAsync("BottomSectionServices")
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <h4>About</h4>
+                <hr style="color: var(--lightest); width: 50%; margin: 0 auto; margin-bottom: 12px;" />
+                @await Component.InvokeAsync("BottomSectionAbout")
+            </div> 
+        </div>
+        <hr />
+        <div class="row justify-content-center py-2">
+            <p class="col-lg-8 text-muted text-center">
+                EldenBoost is not endorsed by, directly affiliated with, maintained, or sponsored by FromSoftware. The views and opinions expressed by EldenBoost do not reflect those of anyone officially associated with producing or managing their game franchises. Copyrighted art submitted to or through EldenBoost remains the intellectual property of the respective copyright holder. EldenBoost does not engage in the sale of in-game items. Instead, our service focuses on enhancing players’ in-game skills and occasionally gifting in-game items to users.
+            </p>
+        </div>
+    
+    </div>
 
     <footer class="footer text-muted bg-dark">
         <div class="container">

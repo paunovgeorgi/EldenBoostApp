@@ -95,3 +95,15 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+/*------------- Bottom Page Links -----------------------*/
+
+.bottom-page-link {
+    text-decoration: none;
+    color: azure;
+}
+
+    .bottom-page-link:hover {
+        color: var(--secondary-light);
+        text-decoration: underline;
+    }
