@@ -1,0 +1,52 @@
+﻿.accordion-item {
+    background-color: #008080; 
+}
+
+.accordion-button {
+    color: azure; 
+    background-color: #004c4c; 
+    border: none; 
+}
+
+    .accordion-button:not(.collapsed) {
+        color: #ffffff; 
+        background-color: #006666; 
+        -webkit-box-shadow: 1px 0px 67px -3px rgba(102,178,178,1);
+        -moz-box-shadow: 1px 0px 67px -3px rgba(102,178,178,1);
+        box-shadow: 1px 0px 67px -3px rgba(102,178,178,1);
+    }
+
+
+.accordion-body {
+    background-color: #b2d8d8; 
+    color: #004d40; 
+}
+
+
+.accordion-button.collapsed {
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    position: relative;
+}
+
+.accordion-button::before,
+.accordion-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    width: 0.2em;
+    height: 1em;
+    background-color: rgba(24, 20, 20, 0.987);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.accordion-button::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
