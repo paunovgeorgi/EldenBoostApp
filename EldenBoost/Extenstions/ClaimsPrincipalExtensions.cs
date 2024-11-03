@@ -1,13 +1,12 @@
 ﻿using System.Security.Claims;
-using static EldenBoost.Common.Constants.GeneralApplicationConstants;
 
-namespace EldenBoost.Extensions
+namespace EldenBoost.Extenstions
 {
     public static class ClaimsPrincipalExtensions
     {
         public static string Id(this ClaimsPrincipal user)
         {
-            return user.FindFirstValue(ClaimTypes.NameIdentifier);
+            return user.FindFirstValue(ClaimTypes.NameIdentifier)!;
         }
     }
 }

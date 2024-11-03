@@ -18,6 +18,7 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddTransient<IPasswordHasher<ApplicationUser>, PasswordHasher<ApplicationUser>>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IPlatformService, PlatformService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
