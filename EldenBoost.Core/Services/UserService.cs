@@ -14,6 +14,21 @@ namespace EldenBoost.Core.Services
             repository = _repository;
         }
 
+        public async Task<string> GetProfilePictureByUseIdAsync(string userId)
+        {
+            string? profilePicture = await repository.AllReadOnly<ApplicationUser>()
+               .Where(u => u.Id == userId)
+               .Select(u => u.ProfilePicture)
+               .FirstOrDefaultAsync();
+
+            if (profilePicture != null)
+            {
+                return profilePicture;
+            }
+
+            return string.Empty;
+        }
+
         public async Task<string> GetUserNicknameAsync(string userId)
         {
             string? nickname = await repository.AllReadOnly<ApplicationUser>()

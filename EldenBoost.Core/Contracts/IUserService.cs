@@ -9,6 +9,7 @@ namespace EldenBoost.Core.Contracts
     public interface IUserService
     {
         Task<string> GetUserNicknameAsync(string userId);
+        Task<string> GetProfilePictureByUseIdAsync(string userId);
 
     }
 }
