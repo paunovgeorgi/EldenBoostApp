@@ -1,0 +1,109 @@
+﻿
+
+ @using EldenBoost.Common.Enumerations
+@model ServiceAllViewModel
+@inject IPlatformService platformService
+
+@{
+    var platforms = await platformService.GetAllPlatformsAsync();
+    ViewBag.Title = $"{Model.Title} Details";
+}
+
+<h2 class="text-center" style="margin-top: 80px">@ViewBag.Title</h2>
+<hr />
+
+<div class="container">
+    <div class="row service-container">
+        <div class="col-4">
+            <img class="card-img-top img-details" src="@Model.ImageURL" alt="Service Image">
+        </div>
+        <div class="card col-8 border-0 content-wrapper">
+            <form asp-controller="Service" asp-action="Buy" method="post">
+                <p>
+                    Price:
+                    <b><span id="priceDisplay">@Model.Price.ToString("F2")</span> USD</b>
+                </p>
+                <p>@Model.Description</p>
+
+                @if (Model.ServiceType == ServiceType.Slider)
+                {
+                        <!-- Slider for Service Type: Slider -->
+                        <div class="form-group mt-4">
+                            <label for="levelSlider" class="form-label">Select Amount:</label>
+                            <input type="range" id="levelSlider" min="1" max="@(Model.MaxAmount > 0 ? Model.MaxAmount : 10)" value="1" step="1" class="slider" />
+                            <div class="d-flex justify-content-between">
+                                <span>1</span>
+                                <span id="sliderValue" class="font-weight-bold">1</span>
+                                <span>@(Model.MaxAmount > 0 ? Model.MaxAmount : 10)</span>
+                            </div>
+                        </div>
+                }
+
+                @if (Model.ServiceType == ServiceType.Option)
+                {
+                        <div class="form-group mt-4">
+                            <label for="optionSelect" class="form-label">Select an Option:</label>
+                            <select id="optionSelect" name="optionId" class="form-control custom-select" onchange="updatePrice()">
+                            @foreach (var option in Model.Options)
+                            {
+                                        <option value="@option.Id" data-price="@option.Price">@option.Name - @option.Price.ToString("F2") USD</option>
+                            }
+                            </select>
+                        </div>
+                }
+
+                <!-- Checkboxes for Stream and Express options -->
+                <div class="form-group mt-3" data-bs-toggle="tooltip" data-bs-placement="right" title="Booster will provide you with a stream link so you can watch the process.">
+                    <input type="hidden" name="HasStream" value="false" />
+                    <input type="checkbox" class="form-check-input" id="hasStream" name="HasStream" value="true" onchange="updatePrice()" />
+                    <label for="hasStream">Stream (+5 USD)</label>
+                </div>
+                <div class="form-group mt-2 mb-3" data-bs-toggle="tooltip" data-bs-placement="right" title="Your order will have priority and will be assigned faster.">
+                    <input type="hidden" name="IsExpress" value="false" />
+                    <input type="checkbox" class="form-check-input" id="isExpress" name="IsExpress" value="true" onchange="updatePrice()" />
+                    <label for="isExpress">Express (+20%)</label>
+                </div>
+
+                <!-- Hidden field to store the updated price for form submission -->
+                <input type="hidden" id="updatedPrice" name="updatedPrice" value="@Model.Price.ToString("F2")" />
+                <input type="hidden" id="sliderValueHidden" name="sliderValue" value="1" /> 
+
+                <div class="form-inline mb-2">
+            
+                   
+                     <div class="form-group col-6">
+                         <label for="platformSelect">Select Platform</label>
+                         <select id="platformSelect" name="platformId" class="form-control custom-select">
+                         @foreach (var platform in platforms)
+                         {
+                                     <option value="@platform.Id">@platform.Name</option>
+                         }
+                         </select>
+                     </div>
+                     <input type="hidden" name="serviceId" value="@Model.Id" />
+                     <input class="btn btn-outline-light mt-3 mb-2" style="padding: 3px 20px;" type="submit" value="Buy" />
+
+                </div>
+            </form>
+
+            <div class="mb-2 mt-1 bg-dark bg-opacity-25" style="padding: 1em;">
+                <h4 class="mt-4 p-2">Requirements</h4>
+                <ul>
+                    <li>This service requires account sharing.</li>
+                    <li>You need to own an original copy of the game.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    @await Component.InvokeAsync("FaqComponent")
+</div>
+
+@section Scripts {
+        <script>
+            var basePrice = @Model.Price;
+        </script>
+        <script src="~/js/service-details.js"></script>
+}
