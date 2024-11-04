@@ -20,6 +20,8 @@ builder.Services.AddTransient<IPasswordHasher<ApplicationUser>, PasswordHasher<A
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IPlatformService, PlatformService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IBoosterService, BoosterService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
