@@ -173,6 +173,21 @@ namespace EldenBoost.Infrastructure.Data.Configurations
 
             users.Add(user10);
 
+            var admin = new ApplicationUser
+            {
+                Id = "698b474f-7790-4ae6-b186-a3ba3405bf99",
+                UserName = "admin@admin.com",
+                NormalizedUserName = "ADMIN@ADMIN.COM",
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                EmailConfirmed = true,
+                Nickname = "Admin",
+                ProfilePicture = "images/admin.jpg"
+            };
+            admin.PasswordHash = _passwordHasher.HashPassword(admin, "123456");
+
+            users.Add(admin);
+
             return users.ToArray();
         }
     }

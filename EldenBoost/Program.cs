@@ -1,6 +1,7 @@
 using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Services;
 using EldenBoost.Data;
+using EldenBoost.Extenstions;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.AspNetCore.Identity;
@@ -50,7 +51,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+await app.CreateAdminRoleAsync();
 
 app.MapControllerRoute(
     name: "default",
