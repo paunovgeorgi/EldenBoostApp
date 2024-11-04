@@ -9,15 +9,14 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EldenBoost.styles.css" asp-append-version="true" />
     <script src="https://kit.fontawesome.com/c9881530a5.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3 fixed-top px-4 py-2"
-             style=" background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.6698880235688025) 49%, rgba(0,102,102,1) 74%);">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EldenBoost</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -35,47 +34,34 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Booster" asp-action="All">Boosters</a>
                         </li>
+                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Service" asp-action="All">All Services</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="All">All Users</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Order" asp-action="All">All Orders</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Application" asp-action="AllBooster">All Booster Applications</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Application" asp-action="AllAuthor">All Author Applications</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Payment" asp-action="All">All Payments</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="Service" asp-action="Add">Add Service</a>
+                            </div>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="left-border-main"></div>
-    <div class="right-border-main"></div>
     <div class="container">
-        <main role="main" class="pb-3 min-vh-100">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-        <div class="container-fluid mt-3" style="background-color: var(--dark-grey-correct); color: white;">
-        <div class="row justify-content-center py-5 px-5">
-            <div class="col-lg-4 col-md-6 text-center">
-                <h4>Join our Team</h4>
-                <hr style="color: var(--lightest); width: 50%; margin: 0 auto; margin-bottom: 12px;" />
-                @await Component.InvokeAsync("BottomSectionJoin")
-            </div>
-            <div class="col-lg-4 text-center">
-                <h4>Popular Services</h4>
-                <hr style="color: var(--lightest); width: 50%; margin: 0 auto; margin-bottom: 12px;" />
-                @await Component.InvokeAsync("BottomSectionServices")
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <h4>About</h4>
-                <hr style="color: var(--lightest); width: 50%; margin: 0 auto; margin-bottom: 12px;" />
-                @await Component.InvokeAsync("BottomSectionAbout")
-            </div> 
-        </div>
-        <hr />
-        <div class="row justify-content-center py-2">
-            <p class="col-lg-8 text-muted text-center">
-                EldenBoost is not endorsed by, directly affiliated with, maintained, or sponsored by FromSoftware. The views and opinions expressed by EldenBoost do not reflect those of anyone officially associated with producing or managing their game franchises. Copyrighted art submitted to or through EldenBoost remains the intellectual property of the respective copyright holder. EldenBoost does not engage in the sale of in-game items. Instead, our service focuses on enhancing players’ in-game skills and occasionally gifting in-game items to users.
-            </p>
-        </div>
-    
-    </div>
-
-    <footer class="footer text-muted bg-dark">
+    <footer class="border-top footer text-muted bg-dark">
         <div class="container">
             &copy; @DateTime.UtcNow.Year - EldenBoost
         </div>
@@ -88,5 +74,6 @@
 
     @await RenderSectionAsync("Scripts", required: false)
     <partial name="_NotificationsPartial" />
+
 </body>
 </html>
