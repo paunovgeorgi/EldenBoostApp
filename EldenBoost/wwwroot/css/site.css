@@ -139,13 +139,13 @@ input[type="checkbox"]:focus {
 .custom-select:focus {
     outline: none;
     box-shadow: 0 0 0 0.25rem rgba(102, 178, 178, 0.25);
-    background-color: rgba(24, 20, 20, 0.75);
-    color: azure;
+/*    background-color: rgba(24, 20, 20, 0.75);
+    color: azure;*/
     border-color: var(--secondary-light);
 }
 
 .custom-select {
-    background-color: rgba(24, 20, 20, 0.75);
-    color: azure;
+ /*   background-color: rgba(24, 20, 20, 0.75);
+    color: azure;*/
     border-color: var(--secondary-light);
 }
