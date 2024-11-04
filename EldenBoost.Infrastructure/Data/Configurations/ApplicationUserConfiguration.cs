@@ -32,7 +32,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "CLOUD@BOOSTER.COM",
                 EmailConfirmed = true,
                 Nickname = "Cloud",
-                ProfilePicture = "images/boosters/cloud.jpg"
+                ProfilePicture = "/images/boosters/cloud.jpg"
             };
             user1.PasswordHash = _passwordHasher.HashPassword(user1, "123456");
 
@@ -47,7 +47,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "HEISENBERG@BOOSTER.COM",
                 EmailConfirmed = true,
                 Nickname = "Mr. White",
-                ProfilePicture = "images/boosters/heisenberg.jpg"
+                ProfilePicture = "/images/boosters/heisenberg.jpg"
             };
             user2.PasswordHash = _passwordHasher.HashPassword(user2, "123456");
 
@@ -62,7 +62,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "DVA@BOOSTER.COM",
                 EmailConfirmed = true,
                 Nickname = "D.VA",
-                ProfilePicture = "images/boosters/dva.jpg"
+                ProfilePicture = "/images/boosters/dva.jpg"
             };
             user3.PasswordHash = _passwordHasher.HashPassword(user3, "123456");
 
@@ -77,7 +77,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "JOHNWICK@BOOSTER.COM",
                 EmailConfirmed = true,
                 Nickname = "Mr. Wick",
-                ProfilePicture = "images/boosters/john-wick.jpg"
+                ProfilePicture = "/images/boosters/john-wick.jpg"
             };
             user4.PasswordHash = _passwordHasher.HashPassword(user4, "123456");
 
@@ -92,7 +92,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "OBIWAN@AUTHOR.COM",
                 EmailConfirmed = true,
                 Nickname = "Master Kenobi",
-                ProfilePicture = "images/authors/obiwan.jpg"
+                ProfilePicture = "/images/authors/obiwan.jpg"
             };
             user5.PasswordHash = _passwordHasher.HashPassword(user5, "123456");
 
@@ -107,7 +107,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "QUIGON@AUTHOR.COM",
                 EmailConfirmed = true,
                 Nickname = "Qui-Gon-Jinn",
-                ProfilePicture = "images/authors/quigon.jpg"
+                ProfilePicture = "/images/authors/quigon.jpg"
             };
             user6.PasswordHash = _passwordHasher.HashPassword(user6, "123456");
 
@@ -122,7 +122,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "THEBAT@CLIENT.COM",
                 EmailConfirmed = true,
                 Nickname = "Master Wayne",
-                ProfilePicture = "images/clients/thebat.jpg"
+                ProfilePicture = "/images/clients/thebat.jpg"
             };
             user7.PasswordHash = _passwordHasher.HashPassword(user7, "123456");
 
@@ -137,7 +137,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "THEONE@CLIENT.COM",
                 EmailConfirmed = true,
                 Nickname = "Mr. Anderson",
-                ProfilePicture = "images/clients/theone.jpg"
+                ProfilePicture = "/images/clients/theone.jpg"
             };
             user8.PasswordHash = _passwordHasher.HashPassword(user8, "123456");
 
@@ -152,7 +152,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "LEON@CLIENT.COM",
                 EmailConfirmed = true,
                 Nickname = "Leon S. Kennedy",
-                ProfilePicture = "images/clients/leon.jpg"
+                ProfilePicture = "/images/clients/leon.jpg"
             };
             user9.PasswordHash = _passwordHasher.HashPassword(user9, "123456");
 
@@ -167,7 +167,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "DANTE@CLIENT.COM",
                 EmailConfirmed = true,
                 Nickname = "Dante",
-                ProfilePicture = "images/clients/dante.jpeg"
+                ProfilePicture = "/images/clients/dante.jpeg"
             };
             user10.PasswordHash = _passwordHasher.HashPassword(user10, "123456");
 
@@ -182,7 +182,7 @@ namespace EldenBoost.Infrastructure.Data.Configurations
                 NormalizedEmail = "ADMIN@ADMIN.COM",
                 EmailConfirmed = true,
                 Nickname = "Admin",
-                ProfilePicture = "images/admin.jpg"
+                ProfilePicture = "/images/admin.jpg"
             };
             admin.PasswordHash = _passwordHasher.HashPassword(admin, "123456");
 
