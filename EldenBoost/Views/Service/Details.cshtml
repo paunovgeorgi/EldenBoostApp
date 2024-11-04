@@ -72,16 +72,27 @@
             
                    
                      <div class="form-group col-6">
-                         <label for="platformSelect">Select Platform</label>
-                         <select id="platformSelect" name="platformId" class="form-control custom-select">
-                         @foreach (var platform in platforms)
-                         {
-                                     <option value="@platform.Id">@platform.Name</option>
-                         }
-                         </select>
-                     </div>
-                     <input type="hidden" name="serviceId" value="@Model.Id" />
-                     <input class="btn btn-outline-light mt-3 mb-2" style="padding: 3px 20px;" type="submit" value="Buy" />
+                        @if (User.IsAdmin())
+                        {
+                            <a asp-controller="Service" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-info">Edit</a>
+                            <form id="delete-form" asp-controller="Service" asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline">
+                                <button type="button" class="btn btn-outline-danger" onclick="confirmDelete()">Delete</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="form-group col-6">
+                                <label for="platformSelect">Select Platform</label>
+                                <select id="platformSelect" name="platformId" class="form-control custom-select">
+                                    @foreach (var platform in platforms)
+                                    {
+                                        <option value="@platform.Id">@platform.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" name="serviceId" value="@Model.Id" />
+                            <input class="btn btn-outline-light mt-3 mb-2" style="padding: 3px 20px;" type="submit" value="Buy" />
+                        }
 
                 </div>
             </form>
