@@ -32,3 +32,47 @@
 .custom-card .card-body {
     padding: 1.25rem;
 }
+
+    .custom-card .btn-edit {
+        margin-top: .5rem;
+        background-color: var(--main-light);
+        color: aliceblue;
+        font-size: 1rem;
+        padding: 0.25rem 1.25rem;
+        border-radius: 0.35rem;
+        transition: 0.3s ease;
+    }
+
+        .custom-card .btn-edit:hover {
+            background-color: var(--main-dark);
+            color: aliceblue;
+        }
+
+    .custom-card .btn-details {
+        margin-top: .5rem;
+        background-color: var(--secondary-dark);
+        color: aliceblue;
+        font-size: 1rem;
+        padding: 0.25rem 1.25rem;
+        border-radius: 0.35rem;
+        transition: 0.3s ease;
+    }
+
+        .custom-card .btn-details:hover {
+            background-color: var(--main-light);
+            
+        }
+
+    .custom-card .btn-delete {
+        margin-top: .5rem;
+        background-color: rgba(42,77,105);
+        color: aliceblue;
+        font-size: 1rem;
+        padding: 0.25rem 1.25rem;
+        border-radius: 0.35rem;
+        transition: 0.3s ease;
+    }
+
+        .custom-card .btn-delete:hover {
+            background-color: rgba(42,77,105, 0.6);
+        }
