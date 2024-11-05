@@ -1,3 +1,11 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using static EldenBoost.Common.Constants.GeneralApplicationConstants;
+@{
+    if (User.IsInRole(AdminRole))
+    {
+        Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }

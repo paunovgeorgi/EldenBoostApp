@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace EldenBoost.Extenstions
+namespace EldenBoost.Extensions
 {
     public static class HtmlHelperExtensions
     {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using static EldenBoost.Common.Constants.GeneralApplicationConstants;
 
-namespace EldenBoost.Extenstions
+namespace EldenBoost.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using static EldenBoost.Common.Constants.GeneralApplicationConstants;
 
-namespace EldenBoost.Extenstions
+namespace EldenBoost.Extensions
 {
     public static class ClaimsPrincipalExtensions
     {
