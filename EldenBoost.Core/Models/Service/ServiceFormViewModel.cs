@@ -9,8 +9,6 @@ namespace EldenBoost.Core.Models.Service
 {
     public class ServiceFormViewModel
     {
-        public int Id { get; set; }
-
         [Required]
         [StringLength(TitleMaxLength, MinimumLength = TitleMinLength, ErrorMessage = FieldLength)]
         public string Title { get; set; } = null!;
