@@ -3,25 +3,39 @@
 
 .custom-card {
     background-color: rgba(24, 20, 20, 0.85);
+    /*background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(0,35,36,1) 50%, rgba(2,0,36,0.09565833169205185) 100%);*/
+    /*background: linear-gradient(90deg, rgba(0,36,36,0.3113446062018558) 0%, rgba(0,36,36,0.921988863904937) 50%, rgba(0,36,36,0.2581233176864496) 100%);*/
+    /*background: linear-gradient(90deg, rgba(0,36,36,1) 0%, rgba(0,36,36,0) 50%, rgba(0,36,36,1) 100%);*/
     color: azure;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: none;
     border-radius: 8px;
-    transition: transform 0.2s;
+    transition: transform 0.3s;
+    transition: background .8s ease;
     overflow: hidden;
 }
 
 
 .custom-card img {
-    height: 148px;
+    height: 150px;
     object-fit: cover;
     object-position: top;
     transition: transform 0.3s ease;
 }
 
+    .custom-card:hover {
+         background-color: rgba(24, 20, 20, 0.9);
+        transition: background .8s ease;
+    }
+
 .custom-card:hover img {
     transform: scale(1.05);
 }
+
+    .custom-card:hover .card-body h4 {
+       color: white;
+        text-shadow: 0px 9px 20px rgba(6, 95, 105, 1), 0px 4px 4px rgba(6, 95, 105, 0.8);
+    }
 
 .custom-card:hover {
     -webkit-box-shadow: 0px 9px 44px 0px rgba(6,95,105,1);
@@ -76,3 +90,4 @@
         .custom-card .btn-delete:hover {
             background-color: rgba(42,77,105, 0.6);
         }
+

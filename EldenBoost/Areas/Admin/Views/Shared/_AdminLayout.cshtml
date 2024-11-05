@@ -47,7 +47,7 @@
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Application" asp-action="AllAuthor">All Author Applications</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Payment" asp-action="All">All Payments</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Service" asp-action="Add">Add Service</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Service" asp-action="Add">Add Service</a>
                             </div>
                         </li>
                     </ul>
@@ -61,11 +61,12 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="border-top footer text-muted bg-dark">
+    <footer class="footer border-top text-muted bg-dark">
         <div class="container">
             &copy; @DateTime.UtcNow.Year - EldenBoost
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
