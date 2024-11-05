@@ -15,6 +15,7 @@ namespace EldenBoost.Core.Contracts
         Task<ServiceAllViewModel?> GetServiceViewModelByIdAsync(int serviceId);
         Task<IEnumerable<ServiceOptionViewModel>> GetServiceOptionsAsync(int serviceId);
         Task CreateServiceAsync(ServiceFormViewModel model);
+        Task<ServiceEditViewModel?> GetServiceEditViewModelByIdAsync(int serviceId);
 
     }
 }

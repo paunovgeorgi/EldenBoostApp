@@ -6,11 +6,6 @@ using EldenBoost.Core.Models.ServiceOption;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Core.Services
 {
@@ -106,6 +101,25 @@ namespace EldenBoost.Core.Services
                   ImageURL = s.ImageURL ?? string.Empty
               })
               .ToListAsync();
+        }
+
+        public async Task<ServiceEditViewModel?> GetServiceEditViewModelByIdAsync(int serviceId)
+        {
+            var service = await repository.AllReadOnly<Service>()
+              .Where(s => s.Id == serviceId)
+              .Select(s => new ServiceEditViewModel()
+              {
+                  Id = s.Id,
+                  Title = s.Title,
+                  Description = s.Description,
+                  ImageURL = s.ImageURL,
+                  Price = s.Price,
+                  ServiceType = s.ServiceType,
+                  MaxAmount = s.MaxAmount
+              })
+              .FirstOrDefaultAsync();
+
+            return service;
         }
 
         public async Task<IEnumerable<ServiceOptionViewModel>> GetServiceOptionsAsync(int serviceId)
