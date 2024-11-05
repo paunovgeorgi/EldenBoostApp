@@ -87,6 +87,41 @@ namespace EldenBoost.Core.Services
             await repository.SaveChangesAsync();
         }
 
+        public async Task EditAsync(ServiceEditViewModel model)
+        {
+            Service? service = await repository.All<Service>()
+               .Include(s => s.Options)
+               .Where(s => s.Id == model.Id)
+               .FirstOrDefaultAsync();
+
+            if (service == null)
+            {
+                throw new ArgumentException("Service not found");
+            }
+
+            service.Title = model.Title;
+            service.Description = model.Description;
+            service.Price = model.Price;
+            service.ImageURL = model.ImageURL;
+            service.MaxAmount = model.MaxAmount ?? 0;
+
+            if (service.ServiceType == ServiceType.Option)
+            {
+                service.Options.Clear();
+
+                foreach (var option in model.ServiceOptions)
+                {
+                    service.Options.Add(new ServiceOption
+                    {
+                        Name = option.Name,
+                        Price = option.Price
+                    });
+                }
+            }
+
+            await repository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<ServiceAllViewModel>> GetPopularServicesAsync()
         {
             return await repository.AllReadOnly<Service>()
