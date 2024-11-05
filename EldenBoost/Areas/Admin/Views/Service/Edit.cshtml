@@ -1,0 +1,75 @@
+﻿@model ServiceFormViewModel;
+@{
+    ViewBag.Title = "Edit Service";
+}
+
+<h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <!-- Common fields for all service types -->
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" placeholder="Title...">
+                <span asp-validation-for="Title" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="4" class="form-control" placeholder="Service description..."></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageURL"></label>
+                <input asp-for="ImageURL" class="form-control" placeholder="Your fine URL here...">
+                <span asp-validation-for="ImageURL" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control">
+                <span asp-validation-for="Price" class="small text-danger"></span>
+            </div>
+
+            <!-- Conditional section for Slider type -->
+            <div class="form-group" id="maxAmountField" style="display:none;">
+                <label asp-for="MaxAmount">Max Amount</label>
+                <input asp-for="MaxAmount" class="form-control" placeholder="Set the maximum amount">
+                <span asp-validation-for="MaxAmount" class="small text-danger"></span>
+            </div>
+
+            <!-- Conditional section for Option type -->
+            <div id="options-section" class="form-group" style="display:none;">
+                <h4>Service Options</h4>
+                <div id="service-options-container">
+                    @for (int i = 0; i < Model.ServiceOptions.Count; i++)
+                    {
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="ServiceOptions[@i].Name"
+                                   value="@Model.ServiceOptions[i].Name" placeholder="Option Name">
+                            <input type="number" step="0.01" class="form-control mt-2" name="ServiceOptions[@i].Price"
+                                   value="@Model.ServiceOptions[i].Price" placeholder="Option Price">
+                            <button type="button" class="btn btn-danger mt-2 remove-option-btn">Remove</button>
+                        </div>
+                    }
+                </div>
+                <button type="button" class="btn btn-primary mt-2" id="add-option-btn">Add Another Option</button>
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        var serviceType = @Html.Raw((int)Model.ServiceType);
+    </script>
+    <script src="~/js/edit-service.js"></script>
+}
