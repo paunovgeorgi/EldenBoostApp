@@ -1,4 +1,5 @@
-﻿using EldenBoost.Core.Contracts;
+﻿using EldenBoost.Common.Enumerations;
+using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Models.Service.Enums;
 using EldenBoost.Core.Models.ServiceOption;
@@ -61,6 +62,34 @@ namespace EldenBoost.Core.Services
                 TotalServicesCount = totalServices,
                 Services = allServices
             };
+        }
+
+        public async Task CreateServiceAsync(ServiceFormViewModel model)
+        {
+            Service service = new Service()
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Price = model.Price,
+                ImageURL = model.ImageURL ?? string.Empty,
+                ServiceType = model.ServiceType,
+                MaxAmount = model.MaxAmount ?? 0
+            };
+
+            if (model.ServiceType == ServiceType.Option)
+            {
+                foreach (var option in model.ServiceOptions)
+                {
+                    service.Options.Add(new ServiceOption
+                    {
+                        Name = option.Name,
+                        Price = option.Price
+                    });
+                }
+            }
+
+            await repository.AddAsync(service);
+            await repository.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<ServiceAllViewModel>> GetPopularServicesAsync()
