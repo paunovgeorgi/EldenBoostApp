@@ -1,0 +1,75 @@
+﻿@using EldenBoost.Common.Enumerations
+@using EldenBoost.Extensions
+@model ServiceFormViewModel
+@{
+    ViewBag.Title = "Add a Service";
+}
+
+<h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" placeholder="Title...">
+                <span asp-validation-for="Title" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="4" class="form-control" placeholder="Service description..."></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageURL"></label>
+                <input asp-for="ImageURL" class="form-control" placeholder="Your fine URL here...">
+                <span asp-validation-for="ImageURL" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" placeholder="Base Price (for fixed price services)">
+                <span asp-validation-for="Price" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ServiceType"></label>
+                <select asp-for="ServiceType" class="form-control" id="ServiceType">
+                    <option value="0">Basic</option>
+                    <option value="1">Slider</option>
+                    <option value="2">Option</option>
+                </select>
+            </div>
+
+            <!-- Section for slider MaxAmount (appears if Slider type is selected) -->
+            <div id="slider-section" class="form-group" style="display:none;">
+                <label for="MaxAmount" class="form-label">Maximum Amount for Slider</label>
+                <input type="number" class="form-control" id="MaxAmount" name="MaxAmount" placeholder="Enter maximum amount">
+            </div>
+
+            <!-- Section for options (appears if Option type is selected) -->
+            <div id="options-section" class="form-group" style="display:none;">
+                <h4>Service Options</h4>
+                <div id="service-options-container">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="ServiceOptions[0].Name" placeholder="Option Name">
+                        <input type="number" step="0.01" class="form-control mt-2" name="ServiceOptions[0].Price" placeholder="Option Price">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary mt-2" id="add-option-btn">Add Another Option</button>
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/add-service.js"></script>
+}
