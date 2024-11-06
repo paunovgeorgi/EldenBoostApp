@@ -11,7 +11,7 @@
     border: none;
     border-radius: 8px;
     transition: transform 0.3s;
-    transition: background .8s ease;
+    transition: background .3s ease;
     overflow: hidden;
 }
 
@@ -25,7 +25,7 @@
 
     .custom-card:hover {
          background-color: rgba(24, 20, 20, 0.9);
-        transition: background .8s ease;
+        transition: background .3s ease;
     }
 
 .custom-card:hover img {
