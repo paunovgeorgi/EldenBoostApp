@@ -99,6 +99,11 @@ namespace EldenBoost.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
+            if (await serviceService.ExistsByIdAsync(id) == false)
+            {
+                return BadRequest("Service does not exist!");
+            }
+
             //Deactivates the service;
             await serviceService.DeleteByIdAsync(id);
             TempData[WarningMessage] = "Service deactivated.";

@@ -44,7 +44,7 @@ namespace EldenBoost.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id, string information)
         {
-
+            
             var model = await serviceService.GetServiceDetailsViewModelByIdAsync(id);
 
             if (model == null)
@@ -53,9 +53,10 @@ namespace EldenBoost.Controllers
                 return RedirectToAction("All", "Service");
             }
 
+            //Checks if service url passes the security check.
             if (information != model.GetInformation())
             {
-                return BadRequest("Info doesn't add-up mate");
+                return BadRequest("Info is incorrect!");
             }
 
             var options = await serviceService.GetServiceOptionsAsync(model.Id);
