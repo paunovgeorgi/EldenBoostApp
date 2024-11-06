@@ -91,3 +91,55 @@
             background-color: rgba(42,77,105, 0.6);
         }
 
+
+
+/*-------------------- Booster Card -------------------------*/
+
+.booster-card {
+    /*   width: 190px;
+    height: 254px;*/
+    border-radius: 30px;
+    background: #212121;
+    box-shadow: 10px 10px 30px rgb(25, 25, 25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2px;
+    transition: transform 0.3s ease;
+}
+
+    .booster-card:hover {
+        background-color: rgba(33,33,33, 0.92);
+        transform: scale(1.02)
+    }
+    /*   .booster-card:hover h3{
+        color: var(--secondary-dark);
+    }*/
+
+    .booster-card img {
+        width: 60%;
+        border-radius: 100%;
+        height: auto;
+        object-fit: fill;
+        aspect-ratio: 1;
+        align-self: center;
+    }
+
+    .booster-card p {
+        margin-bottom: 1px;
+    }
+
+.star-rating {
+    display: inline-block;
+}
+
+.star {
+    font-size: 24px; 
+    color: #ccc; 
+    margin-right: 5px;
+}
+
+    .star.active {
+        color: #008080;
+    }
