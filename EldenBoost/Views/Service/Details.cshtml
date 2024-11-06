@@ -74,9 +74,9 @@
                      <div class="form-group col-6">
                         @if (User.IsAdmin())
                         {
-                            <a asp-controller="Service" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-info">Edit</a>
-                            <form id="delete-form" asp-controller="Service" asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline">
-                                <button type="button" class="btn btn-outline-danger" onclick="confirmDelete()">Delete</button>
+                            <a asp-controller="Service" asp-area="Admin" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-light">Edit</a>
+                            <form id="delete-form" asp-area="Admin" asp-controller="Service" asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline">
+                                <button type="button" class="btn btn-outline-light" onclick="confirmDelete()">Delete</button>
                             </form>
                         }
                         else

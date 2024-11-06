@@ -3,6 +3,7 @@
 @import url('popular-services.css');
 @import url(faq.css);
 @import url(service-details.css);
+@import url(buttons.css);
 
 :root {
     --main-dark: #004c4c;
