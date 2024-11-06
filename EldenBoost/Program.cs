@@ -24,6 +24,7 @@ builder.Services.AddScoped<IPlatformService, PlatformService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBoosterService, BoosterService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
@@ -70,8 +71,7 @@ await app.CreateAdminRoleAsync();
 
 app.MapControllerRoute(
      name: "areas",
-           pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
+           pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
         name: "SecurePattern",

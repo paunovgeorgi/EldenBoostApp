@@ -5,16 +5,28 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using EldenBoost.Core.Extensions;
 using static EldenBoost.Common.Constants.NotificationConstants;
+using EldenBoost.Core.Services;
+using EldenBoost.Extensions;
 
 namespace EldenBoost.Controllers
 {
     public class ServiceController : BaseController
     {
         private readonly IServiceService serviceService;
+        private readonly IOrderService orderService;
+        private readonly IBoosterService boosterService;
+        private readonly IPlatformService platformService;
 
-        public ServiceController(IServiceService _serviceService)
+        public ServiceController(
+            IServiceService _serviceService,
+            IOrderService _orderService,
+            IBoosterService _boosterService,
+            IPlatformService _platformService)
         {
             serviceService = _serviceService;
+            orderService = _orderService;
+            boosterService = _boosterService;
+            platformService = _platformService;
         }
 
         [HttpGet]
@@ -64,5 +76,34 @@ namespace EldenBoost.Controllers
 
             return View(model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Buy(int serviceId, int platformId, decimal? updatedPrice, bool hasStream, bool isExpress, int? optionId, int sliderValue)
+		{
+			//Check if service exists.
+			if (await serviceService.ExistsByIdAsync(serviceId) == false)
+			{
+				return BadRequest("Service doesn't exist!");
+			}
+
+			//Check if platform exists.
+			if (await platformService.PlatformExistsByIdAsync(platformId) == false)
+			{
+				return BadRequest("Platform doesn't exist!");
+			}
+            
+            //Check if user is booster, if so - redirect.
+			if (await boosterService.BoosterExistsByUserIdAsync(User.Id()))
+			{
+				TempData[ErrorMessage] = "You are a booster mate, can't purchase services.";
+				return RedirectToAction("All", "Service");
+			}
+
+			TempData[SuccessMessage] = "Your purchase was successful!";
+
+            //Create order.
+			await orderService.CreateOrderAsync(serviceId, User.Id(), platformId, updatedPrice, hasStream, isExpress, optionId, sliderValue);
+			return RedirectToAction("MyProfile", "Client");
+		}
+	}
 }
