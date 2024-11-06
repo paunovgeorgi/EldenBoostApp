@@ -103,7 +103,8 @@ namespace EldenBoost.Controllers
 
             //Create order.
 			await orderService.CreateOrderAsync(serviceId, User.Id(), platformId, updatedPrice, hasStream, isExpress, optionId, sliderValue);
-			return RedirectToAction("MyProfile", "Client");
+            //return RedirectToAction("MyProfile", "Client");
+            return RedirectToAction(nameof(All));
 		}
 	}
 }
