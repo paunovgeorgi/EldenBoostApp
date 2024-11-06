@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BoosterCardViewModel>
+
+@{
+	ViewBag.Title = "All Boosters";
+}
+
+<div class="landing-main mb-3"></div>
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row justify-content-center">
+	@foreach (var booster in Model)
+	{
+		<div class="col-md-2">
+			<div class="card mb-3 booster-card text-center">
+				<img src="@(string.IsNullOrEmpty(booster.ProfilePicture) ? "https://greekherald.com.au/wp-content/uploads/2020/07/default-avatar.png" : booster.ProfilePicture)" />
+				<div>
+					<h3>@booster.Name</h3>
+					<p class="text-muted">@booster.SupportedPlatforms</p>
+					<div class="star-rating" data-rating=@(Math.Floor(booster.Rating / booster.RatingCount))>
+						@for (int i = 1; i <= 5; i++)
+						{
+							if (i <= (Math.Floor(booster.Rating / booster.RatingCount)))
+							{
+								<span class="star active">&#9733;</span>
+							}
+							else
+							{
+								<span class="star">&#9733;</span>
+							}
+						}
+					</div>
+					<p><span class="text-secondary" style="font-size: 12px;">@booster.RatingCount votes</span></p>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+
+<hr />
+
+@await Component.InvokeAsync("FaqComponent")
