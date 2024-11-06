@@ -87,6 +87,17 @@ namespace EldenBoost.Core.Services
             await repository.SaveChangesAsync();
         }
 
+        public async Task DeleteByIdAsync(int serviceId)
+        {
+            Service? service = await repository.GetByIdAsync<Service>(serviceId);
+
+            if (service != null)
+            {
+                service.IsActive = false;
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task EditAsync(ServiceEditViewModel model)
         {
             Service? service = await repository.All<Service>()
