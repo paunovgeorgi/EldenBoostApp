@@ -34,5 +34,16 @@ namespace EldenBoost.Core.Services
         {
             return await repository.AllReadOnly<Booster>().AnyAsync(u => u.UserId == userId);
         }
+
+        public async Task<Booster?> GetBoosterByUserIdAsync(string userId)
+        {
+            var booster = await repository.AllReadOnly<Booster>()
+              .Include(b => b.Platforms)
+              .Include(b => b.Orders)
+              .Where(b => b.UserId == userId)
+              .FirstOrDefaultAsync();
+
+            return booster;
+        }
     }
 }

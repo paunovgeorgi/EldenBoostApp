@@ -1,4 +1,5 @@
 ﻿using EldenBoost.Core.Models.Booster;
+using EldenBoost.Infrastructure.Data.Models;
 
 namespace EldenBoost.Core.Contracts
 {
@@ -6,5 +7,6 @@ namespace EldenBoost.Core.Contracts
     {
         Task<bool> BoosterExistsByUserIdAsync(string userId);
         Task<IEnumerable<BoosterCardViewModel>> AllBoostersToCardModelAsync();
+        Task<Booster?> GetBoosterByUserIdAsync(string userId);
     }
 }
