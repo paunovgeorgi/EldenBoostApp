@@ -45,7 +45,7 @@ namespace EldenBoost.Controllers
         public async Task<IActionResult> Details(int id, string information)
         {
 
-            var model = await serviceService.GetServiceViewModelByIdAsync(id);
+            var model = await serviceService.GetServiceDetailsViewModelByIdAsync(id);
 
             if (model == null)
             {
