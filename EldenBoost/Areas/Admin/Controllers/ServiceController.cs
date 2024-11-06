@@ -17,7 +17,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         {
             serviceService = _serviceService;
         }
-        public IActionResult Index()
+        public IActionResult All()
         {
             return View();
         }
@@ -92,6 +92,15 @@ namespace EldenBoost.Areas.Admin.Controllers
             information += "-boost";
 
             return RedirectToAction(nameof(Details), new { area = "", id, information });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await serviceService.DeleteByIdAsync(id);
+            TempData[WarningMessage] = "Service deactivated.";
+
+            return RedirectToAction(nameof(All));
         }
     }
 }
