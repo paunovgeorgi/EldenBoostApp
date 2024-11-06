@@ -61,8 +61,9 @@ body {
 }
 
 .nav-item a:hover, .form-inline button:hover {
-    text-shadow: 0 0 10px var(--secondary-light);
+    text-shadow: 0 2px 10px var(--secondary-light);
     color: var(--secondary-light);
+    transform: scale(1.02);
 }
 
 .title-glow {
