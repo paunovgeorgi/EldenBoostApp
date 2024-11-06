@@ -19,6 +19,6 @@ namespace EldenBoost.Core.Models.Service
 
         public int TotalServices { get; set; }
 
-        public IEnumerable<ServiceAllViewModel> Services { get; set; } = new List<ServiceAllViewModel>();
+        public IEnumerable<ServiceCardViewModel> Services { get; set; } = new List<ServiceCardViewModel>();
     }
 }

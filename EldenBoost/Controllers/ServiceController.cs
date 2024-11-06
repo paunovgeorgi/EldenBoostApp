@@ -21,7 +21,8 @@ namespace EldenBoost.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery] AllServicesQueryModel model)
         {
-            AllServicesFilteredAndPagedModel serviceModel = await serviceService.AllAsync(model);
+			//Gets filtered and paged collection of ServiceCardViewModel for all services.
+			AllServicesFilteredAndPagedModel serviceModel = await serviceService.AllAsync(model);
 
             model.Services = serviceModel.Services;
             model.TotalServices = serviceModel.TotalServicesCount;
@@ -33,7 +34,8 @@ namespace EldenBoost.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Popular()
         {
-            var model = await serviceService.GetPopularServicesAsync();
+			//Gets services in ServiceCardViewModel ordered by purchase count.
+			var model = await serviceService.GetPopularServicesAsync();
 
             return View(model);
         }
@@ -42,6 +44,7 @@ namespace EldenBoost.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id, string information)
         {
+
             var model = await serviceService.GetServiceViewModelByIdAsync(id);
 
             if (model == null)

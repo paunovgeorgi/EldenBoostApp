@@ -4,6 +4,6 @@
     {
         public int TotalServicesCount { get; set; }
 
-        public IEnumerable<ServiceAllViewModel> Services { get; set; } = new List<ServiceAllViewModel>();
+        public IEnumerable<ServiceCardViewModel> Services { get; set; } = new List<ServiceCardViewModel>();
     }
 }

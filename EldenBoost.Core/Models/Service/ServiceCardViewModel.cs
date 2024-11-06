@@ -4,7 +4,7 @@ using EldenBoost.Core.Models.ServiceOption;
 
 namespace EldenBoost.Core.Models.Service
 {
-    public class ServiceAllViewModel : IServiceModel
+    public class ServiceCardViewModel : IServiceModel
     {
         public int Id { get; set; }
         public string Title { get; set; } = null!;

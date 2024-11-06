@@ -36,6 +36,8 @@ namespace EldenBoost.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ServiceFormViewModel model)
         {
+            // Check if the service is of type Option.
+            // If so, remove ServiceOptions form the model so that the ModelState can pass.
             if (model.ServiceType != ServiceType.Option)
             {
                 ModelState.Remove("ServiceOptions");
@@ -62,12 +64,14 @@ namespace EldenBoost.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(int id)
         {
 
+            //Gets service edit view model and checks if it's null;
             var model = await serviceService.GetServiceEditViewModelByIdAsync(id);
             if (model == null)
             {
                 return BadRequest("Service does not exist!");
             }
 
+            //Gets service options and fills the model.
             var options = await serviceService.GetServiceOptionsAsync(model.Id);
             model.ServiceOptions = (List<ServiceOptionViewModel>)options;
 
@@ -84,19 +88,18 @@ namespace EldenBoost.Areas.Admin.Controllers
                 return View(model);
             }
 
-            int id = model.Id;
             await serviceService.EditAsync(model);
-
             TempData[SuccessMessage] = "Service edited successfully!";
-            string information = model.Title.Replace(" ", "-").ToLower();
-            information += "-boost";
 
-            return RedirectToAction(nameof(Details), new { area = "", id, information });
+            string information = model.Title.Replace(" ", "-").ToLower() + "-boost";
+
+            return RedirectToAction(nameof(Details), new { area = "", model.Id, information });
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
+            //Deactivates the service;
             await serviceService.DeleteByIdAsync(id);
             TempData[WarningMessage] = "Service deactivated.";
 

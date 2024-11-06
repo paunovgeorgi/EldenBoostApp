@@ -37,10 +37,10 @@ namespace EldenBoost.Core.Services
                 _ => throw new NotImplementedException()
             };
 
-            IEnumerable<ServiceAllViewModel> allServices = await servicesQuery
+            IEnumerable<ServiceCardViewModel> allServices = await servicesQuery
                 .Skip((model.CurrentPage - 1) * model.ServicesPerPage)
                 .Take(model.ServicesPerPage)
-                .Select(s => new ServiceAllViewModel()
+                .Select(s => new ServiceCardViewModel()
                 {
                     Id = s.Id,
                     Title = s.Title,
@@ -133,13 +133,13 @@ namespace EldenBoost.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ServiceAllViewModel>> GetPopularServicesAsync()
+        public async Task<IEnumerable<ServiceCardViewModel>> GetPopularServicesAsync()
         {
             return await repository.AllReadOnly<Service>()
                .Where(s => s.IsActive)
                .OrderByDescending(s => s.PurchaseCount)
                .Take(8)
-              .Select(s => new ServiceAllViewModel()
+              .Select(s => new ServiceCardViewModel()
               {
                   Id = s.Id,
                   Title = s.Title,
@@ -181,11 +181,11 @@ namespace EldenBoost.Core.Services
                .ToListAsync();
         }
 
-        public async Task<ServiceAllViewModel?> GetServiceViewModelByIdAsync(int serviceId)
+        public async Task<ServiceCardViewModel?> GetServiceViewModelByIdAsync(int serviceId)
         {
             var service = await repository.AllReadOnly<Service>()
                .Where(s => s.Id == serviceId)
-               .Select(s => new ServiceAllViewModel()
+               .Select(s => new ServiceCardViewModel()
                {
                    Id = s.Id,
                    Title = s.Title,
