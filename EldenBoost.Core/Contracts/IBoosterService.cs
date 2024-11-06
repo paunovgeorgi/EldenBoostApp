@@ -8,5 +8,6 @@ namespace EldenBoost.Core.Contracts
         Task<bool> BoosterExistsByUserIdAsync(string userId);
         Task<IEnumerable<BoosterCardViewModel>> AllBoostersToCardModelAsync();
         Task<Booster?> GetBoosterByUserIdAsync(string userId);
-    }
+		Task<Booster?> GetBoosterByBoosterIdAsync(int boosterId);
+	}
 }

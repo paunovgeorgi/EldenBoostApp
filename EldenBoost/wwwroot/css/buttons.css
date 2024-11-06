@@ -1,1 +1,11 @@
-﻿
+﻿/*------------ btn primary ---------------*/
+
+.btn-primary {
+    background-color: var(--dark-grey-correct);
+    border-color: var(--lightest);
+}
+
+    .btn-primary:hover {
+        background-color: var(--main-dark);
+        border-color: var(--lightest);
+    }

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<OrderCardViewModel>
+
+@{
+    ViewBag.Title = "Pending Orders";
+}
+
+<h2 class="text-center" style="margin-top: 80px">@ViewBag.Title</h2>
+<hr />
+
+@if (!Model.Any(m => m.Status == "Pending"))
+{
+    <h2 class="text-center">No available orders at the moment!</h2>
+}
+
+<div class="row">
+    @foreach (var order in Model.Where(m => m.Status == "Pending"))
+    {
+        <partial name="_OrderPartial" model="@order" />
+    }
+</div>

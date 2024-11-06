@@ -1,0 +1,107 @@
+﻿@using EldenBoost.Extensions
+@using EldenBoost.Infrastructure.Data.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model OrderCardViewModel
+@inject IBoosterService boosterService
+@inject IOrderService orderService;
+
+@{
+	string styleName = "";
+	char hasStream = Model.HasStream ? '✔' : '❌';
+	char isExpress = Model.IsExpress ? '✔' : '❌';
+	styleName = Model.Status switch
+	{
+		"Pending" => "text-secondary",
+		"Working" => "text-warning",
+		"Completed" => "text-success"
+	};
+
+	string favIcon = "";
+	favIcon = Model.PlatformName switch
+	{
+		"Playstation" => "fa-brands fa-playstation",
+		"Xbox" => "fa-brands fa-xbox",
+		"PC" => "fa-solid fa-computer"
+	};
+
+	bool IsBooster = await boosterService.BoosterExistsByUserIdAsync(User.Id());
+	Order? order = await orderService.GetOrderByIdAsync(Model.Id);
+	int? boosterId = order!.BoosterId;
+	Booster? booster = null;
+
+	if (boosterId != null)
+	{
+		booster = await boosterService.GetBoosterByBoosterIdAsync(boosterId.Value);
+	}
+}
+
+<div class="col-md-3">
+	<div class="card mb-3 custom-card">
+		<img class="card-img-top" src="@Model.ImageURL" alt="Order Image">
+		<div class="card-body text-center card-bg-primary">
+			<h5>@Model.ServiceName</h5>
+
+			@if (IsBooster)
+			{
+				<h6><i class="@favIcon"></i> | <span class="@styleName">@Model.Status</span> | Pay: <b>@($"{Model.BoosterPay:f2}") USD</b></h6>
+				<h6>Stream: @hasStream | Express: @isExpress</h6>
+				<h6>@(string.IsNullOrEmpty(Model.Information) ? "" : Model.Information)</h6>
+				@* <h6>Client: @order.Client.Nickname</h6> *@
+			}
+			else
+			{
+				<h6><i class="@favIcon"></i> | <span class="@styleName">@Model.Status</span> | Paid: <b>@($"{Model.Price:f2}") USD</b></h6>
+				<h6>Stream: @hasStream | Express: @isExpress</h6>
+				<h6>@(string.IsNullOrEmpty(Model.Information) ? "" : Model.Information)</h6>
+				@if (booster != null)
+				{
+					<h6>Booster: @booster.User.Nickname</h6>
+				}
+
+			}
+
+			@if (this.User.Identity.IsAuthenticated)
+			{
+				@if (IsBooster && Model.Status == "Pending")
+				{
+					<form asp-controller="Order" asp-area="" asp-action="Assign" method="post">
+						<input type="hidden" name="orderId" value="@Model.Id" />
+						<input class="btn btn-primary take-btn" type="submit" value="Take" />
+					</form>
+				}
+				else if (IsBooster && Model.Status == "Working")
+				{
+					<form asp-controller="Order" asp-area="" asp-action="Complete" method="post">
+						<input type="hidden" name="orderId" value="@Model.Id" />
+						<input class="btn btn-success take-btn" type="submit" value="Complete" />
+					</form>
+
+					<a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id"
+					   class="btn btn-fancy-edit">Order Chat</a>
+				}
+				else if (!IsBooster && Model.Status == "Working")
+				{
+					<a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id"
+					   class="btn btn-fancy-edit">Order Chat</a>
+				}
+				else if (!IsBooster && Model.Status == "Completed")
+				{
+					if (Model.IsRated)
+					{
+						<h6 class="text-success">Rated</h6>
+					}
+					else
+					{
+						<form asp-controller="Booster" asp-action="Rate" method="post">
+							<button type="button" class="btn btn-outline-light" onclick="rateBooster(@boosterId, @Model.Id)">
+								Rate
+							</button>
+						</form>
+					}
+				}
+			}
+		</div>
+	</div>
+</div>
+
+<script src="~/js/site.js"></script>
