@@ -43,7 +43,7 @@
                 {
                         <div class="form-group mt-4">
                             <label for="optionSelect" class="form-label">Select an Option:</label>
-                            <select id="optionSelect" name="optionId" class="form-control custom-select" onchange="updatePrice()">
+                            <select id="optionSelect" name="optionId" class="form-control custom-select">
                             @foreach (var option in Model.Options)
                             {
                                         <option value="@option.Id" data-price="@option.Price">@option.Name - @option.Price.ToString("F2") USD</option>
@@ -55,12 +55,12 @@
                 <!-- Checkboxes for Stream and Express options -->
                 <div class="form-group mt-3" data-bs-toggle="tooltip" data-bs-placement="right" title="Booster will provide you with a stream link so you can watch the process.">
                     <input type="hidden" name="HasStream" value="false" />
-                    <input type="checkbox" class="form-check-input" id="hasStream" name="HasStream" value="true" onchange="updatePrice()" />
+                    <input type="checkbox" class="form-check-input" id="hasStream" name="HasStream" value="true"/>
                     <label for="hasStream">Stream (+5 USD)</label>
                 </div>
                 <div class="form-group mt-2 mb-3" data-bs-toggle="tooltip" data-bs-placement="right" title="Your order will have priority and will be assigned faster.">
                     <input type="hidden" name="IsExpress" value="false" />
-                    <input type="checkbox" class="form-check-input" id="isExpress" name="IsExpress" value="true" onchange="updatePrice()" />
+                    <input type="checkbox" class="form-check-input" id="isExpress" name="IsExpress" value="true"/>
                     <label for="isExpress">Express (+20%)</label>
                 </div>
 

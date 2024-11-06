@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function updatePrice() {
         let updatedPrice = basePrice; // Use the global basePrice variable
 
+        const hiddenStreamInput = hasStream.previousElementSibling; // Get the hidden Strean input
+        hiddenStreamInput.value = hasStream.checked ? "true" : "false"; // 
+
+        const hiddenExpressInput = isExpress.previousElementSibling; // Get the hidden Express input
+        hiddenExpressInput.value = isExpress.checked ? "true" : "false"; // Update hidden input based on checkbox state
+
         // Option price adjustment
         if (optionSelect) {
             const selectedOption = optionSelect.options[optionSelect.selectedIndex];
