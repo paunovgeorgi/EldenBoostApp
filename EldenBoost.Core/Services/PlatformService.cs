@@ -25,5 +25,10 @@ namespace EldenBoost.Core.Services
                .ToListAsync();
         }
 
-    }
+		public async Task<bool> PlatformExistsByIdAsync(int id)
+		{
+			return await repository.AllReadOnly<Platform>()
+				.AnyAsync(p => p.Id == id);
+		}
+	}
 }
