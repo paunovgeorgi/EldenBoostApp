@@ -122,5 +122,19 @@ namespace EldenBoost.Core.Services
 		{
 			return await repository.GetByIdAsync<Order>(orderId);
 		}
-	}
+
+        public async Task<int> NumberOfOrdersByClientIdAsync(string userId)
+        {
+            return await repository.AllReadOnly<Order>()
+                .CountAsync(o => o.ClientId == userId);
+        }
+
+        public async Task<decimal> TotalPaidByClientIdAsync(string clientId)
+        {
+            return await repository.AllReadOnly<Order>()
+                .Include(o => o.Service)
+                .Where(o => o.ClientId == clientId)
+                .SumAsync(o => o.Price);
+        }
+    }
 }

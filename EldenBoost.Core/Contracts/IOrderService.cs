@@ -16,5 +16,6 @@ namespace EldenBoost.Core.Contracts
 		Task<Order?> GetOrderByIdAsync(int orderId);
         Task<IEnumerable<OrderCardViewModel>> AllByUserIdAsync(string userId);
         Task<int> NumberOfOrdersByClientIdAsync(string userId);
+        Task<decimal> TotalPaidByClientIdAsync(string clientId);
     }
 }
