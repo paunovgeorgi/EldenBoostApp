@@ -14,5 +14,6 @@ namespace EldenBoost.Core.Contracts
 		Task CreateOrderAsync(int serviceId, string clientId, int platformId, decimal? updatedPrice, bool? hasStream, bool? isExpress, int? optionId, int sliderValue);
         Task<IEnumerable<OrderCardViewModel>> AllOrdersAsync();
 		Task<Order?> GetOrderByIdAsync(int orderId);
-	}
+        Task<IEnumerable<OrderCardViewModel>> AllByUserIdAsync(string userId);
+    }
 }

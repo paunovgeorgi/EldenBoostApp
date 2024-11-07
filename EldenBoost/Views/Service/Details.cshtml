@@ -1,6 +1,6 @@
 ﻿
 
- @using EldenBoost.Common.Enumerations
+@using EldenBoost.Common.Enumerations
 @model ServiceDetailsViewModel
 @inject IPlatformService platformService
 
@@ -48,7 +48,7 @@
                             <select id="optionSelect" name="optionId" class="form-control custom-select">
                             @foreach (var option in Model.Options)
                             {
-                                        <option value="@option.Id" data-price="@option.Price">@option.Name - @option.Price.ToString("F2") USD</option>
+                                    <option value="@option.Id" data-price="@option.Price">@option.Name - @option.Price.ToString("F2") USD</option>
                             }
                             </select>
                         </div>
