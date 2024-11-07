@@ -15,6 +15,26 @@ namespace EldenBoost.Core.Services
             repository = _repository;
         }
 
+        public async Task<IEnumerable<OrderCardViewModel>> AllByBoosterIdAsync(int boosterId)
+        {
+            return await repository.AllReadOnly<Order>()
+               .Where(o => o.BoosterId == boosterId)
+              .Select(o => new OrderCardViewModel()
+              {
+                  Id = o.Id,
+                  PlatformId = o.PlatformId,
+                  PlatformName = o.Platform.Name,
+                  Status = o.Status,
+                  ServiceName = o.Service.Title,
+                  ImageURL = o.Service.ImageURL ?? string.Empty,
+                  BoosterPay = o.Price / 2,
+                  HasStream = o.HasStream,
+                  IsExpress = o.IsExpress,
+                  Information = o.Information
+              })
+              .ToListAsync();
+        }
+
         public async Task<IEnumerable<OrderCardViewModel>> AllByUserIdAsync(string userId)
         {
             return await repository.AllReadOnly<Order>()
