@@ -25,6 +25,8 @@
                 </p>
                 <p>@Model.Description</p>
 
+                <input type="hidden" id="basePriceField" value="@Model.Price" />
+
                 @if (Model.ServiceType == ServiceType.Slider)
                 {
                         <!-- Slider for Service Type: Slider -->
@@ -113,8 +115,5 @@
 </div>
 
 @section Scripts {
-        <script>
-            var basePrice = @Model.Price;
-        </script>
         <script src="~/js/service-details.js"></script>
 }
