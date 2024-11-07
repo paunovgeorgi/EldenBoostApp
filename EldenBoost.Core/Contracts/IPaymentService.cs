@@ -9,5 +9,6 @@ namespace EldenBoost.Core.Contracts
     public interface IPaymentService
     {
         Task CreatePaymentAsync(string userId);
+        Task<bool> IsPendingAsync(string userId);
     }
 }

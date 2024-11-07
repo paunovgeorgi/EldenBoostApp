@@ -45,5 +45,11 @@ namespace EldenBoost.Core.Services
                 await repository.SaveChangesAsync();
             }
         }
+
+        public async Task<bool> IsPendingAsync(string userId)
+        {
+            return await repository.AllReadOnly<Payment>()
+                .AnyAsync(p => p.IsPaid == false && p.Booster.UserId == userId);
+        }
     }
 }
