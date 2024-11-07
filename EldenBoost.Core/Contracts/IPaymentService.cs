@@ -10,5 +10,6 @@ namespace EldenBoost.Core.Contracts
     {
         Task CreatePaymentAsync(string userId);
         Task<bool> IsPendingAsync(string userId);
+        Task<bool> HasOrdersToRequestAsync(string userId);
     }
 }

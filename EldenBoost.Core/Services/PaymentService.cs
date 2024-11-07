@@ -46,6 +46,13 @@ namespace EldenBoost.Core.Services
             }
         }
 
+        public async Task<bool> HasOrdersToRequestAsync(string userId)
+        {
+            return await repository.AllReadOnly<Booster>()
+                .Where(b => b.UserId == userId)
+                .AnyAsync(b => b.Orders.Any(o => o.IsPaid == false && o.Status == "Completed"));
+        }
+
         public async Task<bool> IsPendingAsync(string userId)
         {
             return await repository.AllReadOnly<Payment>()
