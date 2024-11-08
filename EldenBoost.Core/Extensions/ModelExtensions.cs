@@ -1,4 +1,5 @@
-﻿using EldenBoost.Core.Models.Service.Contracts;
+﻿using EldenBoost.Core.Models.Article.Contracts;
+using EldenBoost.Core.Models.Service.Contracts;
 using System.Text.RegularExpressions;
 
 namespace EldenBoost.Core.Extensions
@@ -15,5 +16,10 @@ namespace EldenBoost.Core.Extensions
 
             return info;
         }
-    }
+
+		public static string GetArticleInformation(this IArticleModel article)
+		{
+			return Regex.Replace(article.Title.ToLower(), @"[^a-z0-9-]+", "-");
+		}
+	}
 }
