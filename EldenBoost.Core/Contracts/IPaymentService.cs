@@ -12,5 +12,6 @@ namespace EldenBoost.Core.Contracts
         Task<bool> IsPendingAsync(string userId);
         Task<bool> HasOrdersToRequestAsync(string userId);
         Task<decimal> ReadyForRequstAsync(string userId);
+        Task<decimal> RequsetedAmountAsync(string userId);
     }
 }

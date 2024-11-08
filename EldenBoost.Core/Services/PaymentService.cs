@@ -62,9 +62,17 @@ namespace EldenBoost.Core.Services
         public async Task<decimal> ReadyForRequstAsync(string userId)
         {
             return await repository.AllReadOnly<Order>()
-         .Include(o => o.Booster)
-         .Where(o => o.Booster!.UserId == userId && o.IsPaid == false && o.Status == "Completed" && o.IsAddedToPayment == false)
-         .SumAsync(o => o.BoosterPay);
+            .Include(o => o.Booster)
+            .Where(o => o.Booster!.UserId == userId && o.IsPaid == false && o.Status == "Completed" && o.IsAddedToPayment == false)
+            .SumAsync(o => o.BoosterPay);
+        }
+
+        public async Task<decimal> RequsetedAmountAsync(string userId)
+        {
+            return await repository.AllReadOnly<Payment>()
+            .Where(p => p.IsPaid == false && p.Booster.UserId == userId)
+            .Select(p => p.Amount)
+            .FirstOrDefaultAsync();
         }
     }
 }
