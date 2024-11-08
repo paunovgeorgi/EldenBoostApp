@@ -1,15 +1,10 @@
-﻿using EldenBoost.Core.Models.Order;
+﻿using EldenBoost.Common.ReturnMessages;
+using EldenBoost.Core.Models.Order;
 using EldenBoost.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Core.Contracts
 {
-	public interface IOrderService
+    public interface IOrderService
 	{
 		Task CreateOrderAsync(int serviceId, string clientId, int platformId, decimal? updatedPrice, bool? hasStream, bool? isExpress, int? optionId, int sliderValue);
         Task<IEnumerable<OrderCardViewModel>> AllOrdersAsync();
@@ -20,5 +15,6 @@ namespace EldenBoost.Core.Contracts
         Task<IEnumerable<OrderCardViewModel>> AllByBoosterIdAsync(int boosterId);
         Task<bool> ExistsByIdAsync(int orderId);
         Task<bool> IsTakenAsync(int orderId);
+        Task<AssignOrderResult> AssignBoosterAsync(int orderId, int boosterId);
     }
 }

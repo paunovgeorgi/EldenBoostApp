@@ -1,4 +1,5 @@
-﻿using EldenBoost.Core.Contracts;
+﻿using EldenBoost.Common.ReturnMessages;
+using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Order;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
@@ -97,6 +98,30 @@ namespace EldenBoost.Core.Services
             }
 
             return orders;
+        }
+
+        public async Task<AssignOrderResult> AssignBoosterAsync(int orderId, int boosterId)
+        {
+            var order = await repository.GetByIdAsync<Order>(orderId);
+            var booster = await repository.AllReadOnly<Booster>()
+                .Where(b => b.Id == boosterId)
+                .Include(b => b.Orders)
+                .FirstOrDefaultAsync();
+
+            if (order == null || booster == null)
+            {
+                return new AssignOrderResult { Success = false, Message = "Order or Booster not found!" };
+            }
+
+            if (booster.Orders.Any(o => o.Status != "Completed" && o.ClientId != order.ClientId))
+            {
+                return new AssignOrderResult { Success = false, Message = "You have an ongoing order from another client!" };
+            }
+
+            order.BoosterId = boosterId;
+            order.Status = "Working";
+            await repository.SaveChangesAsync();
+            return new AssignOrderResult { Success = true, Message = "Order successfully assigned to your profile!" };
         }
 
         public async Task CreateOrderAsync(int serviceId, string clientId, int platformId, decimal? updatedPrice, bool? hasStream, bool? isExpress, int? optionId, int sliderValue)
