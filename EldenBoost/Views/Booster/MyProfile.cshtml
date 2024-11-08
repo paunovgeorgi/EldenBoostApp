@@ -1,0 +1,75 @@
+﻿@using EldenBoost.Extensions
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<OrderCardViewModel>
+
+@{
+    ViewBag.Title = "My Profile";
+    int completedOrders = Model.Count(o => o.Status == "Completed");
+
+    if (string.IsNullOrEmpty(ViewBag.ProfilePicture))
+    {
+        ViewBag.ProfilePicture = "https://i.pinimg.com/originals/ae/91/e4/ae91e4161c6f7e3c18815680aa75cf44.jpg";
+    }
+}
+
+<form style="display:none">
+    @Html.AntiForgeryToken()
+</form>
+
+<h2 class="text-center" style="margin-top:80px">@ViewBag.Title</h2>
+
+
+<div class="row justify-content-evenly mt-5 align-content-center align-items-center" style="flex-direction:column">
+    <div class="profile-pic">
+        <img src="@ViewBag.ProfilePicture" class="" alt="...">
+        <div class="card-body">
+            <h4 class="mt-1 text-center">@ViewBag.Username</h4>
+            <hr />
+            @*             <p class="card-text text-light">Orders Taken: @Model.Count()</p> *@
+            <p class="card-text text-light">Completed Orders: @completedOrders</p>
+            <p class="card-text text-light">Total Earned: @($"${ViewBag.TotalEarned:f2}")</p>
+            <p class="card-text text-light">Ready For Request: @($"${ViewBag.ReadyForRequst:f2}" ?? "$0.00")</p>
+            <p class="card-text text-light">Requested amount: @($"${ViewBag.RequestedAmount:f2}" ?? "$0.00")</p>
+            <form asp-action="RequestPay" asp-controller="Payment" asp-area="" method="post">
+                <button class="btn btn-outline-light btn-sm" style="align-self: center;">Request Payment</button>
+            </form>
+
+        </div>
+    </div>
+    <button class="btn btn-outline-light mb-4" style="width:174px; align-self:center; border-top: 0px;" onclick="openChangeProfilePicModal()">Change Profile Picture</button>
+
+</div>
+
+
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">You don't have any orders.</h2>
+}
+
+<h2 class="text-center">Active Orders</h2>
+@if (!Model.Any(m => m.Status == "Working"))
+{
+    <h4 class="text-center"> - You don't have any active orders - </h4>
+}
+<hr />
+
+<div class="row">
+    @foreach (var order in Model.Where(m => m.Status == "Working"))
+    {
+        <partial name="_OrderPartial" model="@order" />
+    }
+</div>
+
+<h2 class="text-center">Completed Orders</h2>
+<hr />
+
+<div class="row">
+    @foreach (var order in Model.Where(m => m.Status == "Completed"))
+    {
+        <partial name="_OrderPartial" model="@order" />
+    }
+</div>
+
+
+<script src="~/js/profile-picture.js"></script>
