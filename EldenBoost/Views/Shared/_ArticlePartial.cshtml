@@ -1,0 +1,32 @@
+﻿@using EldenBoost.Extensions;
+@using EldenBoost.Infrastructure.Data.Models;
+@using Microsoft.AspNetCore.Mvc.TagHelpers;
+@model ArticleCardViewModel
+@inject IAuthorService authorService;
+
+@{
+	bool isTheAuthor = await authorService.HasArticleAsync(User.Id(), Model.Id);
+	string bgClass = Model.ArticleType == EldenBoost.Common.Enumerations.ArticleType.News ? "article-card-news" : "article-card-guide";
+
+}
+
+<div class="col-md-3">
+	<div class="card mb-3 custom-card">
+		<img class="card-img-top" src="@Model.ImageURL" alt="Article Image">
+		<div class="card-body text-center ">
+			<h5>@Model.Title</h5>
+			<h6>- <b>@Model.ArticleType</b> -</h6>
+			<a asp-controller="Article" asp-area="" asp-action="Read" asp-route-id="@Model.Id"
+			   asp-route-information="@Model.GetArticleInformation()" class="btn btn-fancy-read">Read</a>
+			@if (this.User!.Identity!.IsAuthenticated)
+			{
+				@if (isTheAuthor || User.IsAdmin())
+				{
+					<a asp-controller="Article" asp-area="" asp-action="Edit" asp-route-id="@Model.Id"
+					   class="btn btn-fancy-edit">Edit</a>
+				}
+			}
+		</div>
+	</div>
+</div>
+
