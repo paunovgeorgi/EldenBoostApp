@@ -74,5 +74,22 @@ namespace EldenBoost.Controllers
             TempData[SuccessMessage] = result.Message;
             return RedirectToAction("MyProfile", "Booster");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Complete(int orderId)
+        {
+            int boosterId = await boosterService.GetBoosterIdAsync(User.Id());
+
+            //Check if this is the booster assigned to the order.
+            if (await orderService.HasBoosterWithIdAsync(orderId, boosterId) == false)
+            {
+                return BadRequest("Not your order mate");
+            }
+
+            await orderService.CompleteAsync(orderId);
+            TempData[SuccessMessage] = "Order completed!";
+
+            return RedirectToAction("MyProfile", "Booster");
+        }
     }
 }
