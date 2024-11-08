@@ -185,6 +185,18 @@ namespace EldenBoost.Core.Services
 			return await repository.GetByIdAsync<Order>(orderId);
 		}
 
+        public async Task<bool> HasBoosterWithIdAsync(int orderId, int boosterId)
+        {
+
+            Order? order = await repository.GetByIdAsync<Order>(orderId);
+
+            if (order == null)
+            {
+                return false;
+            }
+            return order!.BoosterId == boosterId;
+        }
+
         public async Task<bool> IsTakenAsync(int orderId)
         {
             Order? order = await repository.GetByIdAsync<Order>(orderId);
