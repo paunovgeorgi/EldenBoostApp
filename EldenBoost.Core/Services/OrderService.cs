@@ -138,7 +138,13 @@ namespace EldenBoost.Core.Services
 			}
 		}
 
-		public async Task<Order?> GetOrderByIdAsync(int orderId)
+        public async Task<bool> ExistsByIdAsync(int orderId)
+        {
+            return await repository.AllReadOnly<Order>()
+                .AnyAsync(o => o.Id == orderId);
+        }
+
+        public async Task<Order?> GetOrderByIdAsync(int orderId)
 		{
 			return await repository.GetByIdAsync<Order>(orderId);
 		}
