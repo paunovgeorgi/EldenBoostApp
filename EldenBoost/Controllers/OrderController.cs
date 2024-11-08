@@ -1,6 +1,7 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using static EldenBoost.Common.Constants.NotificationConstants;
 
 namespace EldenBoost.Controllers
 {
@@ -34,6 +35,44 @@ namespace EldenBoost.Controllers
                 .OrderByDescending(o => o.IsExpress).ToList();
 
             return View(ordersToShow);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Assign(int orderId)
+        {
+
+            string userId = User.Id();
+
+            //Check if order exists.
+            if (await orderService.ExistsByIdAsync(orderId) == false)
+            {
+                return BadRequest("Order does not exist");
+            }
+
+            //Check if the user attempting the action is a booster.
+            if (await boosterService.BoosterExistsByUserIdAsync(userId) == false)
+            {
+                TempData[WarningMessage] = "You're not a booster!";
+                return RedirectToAction("Index", "Home");
+            }
+
+            //Check if the order is already taken by another booster.
+            if (await orderService.IsTakenAsync(orderId))
+            {
+                TempData[WarningMessage] = "Order is already taken!";
+                return RedirectToAction("All", "Order");
+            }
+
+            int boosterId = await boosterService.GetBoosterIdAsync(User.Id());
+            var result = await orderService.AssignBoosterAsync(orderId, boosterId);
+            if (!result.Success)
+            {
+                TempData[ErrorMessage] = result.Message;
+                return RedirectToAction("All", "Order");
+            }
+
+            TempData[SuccessMessage] = result.Message;
+            return RedirectToAction("MyProfile", "Booster");
         }
     }
 }

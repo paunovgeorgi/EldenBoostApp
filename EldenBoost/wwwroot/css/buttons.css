@@ -9,3 +9,12 @@
         background-color: var(--main-dark);
         border-color: var(--lightest);
     }
+
+
+    .btn-primary:focus {
+        background-color: var(--main-dark);
+        border-color: var(--secondary-light);
+        box-shadow: 0 0 0 0.25rem rgba(102, 178, 178, 0.25);
+        border-color: var(--secondary-light);
+        outline: none;
+    }
