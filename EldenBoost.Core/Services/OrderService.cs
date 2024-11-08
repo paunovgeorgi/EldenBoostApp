@@ -124,11 +124,22 @@ namespace EldenBoost.Core.Services
             return new AssignOrderResult { Success = true, Message = "Order successfully assigned to your profile!" };
         }
 
+        public async Task CompleteAsync(int orderId)
+        {
+            var order = await repository.GetByIdAsync<Order>(orderId);
+
+            if (order != null)
+            {
+                order.Status = "Completed";
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task CreateOrderAsync(int serviceId, string clientId, int platformId, decimal? updatedPrice, bool? hasStream, bool? isExpress, int? optionId, int sliderValue)
 		{
 			var service = await repository.GetByIdAsync<Service>(serviceId);
 			string infoMessage = "";
-			ServiceOption option;
+			ServiceOption? option;
 			if (optionId != null)
 			{
 				option = await repository.GetByIdAsync<ServiceOption>(optionId);
