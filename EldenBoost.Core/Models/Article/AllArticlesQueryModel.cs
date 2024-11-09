@@ -15,7 +15,7 @@ namespace EldenBoost.Core.Models.Article
         public int CurrentPage { get; set; } = DefaultPage;
 
         [Display(Name = "Show Articles On Page")]
-        public int ArticlesOnPage { get; set; } = EntitiesPerPage;
+        public int ArticlesOnPage { get; set; } = ArticlesPerPage;
 
         public int TotalArticles { get; set; }
 
