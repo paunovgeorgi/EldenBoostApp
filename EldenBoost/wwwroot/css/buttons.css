@@ -18,3 +18,67 @@
         border-color: var(--secondary-light);
         outline: none;
     }
+
+
+
+
+/* -----------------READ BUTTON-----------------*/
+
+.btn-fancy-read {
+    --color: #b2d8d8;
+    padding: 0.4em .9em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 16px;
+    border: 1px solid;
+    font-family: inherit;
+    /*text-transform: uppercase;*/
+    color: var(--color);
+    z-index: 1;
+    /*margin-top: .5rem;*/
+    font-size: 1rem;
+    padding: 0.25rem 1.25rem;
+    border-radius: 0.35rem;
+}
+
+    .btn-fancy-read::before, .btn-fancy-read::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 50px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        border-radius: 50%;
+        z-index: -1;
+        background-color: var(--color);
+        transition: .6s ease;
+    }
+
+    .btn-fancy-read::before {
+        top: -1em;
+        left: -1em;
+    }
+
+    .btn-fancy-read::after {
+        left: calc(100% + 1em);
+        top: calc(100% + 1em);
+    }
+
+    .btn-fancy-read:hover::before, .btn-fancy-read:hover::after {
+        height: 410px;
+        width: 410px;
+    }
+
+    .btn-fancy-read:hover {
+        /*color: rgb(10, 25, 30);*/
+        color: rgba(24, 20, 20, 0.987);
+    }
+
+    .btn-fancy-read:active {
+        filter: brightness(.8);
+    }
