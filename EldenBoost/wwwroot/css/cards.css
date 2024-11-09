@@ -9,22 +9,24 @@
     color: azure;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: none;
-    border-radius: 8px;
+    border-radius: 16px;
     transition: transform 0.3s;
     transition: background .3s ease;
     overflow: hidden;
 }
 
 
-.custom-card img {
-    height: 150px;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.3s ease;
-}
+    .custom-card img {
+        height: 150px;
+        object-fit: cover;
+        object-position: top;
+        transition: transform 0.3s ease;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+    }
 
     .custom-card:hover {
-         background-color: rgba(24, 20, 20, 0.9);
+         background-color: rgba(24, 20, 20, 0.95);
         transition: background .3s ease;
     }
 
@@ -45,7 +47,7 @@
 }
 
 .custom-card .card-body {
-    padding: 1.25rem;
+    padding: .75rem;
 }
 
     .custom-card .btn-edit {
@@ -144,4 +146,71 @@
 
     .star.active {
         color: #008080;
+    }
+
+/*----------------------------- Article Card --------------------------------*/
+
+/*.custom-card.article-card {
+    background-color: rgba(24, 20, 20, 0.85);*/
+    /*background: linear-gradient(90deg, rgba(0,102,102,0.4317927854735645) 80%, rgba(0,16,36,0.7903362028405112) 100%);*/
+    /*border-radius: 32px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 170px;   
+}
+
+    .custom-card.article-card:hover {
+        background-color: rgba(24, 20, 20, 0.96);
+        transition: background .5s ease;
+    }
+
+.custom-card.article-card img {
+    width: 160px;
+    height: 100%;
+    object-fit:cover;
+    object-position:top;
+    transition: transform 0.3s ease;
+   
+    
+}*/
+
+.custom-card.article-card .card-body {
+    padding: .5rem;
+
+}
+
+
+.article-card-news{
+    color:deepskyblue;
+}
+
+.article-card-guide {
+    color: var(--secondary-light);
+}
+
+
+.custom-card.article-card {
+    background-color: rgba(24, 20, 20, 0.85);
+    border-radius: 32px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 170px;
+}
+
+    .custom-card.article-card:hover {
+        background-color: rgba(24, 20, 20, 0.96);
+        transition: background .5s ease;
+    }
+
+    .custom-card.article-card img {
+        width: 174px;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transition: transform 0.3s ease;
+        /* Apply the gradient mask */
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
     }
