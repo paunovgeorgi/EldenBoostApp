@@ -6,16 +6,16 @@
 
 @{
 	bool isTheAuthor = await authorService.HasArticleAsync(User.Id(), Model.Id);
-	string bgClass = Model.ArticleType == EldenBoost.Common.Enumerations.ArticleType.News ? "article-card-news" : "article-card-guide";
+	string typeColor = Model.ArticleType == EldenBoost.Common.Enumerations.ArticleType.News ? "article-card-news" : "article-card-guide";
 
 }
 
-<div class="col-md-3">
-	<div class="card mb-3 custom-card">
+<div class="col-md-4">
+	<div class="card mb-4 custom-card article-card">
 		<img class="card-img-top" src="@Model.ImageURL" alt="Article Image">
 		<div class="card-body text-center ">
 			<h5>@Model.Title</h5>
-			<h6>- <b>@Model.ArticleType</b> -</h6>
+			<h6 class="@typeColor">- <b>@Model.ArticleType</b> -</h6>
 			<a asp-controller="Article" asp-area="" asp-action="Read" asp-route-id="@Model.Id"
 			   asp-route-information="@Model.GetArticleInformation()" class="btn btn-fancy-read">Read</a>
 			@if (this.User!.Identity!.IsAuthenticated)

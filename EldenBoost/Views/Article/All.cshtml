@@ -9,22 +9,19 @@
 <h2 class="text-center" id="articleTitle">@ViewBag.Title</h2>
 <hr />
 
-<form method="get">
+<form method="get" class="mb-3">
     <div class="row">
         <div class="form-group col-md-3 d-flex justify-content-between">
             <div class="form-group">
                 <label asp-for="ArticlesOnPage"></label>
                 <select asp-for="ArticlesOnPage" class="form-control">
-                    <option value="4">4</option>
-                    <option value="8">8</option>
+                    <option value="6">6</option>
+                    <option value="9">9</option>
                     <option value="12">12</option>
                 </select>
             </div>
         </div>
-        <div class="form-group col-md-3">
-            <label asp-for="SearchString"></label>
-            <input asp-for="SearchString" class="form-control" placeholder="...">
-        </div>
+       
 
         <div class="form-group col-md-3">
             <div class="form-group">
@@ -37,7 +34,12 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="form-group col-md-3">
+            <label asp-for="SearchString"></label>
+            <input asp-for="SearchString" class="form-control" placeholder="...">
+        </div>
+
+        <div class="col-md-3 text-end">
             <div class="form-group mt-3 p-2">
                 <input type="submit" value="Submit" class="btn btn-outline-light" />
             </div>
@@ -56,6 +58,18 @@
     var maxPage = Math.Ceiling((double)Model.TotalArticles /
         Model.ArticlesOnPage);
 }
+
+@if (!Model.Articles.Any())
+{
+    <h2 class="text-center">No Articles found by the given criteria!</h2>
+}
+
+<div class="row">
+    @foreach (var article in Model.Articles)
+    {
+        <partial name="_ArticlePartial" model="@article" />
+    }
+</div>
 
 <div class="row mb-5">
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
@@ -83,17 +97,7 @@
     </div>
 </div>
 
-@if (!Model.Articles.Any())
-{
-    <h2 class="text-center">No Articles found by the given criteria!</h2>
-}
 
-<div class="row">
-    @foreach (var article in Model.Articles)
-    {
-        <partial name="_ArticlePartial" model="@article" />
-    }
-</div>
 
 <hr />
 
