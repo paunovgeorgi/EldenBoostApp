@@ -18,7 +18,16 @@ namespace EldenBoost.Core.Services
                 .AnyAsync(a => a.UserId == userId);
         }
 
-		public async Task<bool> HasArticleAsync(string userId, int articleId)
+        public async Task<Author?> GetAuthorByUserIdAsync(string userId)
+        {
+            Author? author = await repository.AllReadOnly<Author>()
+          .Where(a => a.UserId == userId)
+          .FirstOrDefaultAsync();
+
+            return author;
+        }
+
+        public async Task<bool> HasArticleAsync(string userId, int articleId)
 		{
 			return await repository.AllReadOnly<Author>()
 				.Where(a => a.UserId == userId)
