@@ -37,10 +37,8 @@
     font-size: 16px;
     border: 1px solid;
     font-family: inherit;
-    /*text-transform: uppercase;*/
     color: var(--color);
     z-index: 1;
-    /*margin-top: .5rem;*/
     font-size: 1rem;
     padding: 0.25rem 1.25rem;
     border-radius: 0.35rem;
@@ -80,5 +78,66 @@
     }
 
     .btn-fancy-read:active {
+        filter: brightness(.8);
+    }
+
+
+
+/*---------------------- EDIT button -----------------------*/
+
+
+.btn-fancy-edit {
+    --color: #66b2b2;
+    padding: 0.4em .9em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 16px;
+    border: 1px solid;
+    font-family: inherit;
+    color: var(--color);
+    z-index: 1;
+    font-size: 1rem;
+    padding: 0.25rem 1.25rem;
+    border-radius: 0.35rem;
+}
+
+    .btn-fancy-edit::before, .btn-fancy-edit::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 50px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        border-radius: 50%;
+        z-index: -1;
+        background-color: var(--color);
+        transition: .6s ease;
+    }
+
+    .btn-fancy-edit::before {
+        top: -1em;
+        left: -1em;
+    }
+
+    .btn-fancy-edit::after {
+        left: calc(100% + 1em);
+        top: calc(100% + 1em);
+    }
+
+    .btn-fancy-edit:hover::before, .btn-fancy-edit:hover::after {
+        height: 410px;
+        width: 410px;
+    }
+
+    .btn-fancy-edit:hover {
+        color: rgba(24, 20, 20, 0.987);
+    }
+
+    .btn-fancy-edit:active {
         filter: brightness(.8);
     }

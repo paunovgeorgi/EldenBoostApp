@@ -16,8 +16,9 @@
 
     .profile-pic img {
         width: 50%;
-        height: auto;
+        height: 250px;
         object-fit: cover;
+        object-position: center;
     }
 
     .profile-pic div {
