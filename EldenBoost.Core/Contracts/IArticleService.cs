@@ -5,5 +5,6 @@ namespace EldenBoost.Core.Contracts
     public interface IArticleService
     {
         Task<AllArticlesFilteredAndPagedModel> AllFilteredAndPagedAsync(AllArticlesQueryModel model);
+        Task<IEnumerable<ArticleCardViewModel>> AllByAuthorIdAsync(int authorId);
     }
 }

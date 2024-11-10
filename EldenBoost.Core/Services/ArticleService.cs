@@ -14,6 +14,23 @@ namespace EldenBoost.Core.Services
         {
             repository = _repository;
         }
+
+        public async Task<IEnumerable<ArticleCardViewModel>> AllByAuthorIdAsync(int authorId)
+        {
+            var articles = await repository.AllReadOnly<Article>()
+                .Where(a => a.AuthorId == authorId)
+                .Select(a => new ArticleCardViewModel()
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    ArticleType = a.ArticleType,
+                    ImageURL = a.ImageURL
+                })
+                .ToListAsync();
+
+             return articles;
+        }
+
         public async Task<AllArticlesFilteredAndPagedModel> AllFilteredAndPagedAsync(AllArticlesQueryModel model)
         {
             IQueryable<Article> articleQuery = repository.AllReadOnly<Article>()
