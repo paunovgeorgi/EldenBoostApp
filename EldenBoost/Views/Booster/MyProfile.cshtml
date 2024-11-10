@@ -41,12 +41,6 @@
 </div>
 
 
-
-@if (!Model.Any())
-{
-    <h2 class="text-center">You don't have any orders.</h2>
-}
-
 <h2 class="text-center">Active Orders</h2>
 @if (!Model.Any(m => m.Status == "Working"))
 {
@@ -54,7 +48,7 @@
 }
 <hr />
 
-<div class="row">
+<div class="row mt-3">
     @foreach (var order in Model.Where(m => m.Status == "Working"))
     {
         <partial name="_OrderPartial" model="@order" />
@@ -64,7 +58,13 @@
 <h2 class="text-center">Completed Orders</h2>
 <hr />
 
-<div class="row">
+
+@if (!Model.Any(m => m.Status == "Completed"))
+{
+    <h4 class="text-center"> - You don't have any completed orders - </h4>
+}
+
+<div class="row mt-3">
     @foreach (var order in Model.Where(m => m.Status == "Completed"))
     {
         <partial name="_OrderPartial" model="@order" />

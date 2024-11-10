@@ -42,14 +42,14 @@
                     <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Booster" asp-action="MyProfile">My Profile</a>
                     <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Order" asp-action="All">Pending Orders</a>
                 }
-                else
-                {
-                    <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="User" asp-action="MyProfile">My Profile</a>
-                }
                 @if (isAuthor)
                 {
-                    <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Author" asp-action="MyArticles">My Articles</a>
-                    <a class="dropdown-item text-light bg-dark" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Article" asp-action="Create">Create Article</a>
+                    <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Author" asp-action="MyProfile">My Profile</a>
+                    <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Article" asp-action="Create">Create Article</a>
+                }
+                @if(!isBooster && !isAuthor)
+                {
+                    <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="User" asp-action="MyProfile">My Profile</a>
                 }
             </div>
         </li>
