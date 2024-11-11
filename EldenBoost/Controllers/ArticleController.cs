@@ -27,5 +27,19 @@ namespace EldenBoost.Controllers
 
             return View(model);
         }
-    }
+
+		[HttpGet]
+		[AllowAnonymous]
+		public async Task<IActionResult> Read(int id)
+		{
+			var model = await articleService.GetArticleReadModelAsync(id);
+
+            if (model == null)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            return View(model);
+		}
+	}
 }
