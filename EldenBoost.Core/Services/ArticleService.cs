@@ -97,6 +97,23 @@ namespace EldenBoost.Core.Services
 			await repository.SaveChangesAsync();
 		}
 
+        public async Task EditArticleAsync(ArticleEditViewModel model)
+        {
+            Article? article = await repository.GetByIdAsync<Article>(model.Id);
+            if (article != null)
+            {
+                var sanitizer = new HtmlSanitizer();
+                var decodedContent = WebUtility.HtmlDecode(model.Content);
+                string sanitizedContent = sanitizer.Sanitize(decodedContent);
+
+                article.Title = model.Title;
+                article.Content = sanitizedContent;
+                article.ImageURL = model.ImageURL;
+
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<ArticleEditViewModel?> GetArticleEditModelByIdAsync(int articleId)
         {
                return await repository.AllReadOnly<Article>()

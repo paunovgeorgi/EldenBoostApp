@@ -9,5 +9,6 @@ namespace EldenBoost.Core.Contracts
 		Task<ArticleReadViewModel?> GetArticleReadModelAsync(int articleId);
 		Task CreateAsync(ArticleFormModel model, string userId);
         Task<ArticleEditViewModel?> GetArticleEditModelByIdAsync(int articleId);
+        Task EditArticleAsync(ArticleEditViewModel model);
     }
 }
