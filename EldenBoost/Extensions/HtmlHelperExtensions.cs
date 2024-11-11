@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Ganss.Xss;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EldenBoost.Extensions
 {
@@ -17,6 +18,33 @@ namespace EldenBoost.Extensions
             });
 
             return new SelectList(enumSelectList, "Value", "Text");
+        }
+
+        public static string SanitizeHtml(string htmlContent)
+        {
+            var sanitizer = new HtmlSanitizer();
+
+            // Allow specific tags
+            sanitizer.AllowedTags.Add("p");
+            sanitizer.AllowedTags.Add("a");
+            sanitizer.AllowedTags.Add("b");
+            sanitizer.AllowedTags.Add("i");
+            sanitizer.AllowedTags.Add("u");
+            sanitizer.AllowedTags.Add("strong");
+            sanitizer.AllowedTags.Add("em");
+            sanitizer.AllowedTags.Add("ul");
+            sanitizer.AllowedTags.Add("ol");
+            sanitizer.AllowedTags.Add("li");
+            sanitizer.AllowedTags.Add("br");
+            sanitizer.AllowedTags.Add("img");
+
+            // Allow specific attributes
+            sanitizer.AllowedAttributes.Add("href");
+            sanitizer.AllowedAttributes.Add("title");
+            sanitizer.AllowedAttributes.Add("alt");
+            sanitizer.AllowedAttributes.Add("src");
+
+            return sanitizer.Sanitize(htmlContent);
         }
     }
 }

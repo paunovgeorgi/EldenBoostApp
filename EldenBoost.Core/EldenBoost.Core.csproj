@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlSanitizer" Version="8.1.870" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EldenBoost.Common\EldenBoost.Common.csproj" />
     <ProjectReference Include="..\EldenBoost.Infrastructure\EldenBoost.Infrastructure.csproj" />
   </ItemGroup>
