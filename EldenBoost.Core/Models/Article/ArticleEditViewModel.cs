@@ -1,10 +1,11 @@
 ﻿using EldenBoost.Common.Enumerations;
+using EldenBoost.Core.Models.Article.Contracts;
 using System.ComponentModel.DataAnnotations;
 using static EldenBoost.Common.Constants.ValidationConstants.ArticleValidations;
 
 namespace EldenBoost.Core.Models.Article
 {
-    public class ArticleEditViewModel
+    public class ArticleEditViewModel :IArticleModel
     {
         public int Id { get; set; }
 

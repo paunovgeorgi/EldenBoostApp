@@ -39,22 +39,7 @@
 @* <script src="~/js/create-article-content.js"></script> *@
 
 <script src="https://cdn.tiny.cloud/1/r1iih2qa1qjdbz8lzkr0ffe3hre0x3gn8y1dva0q8tmvgco5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    tinymce.init({
-        selector: '#contentTextArea',
-        statusbar: false,
-        height: 500,
-        menubar: true,
-        plugins: [
-            'advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media table paste code help wordcount'
-        ],
-        toolbar: 'code | undo redo | formatselect | bold italic backcolor | \
-                          alignleft aligncenter alignright alignjustify | \
-                          bullist numlist outdent indent | removeformat | help'
-    });
-</script>
+<script src="~/js/tinymce-create.js"></script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
