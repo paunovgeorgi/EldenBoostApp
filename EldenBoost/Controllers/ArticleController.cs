@@ -1,9 +1,13 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Article;
 using EldenBoost.Extensions;
+using EldenBoost.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+using System.Text.RegularExpressions;
 using static EldenBoost.Common.Constants.NotificationConstants;
+using static EldenBoost.Core.Extensions.ModelExtensions;
 
 namespace EldenBoost.Controllers
 {
@@ -77,5 +81,47 @@ namespace EldenBoost.Controllers
 
 			return RedirectToAction("MyProfile", "Author");
 		}
-	}
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await articleService.GetArticleEditModelByIdAsync(id);
+
+            if (model == null)
+            {
+                return RedirectToAction("All", "Article");
+            }
+
+            bool hasArticle = await authorService.HasArticleAsync(User.Id(), model.Id);
+            if (!hasArticle && !User.IsAdmin())
+            {
+                return RedirectToAction("All", "Article");
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Edit(ArticleEditViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            bool hasArticle = await authorService.HasArticleAsync(User.Id(), model.Id);
+            if (!hasArticle && !User.IsAdmin())
+            {
+                return RedirectToAction("All", "Article");
+            }
+
+            await articleService.EditArticleAsync(model);
+            TempData[SuccessMessage] = "Article edited successfully!";
+
+            string information = model.GetArticleInformation();
+
+            return RedirectToAction("Read", "Article", new { area = "", model.Id, information });
+        }
+    }
 }
