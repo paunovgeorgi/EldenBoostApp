@@ -1,7 +1,9 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Article;
+using EldenBoost.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static EldenBoost.Common.Constants.NotificationConstants;
 
 namespace EldenBoost.Controllers
 {
@@ -40,6 +42,40 @@ namespace EldenBoost.Controllers
             }
 
             return View(model);
+		}
+
+
+		[HttpGet]
+		public async Task<IActionResult> Create()
+		{
+			if (await authorService.ExistsByUserIdAsync(User.Id()) == false)
+			{
+				return Unauthorized("You're not an author mate mate");
+			}
+
+			var model = new ArticleFormModel();
+
+			return View(model);
+		}
+
+		[HttpPost]
+
+		public async Task<IActionResult> Create(ArticleFormModel model)
+		{
+			if (!ModelState.IsValid)
+			{
+				TempData[ErrorMessage] = "Model is invalid";
+				return View(model);
+			}
+
+			if (await authorService.ExistsByUserIdAsync(User.Id()) == false)
+			{
+				return Unauthorized("You're not an author mate mate");
+			}
+
+			await articleService.CreateAsync(model, User.Id());
+
+			return RedirectToAction("MyProfile", "Author");
 		}
 	}
 }
