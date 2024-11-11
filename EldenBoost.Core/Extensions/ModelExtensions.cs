@@ -12,14 +12,16 @@ namespace EldenBoost.Core.Extensions
 
             info = Regex.Replace(info, @"[^a-zA-Z0-9\-]", string.Empty);
 
-            info = info.ToLower() + "-boost";
+            info = info.ToLower().Trim('-') + "-boost";
 
             return info;
         }
 
 		public static string GetArticleInformation(this IArticleModel article)
 		{
-			return Regex.Replace(article.Title.ToLower(), @"[^a-z0-9-]+", "-");
-		}
+            string result = Regex.Replace(article.Title.ToLower(), @"[^a-z0-9]+", "-");
+
+            return result.Trim('-');
+        }
 	}
 }
