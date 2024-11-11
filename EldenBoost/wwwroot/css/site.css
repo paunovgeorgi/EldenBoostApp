@@ -86,6 +86,10 @@ body {
     top: 240Px;
     opacity: .7;
     z-index: -1;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
 }
 
 .right-border-main {
@@ -100,6 +104,10 @@ body {
     top: 240Px;
     opacity: .75;
     z-index: -1;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
 }
 
 /*===================== Hero image -------------------------*/
@@ -164,4 +172,25 @@ input[type="checkbox"]:focus {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
+}
+
+
+
+/*----------------- article Read section -----------------*/
+
+.img-read {
+    background-size: cover;
+    width: 30%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 24px;
+    -webkit-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 37px 0px rgba(0,0,0,0.75);
+    --bs-gutter-x: 0;
+}
+
+.article-footer {
+    display: flex;
+    justify-content: space-between;
 }

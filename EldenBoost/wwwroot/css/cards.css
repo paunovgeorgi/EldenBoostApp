@@ -2,7 +2,7 @@
 /*----------------- Custom Card --------------------*/
 
 .custom-card {
-    background-color: rgba(24, 20, 20, 0.85);
+    background-color: rgba(24, 20, 20, 0.86);
     /*background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(0,35,36,1) 50%, rgba(2,0,36,0.09565833169205185) 100%);*/
     /*background: linear-gradient(90deg, rgba(0,36,36,0.3113446062018558) 0%, rgba(0,36,36,0.921988863904937) 50%, rgba(0,36,36,0.2581233176864496) 100%);*/
     /*background: linear-gradient(90deg, rgba(0,36,36,1) 0%, rgba(0,36,36,0) 50%, rgba(0,36,36,1) 100%);*/
@@ -26,7 +26,7 @@
     }
 
     .custom-card:hover {
-         background-color: rgba(24, 20, 20, 0.95);
+         background-color: rgba(24, 20, 20, 0.96);
         transition: background .3s ease;
     }
 
@@ -150,31 +150,6 @@
 
 /*----------------------------- Article Card --------------------------------*/
 
-/*.custom-card.article-card {
-    background-color: rgba(24, 20, 20, 0.85);*/
-    /*background: linear-gradient(90deg, rgba(0,102,102,0.4317927854735645) 80%, rgba(0,16,36,0.7903362028405112) 100%);*/
-    /*border-radius: 32px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 170px;   
-}
-
-    .custom-card.article-card:hover {
-        background-color: rgba(24, 20, 20, 0.96);
-        transition: background .5s ease;
-    }
-
-.custom-card.article-card img {
-    width: 160px;
-    height: 100%;
-    object-fit:cover;
-    object-position:top;
-    transition: transform 0.3s ease;
-   
-    
-}*/
-
 .custom-card.article-card .card-body {
     padding: .5rem;
 
@@ -200,7 +175,7 @@
 }
 
     .custom-card.article-card:hover {
-        background-color: rgba(24, 20, 20, 0.96);
+        background-color: rgba(24, 20, 20, 0.97);
         transition: background .5s ease;
     }
 
