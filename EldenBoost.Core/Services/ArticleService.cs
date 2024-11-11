@@ -3,7 +3,9 @@ using EldenBoost.Core.Models.Article;
 using EldenBoost.Core.Models.Article.Enums;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
+using Ganss.Xss;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace EldenBoost.Core.Services
 {
@@ -69,6 +71,31 @@ namespace EldenBoost.Core.Services
                 Articles = allArticles
             };
         }
+
+		public async Task CreateAsync(ArticleFormModel model, string userId)
+		{
+			int authorId = await repository.AllReadOnly<Author>()
+				.Where(a => a.UserId == userId)
+				.Select(a => a.Id)
+				.FirstOrDefaultAsync();
+
+            var sanitizer = new HtmlSanitizer();
+            var decodedContent = WebUtility.HtmlDecode(model.Content);
+            string sanitizedContent = sanitizer.Sanitize(decodedContent);
+
+            Article article = new Article
+            {
+                Title = model.Title,
+                Content = sanitizedContent,
+                AuthorId = authorId,
+                ImageURL = model.ImageURL,
+                ArticleType = model.ArticleType,
+                ReleaseDate = DateTime.Now
+            };
+
+            await repository.AddAsync(article);
+			await repository.SaveChangesAsync();
+		}
 
 		public async Task<ArticleReadViewModel?> GetArticleReadModelAsync(int articleId)
 		{
