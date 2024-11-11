@@ -69,5 +69,21 @@ namespace EldenBoost.Core.Services
                 Articles = allArticles
             };
         }
-    }
+
+		public async Task<ArticleReadViewModel?> GetArticleReadModelAsync(int articleId)
+		{
+			   return await repository.AllReadOnly<Article>()
+			  .Where(a => a.Id == articleId)
+			  .Select(a => new ArticleReadViewModel()
+			  {
+				  Id = a.Id,
+				  Title = a.Title,
+				  Content = a.Content,
+				  ImgUrl = a.ImageURL,
+				  PublishDate = a.ReleaseDate.ToString("d"),
+				  Author = a.Author.User.Nickname
+			  })
+			  .FirstOrDefaultAsync();
+		}
+	}
 }
