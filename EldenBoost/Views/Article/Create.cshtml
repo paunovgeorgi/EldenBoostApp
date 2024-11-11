@@ -1,0 +1,62 @@
+﻿@using EldenBoost.Common.Enumerations
+@model ArticleFormModel
+@{
+    ViewBag.Title = "Create Article";
+}
+
+<h2 class="text-center" style="margin-top:80px">@ViewBag.Title</h2>
+<hr />
+
+<div class="col-sm-12 col-lg-12 col-xl-10 offset-xl-1">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" placeholder="Title...">
+            <span asp-validation-for="Title" class="small text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ArticleType"></label>
+            <select asp-for="ArticleType" id="articleTypeDropdown" class="form-control" asp-items="Html.GetEnumSelectList<ArticleType>()"></select>
+            <span asp-validation-for="ArticleType" class="small text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" id="contentTextArea" rows="4" class="form-control" placeholder="Write your article here..."></textarea>
+            <span asp-validation-for="Content" class="small text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageURL"></label>
+            <input asp-for="ImageURL" class="form-control" placeholder="Your fine URL here...">
+            <span asp-validation-for="ImageURL" class="small text-danger"></span>
+        </div>
+        <div class="text-center">
+            <input class="btn btn-outline-light mt-3" type="submit" value="Save" />
+        </div>
+    </form>
+</div>
+</div>
+
+@* <script src="~/js/create-article-content.js"></script> *@
+
+<script src="https://cdn.tiny.cloud/1/r1iih2qa1qjdbz8lzkr0ffe3hre0x3gn8y1dva0q8tmvgco5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#contentTextArea',
+        statusbar: false,
+        height: 500,
+        menubar: true,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'code | undo redo | formatselect | bold italic backcolor | \
+                          alignleft aligncenter alignright alignjustify | \
+                          bullist numlist outdent indent | removeformat | help'
+    });
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}
