@@ -215,6 +215,17 @@ namespace EldenBoost.Core.Services
                 .CountAsync(o => o.ClientId == userId);
         }
 
+        public async Task RateAsync(int orderId)
+        {
+            Order? order = await repository.GetByIdAsync<Order>(orderId);
+
+            if (order != null)
+            {
+                order.IsRated = true;
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<decimal> TotalPaidByClientIdAsync(string clientId)
         {
             return await repository.AllReadOnly<Order>()
