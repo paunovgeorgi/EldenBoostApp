@@ -20,6 +20,16 @@ namespace EldenBoost.Core.Services
                   .Include(m => m.Sender)
                   .Include(m => m.Receiver)
                   .OrderBy(m => m.Timestamp)
+                  .Select(m => new ChatMessageViewModel
+                  {
+                      OrderId = m.OrderId,
+                      SenderId = m.SenderId,
+                      ReceiverId = m.ReceiverId,
+                      Timestamp = m.Timestamp,
+                      Message = m.Message,
+                      Sender = m.Sender,
+                      Receiver = m.Receiver
+                  })
                   .ToListAsync();
 
             var model = new ChatViewModel
@@ -30,6 +40,21 @@ namespace EldenBoost.Core.Services
             };
 
             return model;
+        }
+
+        public async Task SaveMessageAsync(ChatMessageViewModel message)
+        {
+            var newMessage = new ChatMessage
+            {
+                SenderId = message.SenderId,
+                ReceiverId = message.ReceiverId,
+                Message = message.Message,
+                OrderId = message.OrderId,
+                Timestamp = DateTime.Now
+            };
+
+            await repository.AddAsync<ChatMessage>(newMessage);
+            await repository.SaveChangesAsync();
         }
     }
 }
