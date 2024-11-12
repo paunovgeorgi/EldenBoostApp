@@ -73,16 +73,16 @@
 				{
 					<form asp-controller="Order" asp-area="" asp-action="Complete" method="post">
 						<input type="hidden" name="orderId" value="@Model.Id" />
-						<input class="btn btn-success take-btn" type="submit" value="Complete" />
+						<input class="btn btn-details" type="submit" value="Complete" />
 					</form>
 
 					<a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id"
-					   class="btn btn-fancy-edit">Order Chat</a>
+					   class="btn btn-fancy-read mt-2">Order Chat</a>
 				}
 				else if (!IsBooster && Model.Status == "Working")
 				{
 					<a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id"
-					   class="btn btn-fancy-edit">Order Chat</a>
+					   class="btn btn-fancy-read mt-2">Order Chat</a>
 				}
 				else if (!IsBooster && Model.Status == "Completed")
 				{

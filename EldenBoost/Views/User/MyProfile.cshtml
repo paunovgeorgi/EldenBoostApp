@@ -97,7 +97,6 @@ else
     <hr />
 
     <h2 class="text-center">Pending Orders</h2>
-    <hr />
 
     <div class="row">
         @foreach (var order in Model.Where(m => m.Status == "Pending"))
@@ -106,8 +105,9 @@ else
         }
     </div>
 
-    <h2 class="text-center">Active Orders</h2>
     <hr />
+
+    <h2 class="text-center">Active Orders</h2>
 
     <div class="row">
         @foreach (var order in Model.Where(m => m.Status == "Working"))
@@ -116,8 +116,9 @@ else
         }
     </div>
 
-    <h2 class="text-center">Completed Orders</h2>
     <hr />
+    <h2 class="text-center">Completed Orders</h2>
+
 
     <div class="row">
         @foreach (var order in Model.Where(m => m.Status == "Completed"))
@@ -128,3 +129,4 @@ else
 }
 
 <script src="~/js/profile-picture.js"></script>
+<script src="~/js/rate-booster.js"></script>

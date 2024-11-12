@@ -1,8 +1,8 @@
 ﻿using EldenBoost.Core.Contracts;
-using EldenBoost.Core.Services;
 using EldenBoost.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static EldenBoost.Common.Constants.NotificationConstants;
 
 namespace EldenBoost.Controllers
 {
@@ -52,6 +52,23 @@ namespace EldenBoost.Controllers
             var orders = await orderService.AllByBoosterIdAsync(booster.Id);
 
             return View(orders);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Rate(int boosterId, int orderId, int rating)
+        {
+            if (await boosterService.GetBoosterByBoosterIdAsync(boosterId) == null)
+            {
+                TempData[ErrorMessage] = "Booster does not exist";
+                return RedirectToAction("MyOrders", "Client");
+            }
+
+            await boosterService.RateAsync(boosterId, rating);
+            await orderService.RateAsync(orderId);
+            TempData[SuccessMessage] = "Booster rated successfully!";
+
+            return RedirectToAction("MyProfile", "User");
         }
     }
 }

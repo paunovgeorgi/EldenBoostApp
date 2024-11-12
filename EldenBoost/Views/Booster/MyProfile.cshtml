@@ -40,13 +40,17 @@
 
 </div>
 
+<hr />
 
 <h2 class="text-center">Active Orders</h2>
+@* <center>
+    <h2 class="text-center py-2 mb-3" style="background-color: rgba(24, 20, 20, 0.5); border-radius: 16px; border: 1px solid var(--lightest); width: 22%;" id="serviceTitle">Active Orders</h2>
+</center> *@
 @if (!Model.Any(m => m.Status == "Working"))
 {
     <h4 class="text-center"> - You don't have any active orders - </h4>
 }
-<hr />
+
 
 <div class="row mt-3">
     @foreach (var order in Model.Where(m => m.Status == "Working"))
@@ -55,8 +59,13 @@
     }
 </div>
 
-<h2 class="text-center">Completed Orders</h2>
 <hr />
+
+<h2 class="text-center">Completed Orders</h2>
+@* <center>
+    <h2 class="text-center py-2 mb-3" style="background-color: rgba(24, 20, 20, 0.5); border-radius: 16px; border: 1px solid var(--lightest); width: 22%;" id="serviceTitle">Completed Orders</h2>
+</center> *@
+
 
 
 @if (!Model.Any(m => m.Status == "Completed"))
