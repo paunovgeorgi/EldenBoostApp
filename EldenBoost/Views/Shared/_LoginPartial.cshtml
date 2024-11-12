@@ -10,6 +10,7 @@
     bool isAuthor = await authorService.ExistsByUserIdAsync(User.Id());
     bool isBooster = await boosterService.BoosterExistsByUserIdAsync(User.Id());
     string profilePicture = await userService.GetProfilePictureByUseIdAsync(User.Id());
+    bool hasOrders = await userService.HasOrdersAsync(User.Id());
 
 }
 
@@ -53,7 +54,7 @@
                 }
             </div>
         </li>
-        @if (!User.IsAdmin() && !isBooster && !isAuthor)
+        @if (!User.IsAdmin() && !isBooster && !isAuthor && !hasOrders)
         {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

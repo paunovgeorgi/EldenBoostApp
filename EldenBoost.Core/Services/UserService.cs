@@ -55,5 +55,11 @@ namespace EldenBoost.Core.Services
             }
             return nickname;
         }
+
+        public async Task<bool> HasOrdersAsync(string userId)
+        {
+            return await repository.AllReadOnly<Order>()
+                .AnyAsync(o => o.ClientId == userId);
+        }
     }
 }
