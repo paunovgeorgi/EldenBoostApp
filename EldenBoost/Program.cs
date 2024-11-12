@@ -2,6 +2,7 @@ using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Services;
 using EldenBoost.Data;
 using EldenBoost.Extensions;
+using EldenBoost.Hubs;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using EldenBoost.ModelBinders;
@@ -47,6 +48,8 @@ builder.Services.AddControllersWithViews(options =>
     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -85,5 +88,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
