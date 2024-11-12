@@ -19,5 +19,6 @@ namespace EldenBoost.Core.Contracts
         Task CompleteAsync(int orderId);
         Task<bool> HasBoosterWithIdAsync(int orderId, int boosterId);
         Task RateAsync(int orderId);
+        Task<Order?> GetOrderWithBoosterByOrderIdAsync(int orderId);
     }
 }
