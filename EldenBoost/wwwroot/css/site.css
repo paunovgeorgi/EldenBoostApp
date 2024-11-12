@@ -5,6 +5,7 @@
 @import url(service-details.css);
 @import url(buttons.css);
 @import url(my-profile.css);
+@import url(chat.css);
 
 :root {
     --main-dark: #004c4c;
