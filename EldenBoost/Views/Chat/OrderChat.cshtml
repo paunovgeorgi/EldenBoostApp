@@ -4,11 +4,10 @@
 @inject IUserService userService;
 
 @{
-    ViewData["Title"] = "Chat";
+    ViewData["Title"] = "Order Chat";
     var userId = User.Id();
     string nickname = await userService.GetUserNicknameAsync(userId);
 }
-
 
 <div>
     <h3 style="margin-top:80px" class="text-center">Order #@Model.OrderId Chat</h3>
@@ -39,86 +38,10 @@
 </div>
 
 @section Scripts {
-
     <script>
-
-        function scrollToBottom() {
-            var chatContainer = document.querySelector('.chat-container');
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        // Add an event listener for when the page is fully loaded
-        window.addEventListener('load', function () {
-            scrollToBottom();
-        });
-
-        const connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
-
-        connection.start().then(function () {
-            console.log("Connected to the SignalR hub!");
-        }).catch(function (err) {
-            return console.error(err.toString());
-        });
-
-        // connection.on("ReceiveMessage", function (nickname, message) {
-        //     var msg = document.createElement("div");
-        //     msg.textContent = nickname + ": " + message;
-        //     document.getElementById("messagesList").appendChild(msg);
-        // });
-
-        connection.on("ReceiveMessage", function (nickname, profilePicture, message, timestamp, isSentByCurrentUser) {
-            var messageContainer = document.createElement("div");
-            messageContainer.className = isSentByCurrentUser ? "message-container sent" : "message-container received";
-
-            var messageText = document.createElement("div");
-            messageText.className = "message-text";
-
-            console.log(isSentByCurrentUser)
-
-            var profileImg = document.createElement("img");
-            profileImg.src = profilePicture;
-            profileImg.style.width = "32px";
-            profileImg.style.borderRadius = "50%";
-            profileImg.style.marginRight = "6px";
-
-            var textContent = document.createElement("span");
-            textContent.textContent = `${nickname}: ${message}`;
-
-            messageText.appendChild(profileImg);
-            messageText.appendChild(textContent);
-
-            var messageTimestamp = document.createElement("div");
-            messageTimestamp.className = "message-timestamp";
-            messageTimestamp.textContent = timestamp;
-
-            messageContainer.appendChild(messageText);
-            messageContainer.appendChild(messageTimestamp);
-            document.getElementById("messagesList").appendChild(messageContainer);
-
-            scrollToBottom();
-        });
-
-        function sendMessage() {
-            var message = document.getElementById("messageInput").value;
-
-            // Use Razor to pass C# variables to JavaScript
-            var receiverId = "@Model.ReceiverId";
-            var orderId = @Model.OrderId;
-
-            if (message.trim() !== "") {
-                connection.invoke("SendMessage", "@userId", message, orderId, receiverId).catch(function (err) {
-                    return console.error(err.toString());
-                });
-                document.getElementById("messageInput").value = ""; // Clear the input field
-            }
-        }
-
-        document.getElementById("sendButton").addEventListener("click", sendMessage);
-        document.getElementById("messageInput").addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // Prevent default Enter key behavior
-                sendMessage();
-            }
-        });
+        const userId = "@userId";
+        const receiverId = "@Model.ReceiverId";
+        const orderId = @Model.OrderId;
     </script>
+    <script src="~/js/chat.js"></script>
 }
