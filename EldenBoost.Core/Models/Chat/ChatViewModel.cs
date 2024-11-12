@@ -11,6 +11,6 @@ namespace EldenBoost.Core.Models.Chat
     {
         public int OrderId { get; set; }
         public string ReceiverId { get; set; } = null!;
-        public List<ChatMessage> Messages { get; set; } = new List<ChatMessage>();
+        public List<ChatMessageViewModel> Messages { get; set; } = new List<ChatMessageViewModel>();
     }
 }
