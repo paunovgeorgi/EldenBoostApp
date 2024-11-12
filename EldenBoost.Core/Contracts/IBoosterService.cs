@@ -10,5 +10,6 @@ namespace EldenBoost.Core.Contracts
         Task<Booster?> GetBoosterByUserIdAsync(string userId);
 		Task<Booster?> GetBoosterByBoosterIdAsync(int boosterId);
         Task<int> GetBoosterIdAsync(string userId);
+        Task RateAsync(int boosterId, int rating);
     }
 }

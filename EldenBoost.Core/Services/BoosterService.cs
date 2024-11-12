@@ -43,7 +43,7 @@ namespace EldenBoost.Core.Services
 			   .FirstOrDefaultAsync();
 		}
 
-		public async Task<Booster?> GetBoosterByUserIdAsync(string userId)
+        public async Task<Booster?> GetBoosterByUserIdAsync(string userId)
         {
             var booster = await repository.AllReadOnly<Booster>()
               .Include(b => b.Platforms)
@@ -60,6 +60,18 @@ namespace EldenBoost.Core.Services
                 .Where(b => b.UserId == userId)
                 .Select(b => b.Id)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task RateAsync(int boosterId, int rating)
+        {
+            Booster? booster = await repository.GetByIdAsync<Booster>(boosterId);
+
+            if (booster != null)
+            {
+                booster.Rating += rating;
+                booster.RatingCount++;
+                await repository.SaveChangesAsync();
+            }
         }
     }
 }
