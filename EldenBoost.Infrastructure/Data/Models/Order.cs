@@ -78,5 +78,6 @@ namespace EldenBoost.Infrastructure.Data.Models
 
         [Comment("Additional information provided for the Order.")]
         public string? Information { get; set; }
+        public virtual ICollection<ChatMessage> ChatMessages { get; set; } = new List<ChatMessage>();
     }
 }

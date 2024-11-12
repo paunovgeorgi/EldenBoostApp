@@ -18,5 +18,9 @@ namespace EldenBoost.Infrastructure.Data.Models
 
         [Comment("Collection of Reviews for the User")]
         public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+        public virtual ICollection<ChatMessage> SentMessages { get; set; } = new List<ChatMessage>();
+
+        public virtual ICollection<ChatMessage> ReceivedMessages { get; set; } = new List<ChatMessage>();
     }
 }

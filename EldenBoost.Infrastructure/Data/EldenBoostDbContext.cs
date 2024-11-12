@@ -23,6 +23,7 @@ namespace EldenBoost.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<ServiceOption> ServiceOptions { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -68,6 +69,28 @@ namespace EldenBoost.Data
                 j.IndexerProperty<int>("ApplicationId").HasColumnName("ApplicationId");
                 j.IndexerProperty<int>("PlatformId").HasColumnName("PlatformId");
             });
+
+
+            builder.Entity<ChatMessage>()
+             .HasOne(cm => cm.Sender)
+             .WithMany(u => u.SentMessages)
+             .HasForeignKey(cm => cm.SenderId)
+             .OnDelete(DeleteBehavior.Restrict); // Optional: to prevent cascade delete
+
+            // Define relationship between ChatMessage and ApplicationUser for Receiver
+            builder.Entity<ChatMessage>()
+                .HasOne(cm => cm.Receiver)
+                .WithMany(u => u.ReceivedMessages)
+                .HasForeignKey(cm => cm.ReceiverId)
+                .OnDelete(DeleteBehavior.Restrict); // Optional: to prevent cascade delete
+
+            // Define relationship between ChatMessage and Order
+            builder.Entity<ChatMessage>()
+                .HasOne(cm => cm.Order)
+                .WithMany(o => o.ChatMessages)
+                .HasForeignKey(cm => cm.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             builder.ApplyConfiguration(new PlatformConfiguration());
             builder.ApplyConfiguration(new ServiceConfiguration());
