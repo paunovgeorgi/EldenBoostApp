@@ -20,6 +20,11 @@
         background-color: rgba(24, 20, 20, 0.97);
     }
 
+        .profile-pic:hover .card-body .card-text i {
+            color: var(--secondary-dark);
+            transition: .5s ease;
+        }
+
     .profile-pic img {
         width: 50%;
         height: 250px;
