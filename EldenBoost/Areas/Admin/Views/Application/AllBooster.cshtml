@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ApplicationListViewModel>
+
+
+@{
+    ViewBag.Title = "All Booster Applications";
+}
+
+<h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
+<hr />
+<a href="#" class="btn btn-outline-light" id="show-approved">
+    Show Approved
+</a>
+<table class="table table-" style="background-color: rgba(24, 20, 20, 0.987); border-radius: 8px;">
+    <thead class="text-light">
+        <tr>
+            <th><label>Username</label></th>
+            <th><label>Email</label></th>
+            <th><label>Country</label></th>
+            <th><label>Experience</label></th>
+            <th><label>Availability</label></th>
+            <th><label>Platforms</label></th>
+            <th><label></label></th>
+            <th><label></label></th>
+        </tr>
+    </thead>
+    <tbody class="text-opacity-75 text-light">
+        @foreach (var app in Model)
+        {
+            <tr>
+                <td><label>@app.Nickname</label></td>
+                <td><label>@app.Email</label></td>
+                <td><label>@app.Country</label></td>
+                <td><label>@app.Experience</label></td>
+                <td><label>@app.Availability h / day</label></td>
+                <td><label>@app.Platforms</label></td>
+                @if (!app.IsApproved)
+                {
+                    <td>
+                        <label>
+                            <form asp-controller="Application" asp-action="ApproveBooster" asp-route-id="@app.Id" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-outline-success">Approve</button>
+                            </form>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <form asp-controller="Application" asp-action="Reject" asp-route-id="@app.Id" method="post" style="display: inline;">
+                                <input type="hidden" name="returnUrl" value="AllBooster" />
+                                <button type="submit" class="btn btn-outline-danger">Reject</button>
+                            </form>
+                        </label>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/js/application-admin.js"></script>
