@@ -45,5 +45,39 @@ namespace EldenBoost.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("get-approved-author")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetApprovedAuthor()
+        {
+            try
+            {
+                var applications = await applicationService.AllAsync(a => a.IsApproved && a.ApplicationType == ApplicationType.Author);
+
+                return Ok(applications);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("get-pending-author")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetPendingAuthor()
+        {
+            try
+            {
+                var applications = await applicationService.AllAsync(a => !a.IsApproved && !a.IsRejected && a.ApplicationType == ApplicationType.Author);
+
+                return Ok(applications);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
     }
 }
