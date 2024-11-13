@@ -14,5 +14,6 @@ namespace EldenBoost.Core.Contracts
         Task<bool> HasAppliedByUserIdAsync(string userId, Expression<Func<Application, bool>> predicate);
         Task CreateBoosterApplicationAsync(string userId, ApplicationFormModel model);
         Task CreateAuthorApplicationAsync(string userId, ApplicationFormModel model);
+        Task<IEnumerable<ApplicationListViewModel>> AllAsync(Expression<Func<Application, bool>> predicate);
     }
 }

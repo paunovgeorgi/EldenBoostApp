@@ -4,12 +4,7 @@ using EldenBoost.Core.Models.Application;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Core.Services
 {
@@ -19,6 +14,27 @@ namespace EldenBoost.Core.Services
         public ApplicationService(IRepository _repository)
         {
             repository = _repository; 
+        }
+
+        public async Task<IEnumerable<ApplicationListViewModel>> AllAsync(Expression<Func<Application, bool>> predicate)
+        {
+            return await repository.AllReadOnly<Application>()
+               .Include(a => a.Platforms)
+               .Where(predicate)
+               .Select(a => new ApplicationListViewModel()
+               {
+                   Id = a.Id,
+                   Nickname = a.User.Nickname,
+                   Email = a.User.Email!,
+                   Country = a.Country,
+                   Availability = a.Availability,
+                   Experience = a.Experience,
+                   IsApproved = a.IsApproved,
+                   IsRejected = a.IsRejected,
+                   Platforms = string.Join(", ", a.Platforms.Select(p => p.Name))
+               })
+               .OrderByDescending(a => a.Id)
+               .ToListAsync();
         }
 
         public async Task CreateAuthorApplicationAsync(string userId, ApplicationFormModel model)
