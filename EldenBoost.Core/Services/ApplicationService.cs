@@ -21,6 +21,21 @@ namespace EldenBoost.Core.Services
             repository = _repository; 
         }
 
+        public async Task CreateAuthorApplicationAsync(string userId, ApplicationFormModel model)
+        {
+            Application application = new Application()
+            {
+                Country = model.Country,
+                UserId = userId,
+                Experience = model.Experience,
+                Availability = model.Availabiliity,
+                ApplicationType = ApplicationType.Author
+            };
+
+            await repository.AddAsync(application);
+            await repository.SaveChangesAsync();
+        }
+
         public async Task CreateBoosterApplicationAsync(string userId, ApplicationFormModel model)
         {
             Application application = new Application()
