@@ -9,9 +9,9 @@ async function toggleApplications() {
 
     let url = 'https://localhost:7277/api/application/';
     if (isShowingApproved) {
-        url += 'get-pending';
+        url += 'get-pending-author';
     } else {
-        url += 'get-approved';
+        url += 'get-approved-author';
     }
 
 
@@ -21,12 +21,9 @@ async function toggleApplications() {
             throw new Error(`Error fetching orders: ${response.statusText}`);
         }
         const data = await response.json();
-        console.log(data);
 
-        // Clear the existing table content
         tableBody.innerHTML = '';
 
-        // Populate the table with the fetched orders
         data.forEach(app => {
             const row = document.createElement('tr');
 
@@ -36,10 +33,9 @@ async function toggleApplications() {
                 <td><label>${app.country}</label></td>
                 <td><label>${app.experience}</label></td>
                 <td><label>${app.availability}</label></td>
-                <td><label>${app.platforms}</label></td>
                 ${!app.isRejected && !app.isApproved ? `
         <td>
-            <form method="post" action="/Application/ApproveBooster/${app.Id}" style="display: inline;">
+            <form method="post" action="/Application/ApproveAuthor/${app.Id}" style="display: inline;">
                 <button type="submit" class="btn btn-outline-success">Approve</button>
             </form>
         </td>
@@ -53,7 +49,6 @@ async function toggleApplications() {
             tableBody.appendChild(row);
         });
 
-        // Toggle the state and button text
         isShowingApproved = !isShowingApproved;
         filterBtn.textContent = isShowingApproved ? 'Show Pending' : 'Show Approved';
     } catch (error) {
