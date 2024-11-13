@@ -1,0 +1,33 @@
+﻿@model ApplicationFormModel
+
+@{
+    ViewData["Title"] = "Become an Author";
+}
+
+<h2 class="text-center" style="margin-top: 80px">Become an Author</h2>
+
+<form asp-action="SubmitAuthor" class="col-sm-12 offset-lg-2 col-lg-10 offset-xl-3 col-xl-6" asp-controller="Application" method="post">
+    <div class="mb-3">
+        <label asp-for="Country" class="form-label">Your Country</label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Experience" class="form-label">Summary of your writing experience</label>
+        <textarea asp-for="Experience" class="form-control"></textarea>
+        <span asp-validation-for="Experience" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Availabiliity" class="form-label">Articles per week</label>
+        <input asp-for="Availabiliity" class="form-control" />
+        <span asp-validation-for="Availabiliity" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-light">Submit</button>
+</form>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}
