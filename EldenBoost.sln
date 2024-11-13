@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35201.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldenBoost", "EldenBoost\EldenBoost.csproj", "{3B0CDE63-E35B-4DEF-A869-D01881CDA9DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldenBoost", "EldenBoost\EldenBoost.csproj", "{3B0CDE63-E35B-4DEF-A869-D01881CDA9DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldenBoost.Infrastructure", "EldenBoost.Infrastructure\EldenBoost.Infrastructure.csproj", "{42C3152B-3524-4756-A34F-035EB61D4B04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldenBoost.Infrastructure", "EldenBoost.Infrastructure\EldenBoost.Infrastructure.csproj", "{42C3152B-3524-4756-A34F-035EB61D4B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldenBoost.Core", "EldenBoost.Core\EldenBoost.Core.csproj", "{12E5D736-D46F-4ECB-B580-27EE64824E5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldenBoost.Core", "EldenBoost.Core\EldenBoost.Core.csproj", "{12E5D736-D46F-4ECB-B580-27EE64824E5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldenBoost.Common", "EldenBoost.Common\EldenBoost.Common.csproj", "{229C847D-647B-43C3-9203-E98D8FE924A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldenBoost.Common", "EldenBoost.Common\EldenBoost.Common.csproj", "{229C847D-647B-43C3-9203-E98D8FE924A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldenBoost.WebApi", "EldenBoost.WebApi\EldenBoost.WebApi.csproj", "{369BC75C-23A9-49E4-9DB4-87F1F9948941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{229C847D-647B-43C3-9203-E98D8FE924A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{229C847D-647B-43C3-9203-E98D8FE924A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{229C847D-647B-43C3-9203-E98D8FE924A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{369BC75C-23A9-49E4-9DB4-87F1F9948941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{369BC75C-23A9-49E4-9DB4-87F1F9948941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{369BC75C-23A9-49E4-9DB4-87F1F9948941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{369BC75C-23A9-49E4-9DB4-87F1F9948941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
