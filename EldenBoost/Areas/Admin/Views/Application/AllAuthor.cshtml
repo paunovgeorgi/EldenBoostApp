@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "All Booster Applications";
+    ViewBag.Title = "All Author Applications";
 }
 
 <h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
@@ -10,15 +10,14 @@
 <a href="#" class="btn btn-outline-light" id="show-approved">
     Show Approved
 </a>
-<table class="table table-" style="background-color: rgba(24, 20, 20, 0.987); border-radius: 8px;">
+<table class="table" style="background-color: rgba(24, 20, 20, 0.987);">
     <thead class="text-light">
         <tr>
             <th><label>Username</label></th>
             <th><label>Email</label></th>
             <th><label>Country</label></th>
             <th><label>Experience</label></th>
-            <th><label>Availability</label></th>
-            <th><label>Platforms</label></th>
+            <th><label>Articles Per Week</label></th>
             <th><label></label></th>
             <th><label></label></th>
         </tr>
@@ -31,13 +30,12 @@
                 <td><label>@app.Email</label></td>
                 <td><label>@app.Country</label></td>
                 <td><label>@app.Experience</label></td>
-                <td><label>@app.Availability h / day</label></td>
-                <td><label>@app.Platforms</label></td>
+                <td><label>@app.Availability</label></td>
                 @if (!app.IsApproved)
                 {
                     <td>
                         <label>
-                            <form asp-controller="Application" asp-action="ApproveBooster" asp-route-id="@app.Id" method="post" style="display: inline;">
+                            <form asp-controller="Application" asp-action="ApproveAuthor" asp-route-id="@app.Id" method="post" style="display: inline;">
                                 <button type="submit" class="btn btn-outline-success">Approve</button>
                             </form>
                         </label>
@@ -45,7 +43,7 @@
                     <td>
                         <label>
                             <form asp-controller="Application" asp-action="Reject" asp-route-id="@app.Id" method="post" style="display: inline;">
-                                <input type="hidden" name="returnUrl" value="AllBooster" />
+                                <input type="hidden" name="returnUrl" value="AllResult" />
                                 <button type="submit" class="btn btn-outline-danger">Reject</button>
                             </form>
                         </label>
@@ -57,4 +55,4 @@
     </tbody>
 </table>
 
-<script src="~/js/application-toggle-booster.js"></script>
+<script src="~/js/application-toggle-author.js"></script>
