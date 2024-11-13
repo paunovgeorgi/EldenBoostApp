@@ -1,11 +1,36 @@
+using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Services;
+using EldenBoost.Data;
+using EldenBoost.Infrastructure.Data.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<EldenBoostDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(setup =>
+{
+    setup.AddPolicy("EldenBoost", policyBuilder =>
+    {
+        policyBuilder.WithOrigins("https://localhost:7112")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -21,5 +46,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("EldenBoost");
 
 app.Run();

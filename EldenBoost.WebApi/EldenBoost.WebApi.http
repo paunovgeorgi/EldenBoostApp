@@ -1,6 +1,0 @@
-@EldenBoost.WebApi_HostAddress = http://localhost:5197
-
-GET {{EldenBoost.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

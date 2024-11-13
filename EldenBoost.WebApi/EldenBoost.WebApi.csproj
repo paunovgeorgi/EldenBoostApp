@@ -4,10 +4,20 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>bb15dc55-3ca3-48ec-b89d-150b5b57bb4a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EldenBoost.Core\EldenBoost.Core.csproj" />
+    <ProjectReference Include="..\EldenBoost.Infrastructure\EldenBoost.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
