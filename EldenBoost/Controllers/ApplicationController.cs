@@ -4,6 +4,7 @@ using EldenBoost.Core.Models.Application;
 using EldenBoost.Core.Services;
 using EldenBoost.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using static EldenBoost.Common.Constants.NotificationConstants;
 
 namespace EldenBoost.Controllers
@@ -37,58 +38,32 @@ namespace EldenBoost.Controllers
         {
             string userId = User.Id();
 
-            if (await userService.HasOrdersAsync(userId))
+            var hasOrdersCheckResult = await CheckIfUserHasOrdersAsync(userId);
+            if (hasOrdersCheckResult != null)
             {
-                TempData[InformationMessage] = "You are already using our service as a client. If you'd like to apply for this position you should make a new registration.";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return hasOrdersCheckResult;
             }
 
-            bool hasApplied = await applicationService.HasAppliedByUserIdAsync(userId, a => a.ApplicationType == ApplicationType.Booster);
-            if (hasApplied)
+            var boosterApplicationCheck = await CheckIfUserHasAppliedAsync(userId, ApplicationType.Booster);
+            if (boosterApplicationCheck != null)
             {
-                TempData[InformationMessage] = "You've already applied for this position!";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return boosterApplicationCheck;
             }
 
-            bool isBooster = await boosterService.BoosterExistsByUserIdAsync(userId);
-            if (isBooster)
+            var boosterCheckResult = await CheckIfUserIsBoosterAsync(userId);
+            if (boosterCheckResult != null)
             {
-                TempData[InformationMessage] = "You are already part of our Boosters team!";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return boosterCheckResult;
             }
 
-            bool isAuthor = await authorService.ExistsByUserIdAsync(userId);
-            if (isAuthor)
+            var authorCheckResult = await CheckIfUserIsAuthorAsync(userId);
+            if (authorCheckResult != null)
             {
-                TempData[InformationMessage] = "You are already part of our Authors team!";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return authorCheckResult;
             }
-
 
             var platforms = await platformService.GetAllPlatformsAsync();
-
             var model = new ApplicationFormModel();
-
             model.SupportedPlatforms = platforms;
 
             return View(model);
@@ -101,6 +76,33 @@ namespace EldenBoost.Controllers
             {
                 return View(model);
             }
+            string userId = User.Id();
+
+            var hasOrdersCheckResult = await CheckIfUserHasOrdersAsync(userId);
+            if (hasOrdersCheckResult != null)
+            {
+                return hasOrdersCheckResult;
+            }
+
+            var boosterApplicationCheck = await CheckIfUserHasAppliedAsync(userId, ApplicationType.Booster);
+            if (boosterApplicationCheck != null)
+            {
+                return boosterApplicationCheck;
+            }
+
+            var boosterCheckResult = await CheckIfUserIsBoosterAsync(userId);
+            if (boosterCheckResult != null)
+            {
+                return boosterCheckResult;
+            }
+
+            var authorCheckResult = await CheckIfUserIsAuthorAsync(userId);
+            if (authorCheckResult != null)
+            {
+                return authorCheckResult;
+            }
+
+
 
             TempData[SuccessMessage] = "Successfully submited your application. Our admins will contact you if approved!";
             await applicationService.CreateBoosterApplicationAsync(User.Id(), model);
@@ -114,53 +116,29 @@ namespace EldenBoost.Controllers
 
             string userId = User.Id();
 
-            if (await userService.HasOrdersAsync(userId))
+            var hasOrdersCheckResult = await CheckIfUserHasOrdersAsync(userId);
+            if (hasOrdersCheckResult != null)
             {
-                TempData[InformationMessage] = "You are already using our service as a client. If you'd like to apply for this position you should make a new registration.";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return hasOrdersCheckResult;
             }
 
-            bool hasApplied = await applicationService.HasAppliedByUserIdAsync(userId, a => a.ApplicationType == ApplicationType.Author);
-            if (hasApplied)
+            var authorApplicationCheck = await CheckIfUserHasAppliedAsync(userId, ApplicationType.Author);
+            if (authorApplicationCheck != null)
             {
-                TempData[InformationMessage] = "You've already applied for this position!";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return authorApplicationCheck;
             }
 
-            bool isBooster = await boosterService.BoosterExistsByUserIdAsync(userId);
-            if (isBooster)
+            var boosterCheckResult = await CheckIfUserIsBoosterAsync(userId);
+            if (boosterCheckResult != null)
             {
-                TempData[InformationMessage] = "You are already part of our Boosters team!";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return boosterCheckResult;
             }
 
-            bool isAuthor = await authorService.ExistsByUserIdAsync(userId);
-            if (isAuthor)
+            var authorCheckResult = await CheckIfUserIsAuthorAsync(userId);
+            if (authorCheckResult != null)
             {
-                TempData[InformationMessage] = "You are already part of our Authors team!";
-                var refererUrl = Request.Headers["Referer"].ToString();
-                if (!string.IsNullOrEmpty(refererUrl))
-                {
-                    return Redirect(refererUrl);
-                }
-                return RedirectToAction("Index", "Home");
+                return authorCheckResult;
             }
-
 
             var model = new ApplicationFormModel();
 
@@ -176,9 +154,46 @@ namespace EldenBoost.Controllers
             }
             string userId = User.Id();
 
+            var hasOrdersCheckResult = await CheckIfUserHasOrdersAsync(userId);
+            if (hasOrdersCheckResult != null)
+            {
+                return hasOrdersCheckResult;
+            }
+
+            var authorApplicationCheck = await CheckIfUserHasAppliedAsync(userId, ApplicationType.Author);
+            if (authorApplicationCheck != null)
+            {
+                return authorApplicationCheck;
+            }
+
+            var boosterCheckResult = await CheckIfUserIsBoosterAsync(userId);
+            if (boosterCheckResult != null)
+            {
+                return boosterCheckResult;
+            }
+
+            var authorCheckResult = await CheckIfUserIsAuthorAsync(userId);
+            if (authorCheckResult != null)
+            {
+                return authorCheckResult;
+            }
+
+            await applicationService.CreateAuthorApplicationAsync(User.Id(), model);
+            TempData[SuccessMessage] = "Successfully submited your application. Our admins will contact you if approved!";
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
+        //------------------- private actions ----------------
+
+        private async Task<IActionResult?> CheckIfUserHasOrdersAsync(string userId)
+        {
             if (await userService.HasOrdersAsync(userId))
             {
-                TempData[InformationMessage] = "You are already using our service as a client. If you'd like to apply for this position you should make a new registration.";
+                TempData[InformationMessage] = "You are already using our service as a client. If you'd like to apply for this position, you should make a new registration.";
                 var refererUrl = Request.Headers["Referer"].ToString();
                 if (!string.IsNullOrEmpty(refererUrl))
                 {
@@ -186,8 +201,44 @@ namespace EldenBoost.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
+            return null;
+        }
 
-            bool hasApplied = await applicationService.HasAppliedByUserIdAsync(userId, a => a.ApplicationType == ApplicationType.Author);
+        private async Task<IActionResult?> CheckIfUserIsBoosterAsync(string userId)
+        {
+            bool isBooster = await boosterService.BoosterExistsByUserIdAsync(userId);
+            if (isBooster)
+            {
+                TempData[InformationMessage] = "You are already part of our Boosters team!";
+                var refererUrl = Request.Headers["Referer"].ToString();
+                if (!string.IsNullOrEmpty(refererUrl))
+                {
+                    return Redirect(refererUrl);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            return null;
+        }
+
+        private async Task<IActionResult?> CheckIfUserIsAuthorAsync(string userId)
+        {
+            bool isAuthor = await authorService.ExistsByUserIdAsync(userId);
+            if (isAuthor)
+            {
+                TempData[InformationMessage] = "You are already part of our Authors team!";
+                var refererUrl = Request.Headers["Referer"].ToString();
+                if (!string.IsNullOrEmpty(refererUrl))
+                {
+                    return Redirect(refererUrl);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            return null;
+        }
+
+        private async Task<IActionResult?> CheckIfUserHasAppliedAsync(string userId, ApplicationType applicationType)
+        {
+            bool hasApplied = await applicationService.HasAppliedByUserIdAsync(userId, a => a.ApplicationType == applicationType);
             if (hasApplied)
             {
                 TempData[InformationMessage] = "You've already applied for this position!";
@@ -198,11 +249,7 @@ namespace EldenBoost.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-
-            await applicationService.CreateAuthorApplicationAsync(User.Id(), model);
-            TempData[SuccessMessage] = "Successfully submited your application. Our admins will contact you if approved!";
-
-            return RedirectToAction("Index", "Home");
+            return null;
         }
 
     }
