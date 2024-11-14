@@ -37,6 +37,26 @@ namespace EldenBoost.Core.Services
                .ToListAsync();
         }
 
+        public async Task ApproveAuthorAsync(int applicationId)
+        {
+            Application? application = await repository.All<Application>()
+               .Where(a => a.Id == applicationId)
+               .FirstOrDefaultAsync();
+
+            if (application != null)
+            {
+                application.IsApproved = true;
+                Author author = new Author
+                {
+                    Country = application.Country,
+                    UserId = application.UserId,
+                };
+
+                await repository.AddAsync<Author>(author);
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task ApproveBoosterAsync(int applicationId)
         {
             Application? application = await repository.All<Application>()

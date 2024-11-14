@@ -16,5 +16,6 @@ namespace EldenBoost.Core.Contracts
         Task CreateAuthorApplicationAsync(string userId, ApplicationFormModel model);
         Task<IEnumerable<ApplicationListViewModel>> AllAsync(Expression<Func<Application, bool>> predicate);
         Task ApproveBoosterAsync(int applicationId);
+        Task ApproveAuthorAsync(int applicationId);
     }
 }
