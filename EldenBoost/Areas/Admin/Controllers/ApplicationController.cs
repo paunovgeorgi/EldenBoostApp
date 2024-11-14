@@ -42,5 +42,13 @@ namespace EldenBoost.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(AllAuthor));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Reject(int id, string returnUrl)
+        {
+            await applicationService.RejectAsync(id);
+
+            return RedirectToAction(returnUrl);
+        }
     }
 }

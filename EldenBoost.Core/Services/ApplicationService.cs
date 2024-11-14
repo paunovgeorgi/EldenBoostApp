@@ -133,5 +133,16 @@ namespace EldenBoost.Core.Services
               .Where(predicate)
               .AnyAsync(a => a.UserId == userId);
         }
+
+        public async Task RejectAsync(int applicationId)
+        {
+            Application? application = await repository.GetByIdAsync<Application>(applicationId);
+
+            if (application != null)
+            {
+                application.IsRejected = true;
+                await repository.SaveChangesAsync();
+            }
+        }
     }
 }
