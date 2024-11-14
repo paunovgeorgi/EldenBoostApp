@@ -25,7 +25,7 @@
 	};
 
 	bool IsBooster = await boosterService.BoosterExistsByUserIdAsync(User.Id());
-	Order? order = await orderService.GetOrderByIdAsync(Model.Id);
+	Order? order = await orderService.GetOrderWithClientByIdAsync(Model.Id);
 	int? boosterId = order!.BoosterId;
 	Booster? booster = null;
 
@@ -46,7 +46,7 @@
 				<h6><i class="@favIcon"></i> | <span class="@styleName">@Model.Status</span> | Pay: <b>@($"{Model.BoosterPay:f2}") USD</b></h6>
 				<h6>Stream: @hasStream | Express: @isExpress</h6>
 				<h6>@(string.IsNullOrEmpty(Model.Information) ? "" : Model.Information)</h6>
-				@* <h6>Client: @order.Client.Nickname</h6> *@
+				<h6>Client: @order.Client.Nickname</h6>
 			}
 			else
 			{
@@ -71,13 +71,15 @@
 				}
 				else if (IsBooster && Model.Status == "Working")
 				{
+					<div style="display:flex; justify-content: space-around; align-items: center; margin-top:4px;">
 					<form asp-controller="Order" asp-area="" asp-action="Complete" method="post">
 						<input type="hidden" name="orderId" value="@Model.Id" />
-						<input class="btn btn-details" type="submit" value="Complete" />
+						<input class="btn btn-details" style="margin-top: 0;" type="submit" value="Complete" />
 					</form>
 
 					<a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id"
-					   class="btn btn-fancy-read mt-2">Order Chat</a>
+					   class="btn btn-fancy-read">Order Chat</a>
+					   </div>
 				}
 				else if (!IsBooster && Model.Status == "Working")
 				{

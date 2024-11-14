@@ -236,6 +236,14 @@ namespace EldenBoost.Core.Services
             return order;
         }
 
+        public async Task<Order?> GetOrderWithClientByIdAsync(int orderId)
+        {
+            return await repository.AllReadOnly<Order>()
+                .Include(o => o.Client)
+                .Where(o => o.Id == orderId)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<bool> HasBoosterWithIdAsync(int orderId, int boosterId)
         {
 
