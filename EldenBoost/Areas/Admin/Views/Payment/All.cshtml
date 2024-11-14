@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PaymentListViewModel>
+
+
+@{
+    ViewBag.Title = "All Payments";
+}
+
+<h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
+<hr />
+<a href="#" class="btn btn-outline-light" id="show-paid">
+    Show Paid
+</a>
+
+<table class="table  text-light" style="background-color: rgba(24, 20, 20, 0.987);">
+    <thead>
+        <tr>
+            <th><label>Booster</label></th>
+            <th><label>Orders</label></th>
+            <th><label>Amount</label></th>
+            <th><label></label></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr style="color: lightgray;">
+                <td><label>@payment.BoosterName</label></td>
+                <td><label>@(string.Join(", ", @payment.Orders))</label></td>
+                <td><label>@($"${payment.Amount:F2}")</label></td>
+                <td>
+                    @if (payment.IsPaid == false)
+                    {
+                        <form asp-action="Pay" asp-controller="Payment" asp-route-id="@payment.Id" method="post" style="display: inline">
+                            <button type="submit" class="btn btn-outline-info">Pay</button>
+                        </form>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/js/payments-toggle.js"></script>
