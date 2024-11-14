@@ -1,12 +1,9 @@
 ﻿using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.Payment;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace EldenBoost.Core.Services
 {
@@ -17,6 +14,28 @@ namespace EldenBoost.Core.Services
         {
             repository = _repository;
         }
+
+        public async Task<IEnumerable<PaymentListViewModel>> AllPaymentsFiltered(Expression<Func<Payment, bool>> predicate)
+        {
+            var paymentsQuery = repository.AllReadOnly<Payment>()
+              .Where(predicate)
+              .Include(p => p.Booster)
+              .Select(p => new PaymentListViewModel()
+              {
+                  Id = p.Id,
+                  BoosterId = p.BoosterId,
+                  BoosterName = p.Booster.User.Nickname,
+                  Amount = p.Amount,
+                  IsPaid = p.IsPaid,
+                  Orders = p.Orders.Select(o => o.Id).ToList()
+              })
+              .OrderByDescending(x => x.Id);
+
+            var payments = await paymentsQuery.ToListAsync();
+
+            return payments;
+        }
+
         public async Task CreatePaymentAsync(string userId)
         {
             Booster? booster = await repository.All<Booster>()
@@ -74,5 +93,6 @@ namespace EldenBoost.Core.Services
             .Select(p => p.Amount)
             .FirstOrDefaultAsync();
         }
+
     }
 }
