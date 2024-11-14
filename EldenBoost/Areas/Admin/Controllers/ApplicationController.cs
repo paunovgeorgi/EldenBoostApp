@@ -34,5 +34,13 @@ namespace EldenBoost.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(AllBooster));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ApproveAuthor(int id)
+        {
+            await applicationService.ApproveAuthorAsync(id);
+
+            return RedirectToAction(nameof(AllAuthor));
+        }
     }
 }
