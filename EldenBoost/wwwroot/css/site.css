@@ -195,3 +195,17 @@ input[type="checkbox"]:focus {
     display: flex;
     justify-content: space-between;
 }
+
+
+
+.table thead tr th{
+   /* padding:16px;*/
+    font-weight: bold;
+
+}
+
+.table tbody tr td {
+/*    padding-left: 16px;*/
+   /* border-left: 2px solid grey;*/
+    /*border-left: 2px solid grey;*/
+}
