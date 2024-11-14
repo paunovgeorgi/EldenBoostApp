@@ -37,6 +37,37 @@ namespace EldenBoost.Core.Services
                .ToListAsync();
         }
 
+        public async Task ApproveBoosterAsync(int applicationId)
+        {
+            Application? application = await repository.All<Application>()
+               .Include(a => a.Platforms)
+               .Where(a => a.Id == applicationId)
+               .FirstOrDefaultAsync();
+
+            if (application != null)
+            {
+                application.IsApproved = true;
+                Booster booster = new Booster
+                {
+                    Country = application.Country,
+                    UserId = application.UserId,
+                };
+
+                foreach (Platform platform in application.Platforms)
+                {
+                    Platform? currentPl = await repository.GetByIdAsync<Platform>(platform.Id);
+                    if (currentPl != null)
+                    {
+                        booster.Platforms.Add(currentPl);
+                        currentPl.Boosters.Add(booster);
+                    }
+                }
+
+                await repository.AddAsync<Booster>(booster);
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task CreateAuthorApplicationAsync(string userId, ApplicationFormModel model)
         {
             Application application = new Application()
