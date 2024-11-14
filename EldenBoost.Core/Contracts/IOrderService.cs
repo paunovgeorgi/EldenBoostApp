@@ -1,6 +1,7 @@
 ﻿using EldenBoost.Common.ReturnMessages;
 using EldenBoost.Core.Models.Order;
 using EldenBoost.Infrastructure.Data.Models;
+using System.Linq.Expressions;
 
 namespace EldenBoost.Core.Contracts
 {
@@ -20,5 +21,6 @@ namespace EldenBoost.Core.Contracts
         Task<bool> HasBoosterWithIdAsync(int orderId, int boosterId);
         Task RateAsync(int orderId);
         Task<Order?> GetOrderWithBoosterByOrderIdAsync(int orderId);
+        Task<IEnumerable<OrderCardViewModel>> AllOrdersFilteredAsync(Expression<Func<Order, bool>> predicate);
     }
 }

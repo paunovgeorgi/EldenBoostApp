@@ -100,6 +100,47 @@ namespace EldenBoost.Core.Services
             return orders;
         }
 
+        public async Task<IEnumerable<OrderCardViewModel>> AllOrdersFilteredAsync(Expression<Func<Order, bool>> predicate)
+        {
+            var ordersQuery = repository.AllReadOnly<Order>()
+               .Where(predicate) 
+               .Select(o => new OrderCardViewModel()
+               {
+                   Id = o.Id,
+                   PlatformId = o.PlatformId,
+                   PlatformName = o.Platform.Name,
+                   Status = o.Status,
+                   ServiceName = o.Service.Title,
+                   ImageURL = o.Service.ImageURL ?? string.Empty,
+                   BoosterPay = o.Price / 2,
+                   TimeOfPurchase = o.TimeOfPurchase.ToLongDateString(),
+                   IsArchived = o.IsArchived
+               })
+               .OrderByDescending(x => x.Id);
+
+            var orders = await ordersQuery.ToListAsync(); 
+
+            foreach (var order in orders)
+            {
+                Order? currentOrder = await repository.GetByIdAsync<Order>(order.Id);
+
+                if (currentOrder?.BoosterId != null)
+                {
+                    Booster? booster = await repository.AllReadOnly<Booster>()
+                        .Include(b => b.User)
+                        .Where(b => b.Id == currentOrder.BoosterId)
+                        .FirstOrDefaultAsync();
+
+                    if (booster != null)
+                    {
+                        order.AssignedTo = booster.User.Nickname;
+                    }
+                }
+            }
+
+            return orders;
+        }
+
         public async Task<AssignOrderResult> AssignBoosterAsync(int orderId, int boosterId)
         {
             var order = await repository.GetByIdAsync<Order>(orderId);
