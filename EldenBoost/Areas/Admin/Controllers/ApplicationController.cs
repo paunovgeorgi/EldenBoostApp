@@ -26,5 +26,13 @@ namespace EldenBoost.Areas.Admin.Controllers
             var models = await applicationService.AllAsync(a => !a.IsApproved && !a.IsRejected && a.ApplicationType == ApplicationType.Author);
             return View(models);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ApproveBooster(int id)
+        {
+            await applicationService.ApproveBoosterAsync(id);
+
+            return RedirectToAction(nameof(AllBooster));
+        }
     }
 }
