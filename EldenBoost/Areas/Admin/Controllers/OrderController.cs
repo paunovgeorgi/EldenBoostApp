@@ -16,7 +16,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrderDetails(int orderId)
         {
-            var order = await orderService.GetOrderDetailsAsync(orderId); // Fetch order details from the service
+            var order = await orderService.GetOrderDetailsAsync(orderId); 
             if (order == null)
             {
                 return NotFound("Order not found");

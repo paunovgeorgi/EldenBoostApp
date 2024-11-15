@@ -19,10 +19,13 @@
         color: var(--secondary-light);
         background-color: rgba(24, 20, 20, 0.97);
     }
+        .profile-pic .card-body .card-text i {
+            transition: .3s ease;
+        }
 
         .profile-pic:hover .card-body .card-text i {
             color: var(--secondary-dark);
-            transition: .5s ease;
+            transition: .3s ease;
         }
 
     .profile-pic img {
@@ -40,6 +43,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        /*background-color: rgba(24, 20, 20, 0.86);*/
+    }
+
+    .profile-pic .card-body .progress {
+
+        align-items: start;
         /*background-color: rgba(24, 20, 20, 0.86);*/
     }
 

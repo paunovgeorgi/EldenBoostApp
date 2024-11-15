@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(`/Admin/Order/GetOrderDetails?orderId=${orderId}`)
                 .then(response => response.text())
-                .then(html => {
-                    document.getElementById('orderDetailsContent').innerHTML = html;
+                .then(order => {
+                    document.getElementById('orderDetailsContent').innerHTML = order;
                     modal.show();
                 })
                 .catch(error => console.error('Error fetching order details:', error));

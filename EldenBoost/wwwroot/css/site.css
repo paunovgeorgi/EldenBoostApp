@@ -223,8 +223,33 @@ input[type="checkbox"]:focus {
 
 .admin-table a{
     color:white;
+/*    border: 1px solid white;*/
+    border-radius: 50%;
+    padding: .35rem .6rem;
+    text-decoration: none;
+    background-color: dimgrey;
+    transition: .2s ease;
 }
 
     .admin-table a:hover {
-        color: var(--lightest);
+        color: var(--dark-grey-correct);
+        background-color: var(--main-light);
     }
+
+
+
+.slide-in-from-left {
+    animation: slideLeft 0.2s ease-out;
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
