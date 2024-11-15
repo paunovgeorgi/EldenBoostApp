@@ -71,20 +71,20 @@
 				}
 				else if (IsBooster && Model.Status == "Working")
 				{
-					<div style="display:flex; justify-content: space-around; align-items: center; margin-top:4px;">
+					<div style="display:flex; justify-content: center; gap: 8px; align-items: center; margin-top:6px;">
 					<form asp-controller="Order" asp-area="" asp-action="Complete" method="post">
 						<input type="hidden" name="orderId" value="@Model.Id" />
 						<input class="btn btn-details" style="margin-top: 0;" type="submit" value="Complete" />
 					</form>
 
 					<a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id"
-					   class="btn btn-fancy-read">Order Chat</a>
+					   class="btn btn-delete" style="margin-top: 0;">Order Chat</a>
 					   </div>
 				}
 				else if (!IsBooster && Model.Status == "Working")
 				{
 					<a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id"
-					   class="btn btn-fancy-read mt-2">Order Chat</a>
+					   class="btn btn-fancy-read mt-1">Order Chat</a>
 				}
 				else if (!IsBooster && Model.Status == "Completed")
 				{

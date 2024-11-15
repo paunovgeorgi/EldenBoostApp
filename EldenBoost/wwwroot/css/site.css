@@ -209,3 +209,22 @@ input[type="checkbox"]:focus {
    /* border-left: 2px solid grey;*/
     /*border-left: 2px solid grey;*/
 }
+
+
+
+.admin-table {
+    /*padding: 1.5em;*/
+    /*background-color: var(--main-light);*/
+    background-color: rgba(24, 20, 20, 0.86);
+    color: lightgrey;
+    border-radius: 12px;
+    box-shadow: inset 0px 6px 26px 1px rgba(0,0,0,0.51);
+}
+
+.admin-table a{
+    color:white;
+}
+
+    .admin-table a:hover {
+        color: var(--lightest);
+    }
