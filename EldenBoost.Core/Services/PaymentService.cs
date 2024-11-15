@@ -27,7 +27,8 @@ namespace EldenBoost.Core.Services
                   BoosterName = p.Booster.User.Nickname,
                   Amount = p.Amount,
                   IsPaid = p.IsPaid,
-                  Orders = p.Orders.Select(o => o.Id).ToList()
+                  Orders = p.Orders.Select(o => o.Id).ToList(),
+                  IssueDate = p.IssueDate.ToShortDateString(),
               })
               .OrderByDescending(x => x.Id);
 

@@ -33,6 +33,7 @@ async function toggleApplications() {
                 <td><label>${payment.boosterName}</label></td>
                 <td><label>${payment.orders.join(", ")}</label></td>
                 <td><label>$${payment.amount.toFixed(2)}</label></td>
+                <td><label>$${payment.issueDate}</label></td>
             `;
 
             tableBody.appendChild(row);
