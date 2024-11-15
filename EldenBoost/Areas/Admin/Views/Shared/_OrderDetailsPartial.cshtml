@@ -1,0 +1,27 @@
+﻿@model OrderDetailsViewModel
+
+<table class="table text-light" style="background-color: rgba(24, 20, 20, 0.79);">
+    <thead>
+        <tr>
+            <th><label></label></th>
+            <th><label>Number</label></th>
+            <th><label>Service Name</label></th>
+            <th><label>Platform</label></th>
+            <th><label>Stream</label></th>
+            <th><label>Express</label></th>
+            <th><label>Booster Pay</label></th>
+            <th><label></label></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="color: lightgray;">
+            <td><label><img src="@Model.ImageURL" style="width: 64px; object-fit: cover;" /></label></td>
+            <td><label>@Model.Id</label></td>
+            <td><label>@Model.ServiceName</label></td>
+            <td><label>@Model.Platform</label></td>
+            <td><label>@(Model.HasStream ? "✔" : "❌")</label></td>
+            <td><label>@(Model.IsExpress ? "✔" : "❌")</label></td>
+            <td><label>@($"${Model.BoosterPay:F2}")</label></td>
+        </tr>
+    </tbody>
+</table>
