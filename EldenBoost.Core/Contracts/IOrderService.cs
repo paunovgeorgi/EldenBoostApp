@@ -23,5 +23,6 @@ namespace EldenBoost.Core.Contracts
         Task RateAsync(int orderId);
         Task<Order?> GetOrderWithBoosterByOrderIdAsync(int orderId);
         Task<IEnumerable<OrderCardViewModel>> AllOrdersFilteredAsync(Expression<Func<Order, bool>> predicate);
+        Task<OrderDetailsViewModel?> GetOrderDetailsAsync(int orderId);
     }
 }

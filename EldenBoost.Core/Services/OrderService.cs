@@ -226,6 +226,23 @@ namespace EldenBoost.Core.Services
 			return await repository.GetByIdAsync<Order>(orderId);
 		}
 
+        public async Task<OrderDetailsViewModel?> GetOrderDetailsAsync(int orderId)
+        {
+            return await repository.AllReadOnly<Order>()
+               .Where(o => o.Id == orderId)
+               .Select(o => new OrderDetailsViewModel()
+               {
+                   Id = o.Id,
+                   ServiceName = o.Service.Title,
+                   BoosterPay = o.BoosterPay,
+                   ImageURL = o.Service.ImageURL ?? string.Empty,
+                   HasStream = o.HasStream,
+                   IsExpress = o.IsExpress,
+                   Platform = o.Platform.Name
+               })
+               .FirstOrDefaultAsync();
+        }
+
         public async Task<Order?> GetOrderWithBoosterByOrderIdAsync(int orderId)
         {
             Order? order = await repository.AllReadOnly<Order>()
