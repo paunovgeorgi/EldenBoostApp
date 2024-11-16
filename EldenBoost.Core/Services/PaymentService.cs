@@ -66,6 +66,12 @@ namespace EldenBoost.Core.Services
             }
         }
 
+        public async Task<bool> ExistsByIdAsync(int paymentId)
+        {
+            return await repository.AllReadOnly<Payment>()
+                .AnyAsync(p => p.Id == paymentId);
+        }
+
         public async Task<bool> HasOrdersToRequestAsync(string userId)
         {
             return await repository.AllReadOnly<Booster>()

@@ -18,5 +18,6 @@ namespace EldenBoost.Core.Contracts
         Task<decimal> RequsetedAmountAsync(string userId);
         Task<IEnumerable<PaymentListViewModel>> AllPaymentsFiltered(Expression<Func<Payment, bool>> predicate);
         Task PayAsync(int paymentId);
+        Task<bool> ExistsByIdAsync(int paymentId);
     }
 }
