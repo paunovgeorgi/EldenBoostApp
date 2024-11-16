@@ -79,6 +79,28 @@ namespace EldenBoost.Core.Services
                 .AnyAsync(p => p.IsPaid == false && p.Booster.UserId == userId);
         }
 
+        public async Task PayAsync(int paymentId)
+        {
+            Payment? payment = await repository.All<Payment>()
+                .Where(p => p.Id == paymentId)
+                .Include(p => p.Orders)
+                .FirstOrDefaultAsync();
+
+            if (payment != null)
+            {
+                Booster? booster = await repository.GetByIdAsync<Booster>(payment.BoosterId);
+                booster!.TotalEarned += payment.Amount;
+                payment.IsPaid = true;
+                payment.CompletionDate = DateTime.UtcNow;
+                foreach (var order in payment.Orders)
+                {
+                    order.IsPaid = true;
+                }
+
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<decimal> ReadyForRequstAsync(string userId)
         {
             return await repository.AllReadOnly<Order>()
