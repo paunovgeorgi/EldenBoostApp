@@ -24,6 +24,8 @@ namespace EldenBoost.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<ServiceOption> ServiceOptions { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -91,6 +93,23 @@ namespace EldenBoost.Data
                 .HasForeignKey(cm => cm.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<Cart>()
+          .HasOne(c => c.Client)
+          .WithOne(u => u.Cart)
+          .HasForeignKey<Cart>(c => c.ClientId)
+          .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CartItem>()
+              .HasOne(ci => ci.Cart)
+              .WithMany(c => c.CartItems)
+              .HasForeignKey(ci => ci.CartId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CartItem>()
+                .HasOne(ci => ci.Service)
+                .WithMany()
+                .HasForeignKey(ci => ci.ServiceId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.ApplyConfiguration(new PlatformConfiguration());
             builder.ApplyConfiguration(new ServiceConfiguration());

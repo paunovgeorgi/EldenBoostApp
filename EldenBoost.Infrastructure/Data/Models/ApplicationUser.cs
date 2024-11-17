@@ -22,5 +22,7 @@ namespace EldenBoost.Infrastructure.Data.Models
         public virtual ICollection<ChatMessage> SentMessages { get; set; } = new List<ChatMessage>();
 
         public virtual ICollection<ChatMessage> ReceivedMessages { get; set; } = new List<ChatMessage>();
+
+        public Cart? Cart { get; set; }
     }
 }
