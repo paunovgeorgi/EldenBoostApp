@@ -31,6 +31,24 @@ namespace EldenBoost.WebApi.Controllers
         }
 
 
+        [HttpGet("getActive")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetActive()
+        {
+            try
+            {
+                var orders = await orderService.AllOrdersFilteredAsync(o => !o.IsArchived);
+
+                return Ok(orders);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+
+
         [HttpGet("get-pending")]
         [Produces("application/json")]
         public async Task<IActionResult> GetPending()
