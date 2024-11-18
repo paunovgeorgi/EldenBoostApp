@@ -61,6 +61,21 @@ namespace EldenBoost.Core.Services
             await repository.SaveChangesAsync();
         }
 
+        public async Task ClearCartAsync(int cartId)
+        {
+            var cartItems = repository.All<CartItem>().Where(ci => ci.CartId == cartId);
+
+            await repository.DeleteRangeAsync(cartItems);
+        }
+
+        public async Task<int> GetCartIdAsync(string userId)
+        {
+            return await repository.AllReadOnly<Cart>()
+               .Where(c => c.ClientId == userId)
+               .Select(c => c.Id)
+               .FirstOrDefaultAsync();
+        }
+
         public async Task<int> GetCartQuantityByUserIdAsync(string userId)
         {
             return await repository.AllReadOnly<Cart>()
