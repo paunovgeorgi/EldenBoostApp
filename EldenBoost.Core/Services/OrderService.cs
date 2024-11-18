@@ -215,6 +215,34 @@ namespace EldenBoost.Core.Services
 			}
 		}
 
+        public async Task CreateOrdersFromCartAsync(int cartId, string clientId)
+        {
+            var cartItems = await repository.All<CartItem>().Where(ci => ci.CartId == cartId)
+                .ToListAsync();
+
+            foreach (var item in cartItems)
+            {
+                Order order = new Order
+                {
+                    Status = "Pending",
+                    ServiceId = item.ServiceId,
+                    ClientId = clientId,
+                    PlatformId = item.PlatformId,
+                    TimeOfPurchase = DateTime.Now,
+                    BoosterPay = item.Price / 2,
+                    Price = item.Price,
+                    HasStream = item.HasStream ?? false,
+                    IsExpress = item.IsExpress ?? false,
+                    Information = item.Information
+                };
+                var service = await repository.GetByIdAsync<Service>(item.ServiceId);
+                service!.PurchaseCount++;
+                await repository.AddAsync(order);
+            }
+
+            await repository.SaveChangesAsync();
+        }
+
         public async Task<bool> ExistsByIdAsync(int orderId)
         {
             return await repository.AllReadOnly<Order>()
