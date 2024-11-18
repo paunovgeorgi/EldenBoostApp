@@ -1,0 +1,52 @@
+﻿@model CartViewModel
+@Html.AntiForgeryToken()
+@if (Model.CartItems.Any())
+{
+    <table class="table text-light" style="background-color: rgba(24, 20, 20, 0.79);">
+        <thead>
+            <tr>
+                <th><label></label></th>
+                <th><label>Service</label></th>
+                <th><label>Platform</label></th>
+                <th><label>Additional Info</label></th>
+                <th><label>Price</label></th>
+                <th><label>Stream</label></th>
+                <th><label>Express</label></th>
+                <th><label></label></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr style="color: lightgray;">
+                    <td><label><img src="@item.ServiceImageURL" style="width: 64px; object-fit: cover; aspect-ratio:1;" /></label></td>
+                    <td><label>@item.ServiceTitle</label></td>
+                    <td><label>@item.Platform</label></td>
+                    <td><label>@(string.IsNullOrEmpty(item.Information) ? "Standard Service" : $"{item.Information}")</label></td>
+                    <td><label>@item.Price</label></td>
+                    <td><label>@((bool)item.HasStream ? "✔" : "❌")</label></td>
+                    <td><label>@((bool)item.IsExpress ? "✔" : "❌")</label></td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm remove-item" data-item-id="@item.Id">
+                            <i class="fa-solid fa-trash"></i> Remove
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <center>
+        <button type="button" class="btn btn-warning clear-cart">Clear Cart</button>
+        <form asp-controller="Cart" asp-action="Checkout" method="post">
+            <button class="btn btn-outline-light" >Checkout</button>
+        </form>
+       
+    </center>
+
+
+}
+else
+{
+    <h2>Your cart is empty.</h2>
+}
+
