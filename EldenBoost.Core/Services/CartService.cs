@@ -1,4 +1,7 @@
-﻿using EldenBoost.Core.Contracts;
+﻿using EldenBoost.Common.Enumerations;
+using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.Cart;
+using EldenBoost.Core.Models.CartItem;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -69,6 +72,42 @@ namespace EldenBoost.Core.Services
               .Where(c => c.ClientId == userId)
               .Select(c => c.CartItems.Count)
               .FirstOrDefaultAsync();
+        }
+
+        public async Task<CartViewModel> GetCartViewModelAsync(string userId)
+        {
+            var cart = await repository.AllReadOnly<Cart>()
+                .Include(c => c.CartItems)
+                .ThenInclude(ci => ci.Service)
+                .FirstOrDefaultAsync(c => c.ClientId == userId);
+
+            if (cart == null)
+            {
+                return new CartViewModel();
+            }
+
+            var cartItems = await repository.AllReadOnly<CartItem>()
+                .Where(ci => ci.CartId == cart.Id)
+                .Select(ci => new CartItemViewModel()
+                {
+                    Id = ci.Id,
+                    ServiceTitle = ci.Service.Title,
+                    Platform = ((PlatformType)ci.PlatformId).ToString(),
+                    Price = ci.Price,
+                    Information = ci.Information,
+                    HasStream = ci.HasStream,
+                    IsExpress = ci.IsExpress,
+                    ServiceImage = ci.Service.ImageURL ?? string.Empty
+                })
+                .ToListAsync();
+
+            var totalPrice = cartItems.Sum(i => i.Price);
+
+            return new CartViewModel
+            {
+                CartItems = cartItems,
+                TotalPrice = totalPrice
+            };
         }
     }
 }
