@@ -81,5 +81,16 @@ namespace EldenBoost.Controllers
             int quantity = await cartService.GetCartQuantityByUserIdAsync(userId);
             return Json(quantity); 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ClearCart()
+        {
+            var userId = User.Id();
+            int cartId = await cartService.GetCartIdAsync(userId);
+            await cartService.ClearCartAsync(cartId); 
+            var updatedCart = await cartService.GetCartViewModelAsync(User.Id());
+            return PartialView("_CartPartial", updatedCart); 
+        }
     }
 }
