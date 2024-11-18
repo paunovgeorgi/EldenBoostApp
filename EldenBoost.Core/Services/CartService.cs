@@ -38,7 +38,7 @@ namespace EldenBoost.Core.Services
                 infoMessage = $"Selected option: {option!.Name}";
             }
 
-            if (service!.ServiceType == Common.Enumerations.ServiceType.Slider)
+            if (service!.ServiceType == ServiceType.Slider)
             {
                 infoMessage = $"Selected amount: {sliderValue}";
             }

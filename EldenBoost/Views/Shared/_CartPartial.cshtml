@@ -23,10 +23,10 @@
                     <td><label>@item.ServiceTitle</label></td>
                     <td><label>@item.Platform</label></td>
                     <td><label>@(string.IsNullOrEmpty(item.Information) ? "Standard Service" : $"{item.Information}")</label></td>
-                    <td><label>@item.Price</label></td>
+                    <td><label>$@item.Price</label></td>
                     <td><label>@((bool)item.HasStream! ? "✔" : "❌")</label></td>
                     <td><label>@((bool)item.IsExpress! ? "✔" : "❌")</label></td>
-                    <td>
+                    <td style="width: 100px;">
                         <button type="button" class="btn btn-outline-danger btn-sm remove-item" data-item-id="@item.Id">
                             <i class="fa-solid fa-trash"></i> Remove
                         </button>
