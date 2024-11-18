@@ -35,11 +35,14 @@
         <li class="nav-item">
             <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @userName!</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" id="viewCartButton" href="javascript:void(0);">
-                <i class="fa-solid fa-cart-shopping"></i><sub id="cartQuantity">@quantity</sub>
-            </a>
-        </li>
+        if (!User.IsAdmin() && !isBooster && !isAuthor)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-light" id="viewCartButton" href="javascript:void(0);">
+                    <i class="fa-solid fa-cart-shopping"></i><sub id="cartQuantity">@quantity</sub>
+                </a>
+            </li>
+        }     
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="@profilePicture" style="width: 28px; object-fit: cover; border-radius: 50%; aspect-ratio: 1;" />
