@@ -12,5 +12,6 @@ namespace EldenBoost.Core.Contracts
         Task AddToCartAsync(string userId, int serviceId, int platformId, decimal? updatedPrice, bool? hasStream, bool? isExpress, int? optionId, int sliderValue);
         Task<int> GetCartQuantityByUserIdAsync(string userId);
         Task<CartViewModel> GetCartViewModelAsync(string userId);
+        Task<bool> RemoveItemAsync(int cartItemId);
     }
 }

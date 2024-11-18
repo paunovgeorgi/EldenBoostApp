@@ -5,11 +5,6 @@ using EldenBoost.Core.Models.CartItem;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Core.Services
 {
@@ -108,6 +103,21 @@ namespace EldenBoost.Core.Services
                 CartItems = cartItems,
                 TotalPrice = totalPrice
             };
+        }
+
+        public async Task<bool> RemoveItemAsync(int cartItemId)
+        {
+            var cartItem = await repository.GetByIdAsync<CartItem>(cartItemId);
+
+            if (cartItem == null)
+            {
+                return false; 
+            }
+
+            await repository.DeleteAsync(cartItem);
+            await repository.SaveChangesAsync();
+
+            return true;
         }
     }
 }
