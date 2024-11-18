@@ -25,7 +25,7 @@ namespace EldenBoost.Areas.Admin.Controllers
 
         public async Task<IActionResult> Pay(int id)
         {
-            if (await paymentService.ExistsByIdAsync(id))
+            if (!await paymentService.ExistsByIdAsync(id))
             {
                 TempData[WarningMessage] = "Payment not found!";
                 return RedirectToAction(nameof(All));
