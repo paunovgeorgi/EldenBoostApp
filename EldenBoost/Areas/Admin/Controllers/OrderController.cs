@@ -23,5 +23,13 @@ namespace EldenBoost.Areas.Admin.Controllers
             }
             return PartialView("_OrderDetailsPartial", order);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> All(int? page)
+        {
+            var model = await orderService.AllOrdersFilteredAsync(o => !o.IsArchived);
+            return View(model);
+        }
     }
 }

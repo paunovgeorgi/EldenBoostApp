@@ -1,0 +1,57 @@
+﻿@model IEnumerable<OrderCardViewModel>
+
+@{
+    ViewBag.Title = "All Orders";
+}
+
+<h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
+<hr />
+<a href="#" class="btn btn-outline-light" id="show-archived">
+    Show Archived
+</a>
+
+<div class="admin-table py-4 px-2 align-self-center">
+    <table class="table text-light" style=" margin-bottom: 0;border-radius: 12px;">
+    <thead>
+        <tr>
+            <th><label>Number</label></th>
+            <th><label>Time Of Purchase</label></th>
+            <th><label>Type</label></th>
+            <th><label>Platform</label></th>
+            <th><label>Status</label></th>
+            <th><label>Booster Pay</label></th>
+            <th><label>Assignet to</label></th>
+            <th><label></label></th>
+            <th><label></label></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr style="color: lightgray;">
+                <td><label>@order.Id</label></td>
+                <td><label>@order.TimeOfPurchase</label></td>
+                <td><label>@order.ServiceName</label></td>
+                <td><label>@order.PlatformName</label></td>
+                <td><label>@order.Status</label></td>
+                <td><label>@($"${order.BoosterPay:F2}")</label></td>
+                <td><label>@order.AssignedTo</label></td>
+                <td>
+                    @if (order.Status == "Completed" && !order.IsArchived)
+                    {
+                        <form asp-action="Archive" asp-controller="Order" asp-route-id="@order.Id" method="post" style="display: inline">
+                            <button type="submit" class="btn btn-outline-info">Archive</button>
+                        </form>
+                    }
+
+                </td>
+                <td>
+                        <a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@order.Id" class="btn btn-outline-light">Order Chat</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<script src="~/js/order-toggle.js"></script>
