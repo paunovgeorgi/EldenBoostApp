@@ -18,7 +18,7 @@
             <img class="card-img-top img-details" src="@Model.ImageURL" alt="Service Image">
         </div>
         <div class="card col-8 border-0 content-wrapper">
-            <form asp-controller="Service" asp-action="Buy" method="post">
+            <form asp-controller="Cart" asp-action="AddToCart" method="post">
                 <p>
                     Price:
                     <b><span id="priceDisplay">@Model.Price.ToString("F2")</span> USD</b>
@@ -91,7 +91,7 @@
                         }
                         else{
                             <input type="hidden" name="serviceId" value="@Model.Id" />
-                            <input class="btn btn-outline-light mt-3 mb-2" style="padding: 3px 20px;" type="submit" value="Buy" />
+                            <input class="btn btn-outline-light mt-3 mb-2" style="padding: 3px 20px;" type="submit" value="Add to Cart" />
                         }
 
                      </div>
