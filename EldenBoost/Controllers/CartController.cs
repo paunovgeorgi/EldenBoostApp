@@ -48,6 +48,16 @@ namespace EldenBoost.Controllers
 
             await cartService.AddToCartAsync(User.Id(), serviceId, platformId, updatedPrice, hasStream, isExpress, optionId, sliderValue);
             return RedirectToAction("All", "Service");
-        }      
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ShowCart()
+        {
+            string userId = User.Id();
+            var cartViewModel = await cartService.GetCartViewModelAsync(userId);
+
+            return PartialView("_CartPartial", cartViewModel);
+        }
     }
 }
