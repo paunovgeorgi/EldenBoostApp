@@ -19,13 +19,13 @@
             @foreach (var item in Model.CartItems)
             {
                 <tr style="color: lightgray;">
-                    <td><label><img src="@item.ServiceImageURL" style="width: 64px; object-fit: cover; aspect-ratio:1;" /></label></td>
+                    <td><label><img src="@item.ServiceImage" style="width: 64px; object-fit: cover; aspect-ratio:1;" /></label></td>
                     <td><label>@item.ServiceTitle</label></td>
                     <td><label>@item.Platform</label></td>
                     <td><label>@(string.IsNullOrEmpty(item.Information) ? "Standard Service" : $"{item.Information}")</label></td>
                     <td><label>@item.Price</label></td>
-                    <td><label>@((bool)item.HasStream ? "✔" : "❌")</label></td>
-                    <td><label>@((bool)item.IsExpress ? "✔" : "❌")</label></td>
+                    <td><label>@((bool)item.HasStream! ? "✔" : "❌")</label></td>
+                    <td><label>@((bool)item.IsExpress! ? "✔" : "❌")</label></td>
                     <td>
                         <button type="button" class="btn btn-danger btn-sm remove-item" data-item-id="@item.Id">
                             <i class="fa-solid fa-trash"></i> Remove

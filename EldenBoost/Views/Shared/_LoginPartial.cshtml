@@ -4,6 +4,7 @@
 @inject IBoosterService boosterService;
 @inject IAuthorService authorService;
 @inject IUserService userService;
+@inject ICartService cartService;
 
 @{
     string userName = await userService.GetUserNicknameAsync(User.Id());
@@ -11,6 +12,8 @@
     bool isBooster = await boosterService.BoosterExistsByUserIdAsync(User.Id());
     string profilePicture = await userService.GetProfilePictureByUseIdAsync(User.Id());
     bool hasOrders = await userService.HasOrdersAsync(User.Id());
+    int quantity = await cartService.GetCartQuantityByUserIdAsync(User.Id());
+
 
 }
 
@@ -31,6 +34,11 @@
     {
         <li class="nav-item">
             <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @userName!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" id="viewCartButton" href="javascript:void(0);">
+                <i class="fa-solid fa-cart-shopping"></i><sub id="cartQuantity">@quantity</sub>
+            </a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
