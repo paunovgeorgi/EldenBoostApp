@@ -1,10 +1,5 @@
 ﻿using EldenBoost.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Infrastructure.Data.Repository
 {
@@ -49,6 +44,12 @@ namespace EldenBoost.Infrastructure.Data.Repository
         {
             DbSet<T>().Remove(entity);
 
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteRangeAsync<T>(IQueryable<T> entities) where T : class
+        {
+            DbSet<T>().RemoveRange(entities);
             await context.SaveChangesAsync();
         }
     }

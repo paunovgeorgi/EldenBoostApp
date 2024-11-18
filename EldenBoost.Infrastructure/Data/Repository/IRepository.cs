@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EldenBoost.Infrastructure.Data.Repository
+﻿namespace EldenBoost.Infrastructure.Data.Repository
 {
     public interface IRepository
     {
@@ -19,5 +13,7 @@ namespace EldenBoost.Infrastructure.Data.Repository
         Task<T?> GetByIdAsync<T>(object id) where T : class;
 
         Task DeleteAsync<T>(T entity) where T : class;
+
+        Task DeleteRangeAsync<T>(IQueryable<T> entities) where T : class;
     }
 }
