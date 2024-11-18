@@ -92,5 +92,16 @@ namespace EldenBoost.Controllers
             var updatedCart = await cartService.GetCartViewModelAsync(User.Id());
             return PartialView("_CartPartial", updatedCart); 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Checkout()
+        {
+            var userId = User.Id();
+            int cartId = await cartService.GetCartIdAsync(userId);
+            await orderService.CreateOrdersFromCartAsync(cartId, userId);
+            await cartService.ClearCartAsync(cartId);
+            TempData[SuccessMessage] = "Your purchase was completed successfully!";
+            return RedirectToAction("MyProfile", "User");
+        }
     }
 }
