@@ -141,6 +141,17 @@ namespace EldenBoost.Core.Services
             return orders;
         }
 
+        public async Task ArchiveAsync(int orderId)
+        {
+            Order? order = await repository.GetByIdAsync<Order>(orderId);
+
+            if (order != null)
+            {
+                order.IsArchived = true;
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<AssignOrderResult> AssignBoosterAsync(int orderId, int boosterId)
         {
             var order = await repository.GetByIdAsync<Order>(orderId);
