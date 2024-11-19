@@ -1,11 +1,14 @@
 ﻿using EldenBoost.Common.Enumerations;
 using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.Order;
 using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Models.Service.Enums;
 using EldenBoost.Core.Models.ServiceOption;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace EldenBoost.Core.Services
 {
@@ -57,6 +60,23 @@ namespace EldenBoost.Core.Services
                 TotalServicesCount = totalServices,
                 Services = allServices
             };
+        }
+
+        public async Task<IEnumerable<ServiceListViewModel>> AllServiceListViewModelFilteredAsync(Expression<Func<Service, bool>> predicate)
+        {
+            var servicesQuery = repository.AllReadOnly<Service>()
+               .Where(predicate)
+               .Select(s => new ServiceListViewModel()
+               {
+                   Id = s.Id,
+                   Title = s.Title,
+                   IsActive = s.IsActive,
+                   PurchaseCount = s.PurchaseCount,
+                   Price = s.Price
+               })
+               .OrderByDescending(s => s.Id);
+
+            return await servicesQuery.ToListAsync();
         }
 
         public async Task CreateServiceAsync(ServiceFormViewModel model)

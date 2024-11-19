@@ -1,8 +1,10 @@
 ﻿using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Models.ServiceOption;
+using EldenBoost.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,8 +21,8 @@ namespace EldenBoost.Core.Contracts
         Task<ServiceEditViewModel?> GetServiceEditViewModelByIdAsync(int serviceId);
         Task EditAsync(ServiceEditViewModel model);
         Task DeleteByIdAsync(int serviceId);
-
 		Task<bool> ExistsByIdAsync(int serviceId);
+        Task<IEnumerable<ServiceListViewModel>> AllServiceListViewModelFilteredAsync(Expression<Func<Service, bool>> predicate);
 
-	}
+    }
 }
