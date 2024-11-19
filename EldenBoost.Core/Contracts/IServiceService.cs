@@ -20,9 +20,10 @@ namespace EldenBoost.Core.Contracts
         Task CreateServiceAsync(ServiceFormViewModel model);
         Task<ServiceEditViewModel?> GetServiceEditViewModelByIdAsync(int serviceId);
         Task EditAsync(ServiceEditViewModel model);
-        Task DeleteByIdAsync(int serviceId);
+        Task DeactivateByIdAsync(int serviceId);
 		Task<bool> ExistsByIdAsync(int serviceId);
         Task<IEnumerable<ServiceListViewModel>> AllServiceListViewModelFilteredAsync(Expression<Func<Service, bool>> predicate);
+        Task ActivateByIdAsync(int serviceId);
 
     }
 }

@@ -19,6 +19,18 @@ namespace EldenBoost.Core.Services
         {
             repository = _repository;
         }
+
+        public async Task ActivateByIdAsync(int serviceId)
+        {
+            Service? service = await repository.GetByIdAsync<Service>(serviceId);
+
+            if (service != null)
+            {
+                service.IsActive = true;
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<AllServicesFilteredAndPagedModel> AllAsync(AllServicesQueryModel model)
         {
             IQueryable<Service> servicesQuery = repository.AllReadOnly<Service>()
@@ -107,7 +119,7 @@ namespace EldenBoost.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task DeleteByIdAsync(int serviceId)
+        public async Task DeactivateByIdAsync(int serviceId)
         {
             Service? service = await repository.GetByIdAsync<Service>(serviceId);
 
