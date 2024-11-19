@@ -18,6 +18,7 @@ async function togglePayments() {
         const data = await response.json();
 
         // Clear the existing table content
+        const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
         tableBody.innerHTML = '';
 
         // Populate the table with the fetched payments
@@ -51,7 +52,8 @@ async function togglePayments() {
                 <td><label>${payment.issueDate}</label></td>
                 <td>
                     ${!payment.isPaid
-                    ? `<form action="/Payment/Pay/${payment.id}" method="post" style="display: inline">
+                ? `<form action="/Admin/Payment/Pay/${payment.id}" method="post" style="display: inline">
+                     <input name="__RequestVerificationToken" type="hidden" value="${antiForgeryToken}">
                                <button type="submit" class="btn btn-outline-light">Pay</button>
                            </form>`
                     : ''}

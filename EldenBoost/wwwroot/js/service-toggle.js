@@ -1,5 +1,4 @@
 ﻿
-
 let filterBtn = document.querySelector('#show-deactivated');
 let isShowingDeactivated = false;
 
@@ -23,6 +22,7 @@ async function toggleServices() {
         const data = await response.json();
 
 
+        const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
         tableBody.innerHTML = '';
 
 
@@ -34,14 +34,18 @@ async function toggleServices() {
                 <td><label>${service.price}</label></td>
                 <td><label>${service.purchaseCount}</label></td>
                 <td>
-                   ${service.isActive ? `<form method="post" action="/Service/Deactivate/${service.id}" style="display: inline">
-                        <button type="submit" class="btn btn-outline-danger">Deactivate</button>
-                    </form>` : `<form method="post" action="/Service/Activate/${service.id}" style="display: inline">
-                        <button type="submit" class="btn btn-outline-success">Activate</button>
-                    </form>`}
-                </td>
+    ${service.isActive
+                    ? `<form method="post" action="/Admin/Service/Deactivate/${service.id}" style="display: inline">
+               <input name="__RequestVerificationToken" type="hidden" value="${antiForgeryToken}">
+               <button type="submit" class="btn btn-outline-danger">Deactivate</button>
+           </form>`
+                    : `<form method="post" action="/Admin/Service/Activate/${service.id}" style="display: inline">
+               <input name="__RequestVerificationToken" type="hidden" value="${antiForgeryToken}">
+               <button type="submit" class="btn btn-outline-success">Activate</button>
+           </form>`}
+</td>
                 <td>
-                    <a href="/Service/Edit/${service.id}?area="Admin" class="btn btn-outline-light">Edit</a>
+                    <a href="/Admin/Service/Edit/${service.id}?" class="btn btn-outline-light">Edit</a>
                 </td>
             `;
 

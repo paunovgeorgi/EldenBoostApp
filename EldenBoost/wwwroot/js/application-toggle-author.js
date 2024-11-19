@@ -22,6 +22,8 @@ async function toggleApplications() {
         }
         const data = await response.json();
 
+        const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
         tableBody.innerHTML = '';
 
         data.forEach(app => {
@@ -34,16 +36,18 @@ async function toggleApplications() {
                 <td><label>${app.experience}</label></td>
                 <td><label>${app.availability}</label></td>
                 ${!app.isRejected && !app.isApproved ? `
-        <td>
-            <form method="post" action="/Application/ApproveAuthor/${app.Id}" style="display: inline;">
+             <td>
+                 <form method="post" action="/Admin/Application/ApproveAuthor/${app.Id}" style="display: inline;">
+                <input name="__RequestVerificationToken" type="hidden" value="${antiForgeryToken}">
                 <button type="submit" class="btn btn-outline-success">Approve</button>
-            </form>
-        </td>
-        <td>
-            <form method="post" action="/Application/Reject/${app.Id}" style="display: inline;">
+                 </form>
+             </td>
+             <td>
+            <form method="post" action="/Admin/Application/Reject/${app.Id}" style="display: inline;">
+                <input name="__RequestVerificationToken" type="hidden" value="${antiForgeryToken}">
                 <button type="submit" class="btn btn-outline-danger">Reject</button>
             </form>
-        </td>` : ''}
+            </td>` : ''}
             `;
 
             tableBody.appendChild(row);

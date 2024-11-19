@@ -12,7 +12,7 @@ function confirmDelete() {
         confirmButtonText: 'Yes, delete it!',
         cancelButtonText: 'Cancel',
         customClass: {
-            popup: 'custom-swal-size swal2-dark' // Combine both classes here
+            popup: 'custom-swal-size swal2-dark' 
         }
     }).then((result) => {
         if (result.isConfirmed) {
