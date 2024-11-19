@@ -100,7 +100,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Deactivate(int id)
         {
             if (await serviceService.ExistsByIdAsync(id) == false)
             {
@@ -108,8 +108,17 @@ namespace EldenBoost.Areas.Admin.Controllers
             }
 
             //Deactivates the service;
-            await serviceService.DeleteByIdAsync(id);
+            await serviceService.DeactivateByIdAsync(id);
             TempData[WarningMessage] = "Service deactivated.";
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Activate(int id)
+        {
+            await serviceService.ActivateByIdAsync(id);
+            TempData[WarningMessage] = "Service Activated.";
 
             return RedirectToAction(nameof(All));
         }
