@@ -22,7 +22,7 @@
                  @if (User.IsAdmin())
                  {
                       <a asp-controller="Service" asp-area="Admin" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-edit">Edit</a>
-                      <form id="delete-form" asp-area="Admin" asp-controller="Service" asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline">
+                      <form id="delete-form" asp-area="Admin" asp-controller="Service" asp-action="Deactivate" asp-route-id="@Model.Id" method="post" class="d-inline">
                           <button type="button" class="btn btn-delete" onclick="confirmDelete()">Delete</button>
                       </form>     
 	             }

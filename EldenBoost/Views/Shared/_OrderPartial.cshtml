@@ -52,7 +52,7 @@
 			{
 				<h6><i class="@favIcon"></i> | <span class="@styleName">@Model.Status</span> | Paid: <b>@($"{Model.Price:f2}") USD</b></h6>
 				<h6>Stream: @hasStream | Express: @isExpress</h6>
-				<h6>@(string.IsNullOrEmpty(Model.Information) ? "" : Model.Information)</h6>
+				<h6>@(string.IsNullOrEmpty(Model.Information) ? "Stadard Service" : Model.Information)</h6>
 				@if (booster != null)
 				{
 					<h6>Booster: @booster.User.Nickname</h6>
