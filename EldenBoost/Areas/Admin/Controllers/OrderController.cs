@@ -31,5 +31,13 @@ namespace EldenBoost.Areas.Admin.Controllers
             var model = await orderService.AllOrdersFilteredAsync(o => !o.IsArchived);
             return View(model);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Archive(int id)
+        {
+            await orderService.ArchiveAsync(id);
+            return RedirectToAction(nameof(All));
+        }
     }
 }
