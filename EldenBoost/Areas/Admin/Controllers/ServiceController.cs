@@ -17,9 +17,12 @@ namespace EldenBoost.Areas.Admin.Controllers
         {
             serviceService = _serviceService;
         }
-        public IActionResult All()
+
+        [HttpGet]
+        public async Task<IActionResult> All()
         {
-            return View();
+            var model = await serviceService.AllServiceListViewModelFilteredAsync(s => s.IsActive);
+            return View(model);
         }
 
         [HttpGet]
