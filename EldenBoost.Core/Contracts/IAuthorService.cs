@@ -7,6 +7,7 @@ namespace EldenBoost.Core.Contracts
         Task<bool> ExistsByUserIdAsync(string userId);
 		Task<bool> HasArticleAsync(string userId, int articleId);
         Task<Author?> GetAuthorByUserIdAsync(string userId);
+        Task<bool> IsActiveAsync(string userId);
 
     }
 }
