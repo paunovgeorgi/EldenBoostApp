@@ -42,10 +42,21 @@
                 <td>
                     @if (user.IsBooster || user.IsAuthor)
                     {
-                        <form asp-action="Demote" asp-controller="User" asp-route-id="@user.UserId" method="post" style="display: inline">
-                            <input type="hidden" name="userId" value="@user.UserId" />
-                            <button type="submit" class="btn btn-outline-danger">Demote</button>
-                        </form>
+                        if (user.IsDemoted)
+                            {
+                                <form asp-action="Promote" asp-controller="User" asp-route-id="@user.UserId" method="post" style="display: inline">
+                                    <input type="hidden" name="userId" value="@user.UserId" />
+                                    <button type="submit" class="btn btn-outline-success">Promote</button>
+                                </form>
+                            }
+                        else
+                            {
+                                <form asp-action="Demote" asp-controller="User" asp-route-id="@user.UserId" method="post" style="display: inline">
+                                    <input type="hidden" name="userId" value="@user.UserId" />
+                                    <button type="submit" class="btn btn-outline-danger">Demote</button>
+                                </form>
+                            }
+                          
                     }
                 </td>
             </tr>

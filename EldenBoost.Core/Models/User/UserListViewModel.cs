@@ -25,5 +25,7 @@ namespace EldenBoost.Core.Models.User
         public bool IsBooster { get; set; }
 
         public bool IsAuthor { get; set; }
+
+        public bool IsDemoted { get; set; }
     }
 }

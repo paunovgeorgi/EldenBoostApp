@@ -40,16 +40,27 @@ namespace EldenBoost.Core.Services
             {
 
                 Booster? booster = await boosterService.GetBoosterByUserIdAsync(user.UserId);
+                
 
                 if (booster != null)
                 {
+					bool isActiveBooster = await boosterService.IsActiveAsync(user.UserId);
+                    if (!isActiveBooster)
+                    {
+                        user.IsDemoted = true;
+                    }
                     user.Position = "Booster";
                     user.IsBooster = true;
                     user.MoneyMade = booster.TotalEarned;
                 }
                 else if(await authorService.ExistsByUserIdAsync(user.UserId))
                 {
-                    user.Position = "Author";
+					bool isActiveAuthor = await authorService.IsActiveAsync(user.UserId);
+					if (!isActiveAuthor)
+					{
+						user.IsDemoted = true;
+					}
+					user.Position = "Author";
                     user.IsAuthor = true;
                 }             
                 else
