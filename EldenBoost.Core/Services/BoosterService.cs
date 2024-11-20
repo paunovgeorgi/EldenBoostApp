@@ -14,9 +14,10 @@ namespace EldenBoost.Core.Services
             repository = _repository;
         }
 
-        public async Task<IEnumerable<BoosterCardViewModel>> AllBoostersToCardModelAsync()
+        public async Task<IEnumerable<BoosterCardViewModel>> AllActiveBoostersToCardModelAsync()
         {
             return await repository.AllReadOnly<Booster>()
+                .Where(b => !b.IsDemoted)
                .Include(b => b.User)
                .Include(b => b.Platforms)
                .Select(b => new BoosterCardViewModel()
@@ -62,7 +63,13 @@ namespace EldenBoost.Core.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task RateAsync(int boosterId, int rating)
+		public async Task<bool> IsActiveAsync(string userId)
+		{
+			return await repository.AllReadOnly<Booster>()
+			   .AnyAsync(b => b.UserId == userId && !b.IsDemoted);
+		}
+
+		public async Task RateAsync(int boosterId, int rating)
         {
             Booster? booster = await repository.GetByIdAsync<Booster>(boosterId);
 
