@@ -1,4 +1,5 @@
 ﻿using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.User;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +9,55 @@ namespace EldenBoost.Core.Services
     public class UserService : IUserService
     {
         private readonly IRepository repository;
-
-        public UserService(IRepository _repository)
+        private readonly IBoosterService boosterService;
+        private readonly IAuthorService authorService;
+        private readonly IOrderService orderService;
+        public UserService(IRepository _repository,
+            IBoosterService _boosterService,
+            IAuthorService _authorService,
+            IOrderService _orderService)
         {
             repository = _repository;
+            boosterService = _boosterService;
+            authorService = _authorService;
+            orderService = _orderService;
+        }
+
+        public async Task<IEnumerable<UserListViewModel>> AllAsync()
+        {
+            var users = await repository.AllReadOnly<ApplicationUser>()
+             .Select(u => new UserListViewModel()
+             {
+                 UserId = u.Id,
+                 ProfilePicture = u.ProfilePicture,
+                 Nickname = u.Nickname,
+                 Email = u.Email!
+             })
+             .ToListAsync();
+
+            foreach (var user in users)
+            {
+
+                Booster? booster = await boosterService.GetBoosterByUserIdAsync(user.UserId);
+
+                if (booster != null)
+                {
+                    user.Position = "Booster";
+                    user.IsBooster = true;
+                    user.MoneyMade = booster.TotalEarned;
+                }
+                else if(await authorService.ExistsByUserIdAsync(user.UserId))
+                {
+                    user.Position = "Author";
+                    user.IsAuthor = true;
+                }             
+                else
+                {
+                    user.MoneySpent = await orderService.TotalPaidByClientIdAsync(user.UserId);
+                }
+            }
+
+            return users;
         }
 
         public async Task ChangeProfilePictureAsync(string userId, string imgUrl)

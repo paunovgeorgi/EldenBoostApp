@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EldenBoost.Core.Models.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace EldenBoost.Core.Contracts
         Task<string> GetProfilePictureByUseIdAsync(string userId);
         Task ChangeProfilePictureAsync(string userId, string imgUrl);
         Task<bool> HasOrdersAsync(string userId);
+        Task<IEnumerable<UserListViewModel>> AllAsync();
 
     }
 }
