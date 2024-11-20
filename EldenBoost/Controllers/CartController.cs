@@ -12,17 +12,20 @@ namespace EldenBoost.Controllers
         private readonly IPlatformService platformService;
         private readonly IServiceService serviceService;
         private readonly IOrderService orderService;
+        private readonly IAuthorService authorService;
         public CartController(ICartService _cartService,
             IBoosterService _boosterService,
             IPlatformService _platformService,
             IServiceService _serviceService,
-            IOrderService _orderService)
+            IOrderService _orderService,
+            IAuthorService _authorService)
         {
             cartService = _cartService;
             boosterService = _boosterService;
             platformService = _platformService;
             serviceService = _serviceService;
             orderService = _orderService;
+            authorService = _authorService;
         }
 
         [HttpPost]
@@ -44,7 +47,14 @@ namespace EldenBoost.Controllers
                 TempData[ErrorMessage] = "You are a booster mate, can't purchase services.";
                 return RedirectToAction("All", "Service");
             }
-            TempData[SuccessMessage] = "Service successfully added to your cart!";
+
+			if (await authorService.ExistsByUserIdAsync(User.Id()))
+			{
+				TempData[ErrorMessage] = "You're an author mate, can't purchase services.";
+				return RedirectToAction("All", "Service");
+			}
+
+			TempData[SuccessMessage] = "Service successfully added to your cart!";
 
             await cartService.AddToCartAsync(User.Id(), serviceId, platformId, updatedPrice, hasStream, isExpress, optionId, sliderValue);
             return RedirectToAction("All", "Service");

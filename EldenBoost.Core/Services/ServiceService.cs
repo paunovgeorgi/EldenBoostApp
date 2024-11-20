@@ -169,7 +169,7 @@ namespace EldenBoost.Core.Services
 		public async Task<bool> ExistsByIdAsync(int serviceId)
 		{
 			return await repository.AllReadOnly<Service>()
-				.AnyAsync(s => s.Id == serviceId);
+				.AnyAsync(s => s.Id == serviceId && s.IsActive);
 		}
 
 		public async Task<IEnumerable<ServiceCardViewModel>> GetPopularServicesAsync()
