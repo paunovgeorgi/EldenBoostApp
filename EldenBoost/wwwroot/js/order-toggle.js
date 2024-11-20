@@ -40,7 +40,7 @@ async function toggleOrders() {
                 <td><label>${order.assignedTo}</label></td>
                <td>
                      ${order.status === 'Completed' && !order.isArchived
-                    ? `<form method="post" action="/Order/Archive/${order.id}" style="display: inline">
+                    ? `<form method="post" action="/Admin/Order/Archive/${order.id}" style="display: inline">
                <input name="__RequestVerificationToken" type="hidden" value="${antiForgeryToken}">
                <button type="submit" class="btn btn-outline-info">Archive</button>
                        </form>`
