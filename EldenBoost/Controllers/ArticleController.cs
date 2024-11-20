@@ -52,9 +52,9 @@ namespace EldenBoost.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Create()
 		{
-			if (await authorService.ExistsByUserIdAsync(User.Id()) == false)
+			if (await authorService.IsActiveAsync(User.Id()) == false)
 			{
-				return Unauthorized("You're not an author mate mate");
+				return Unauthorized("You're not an active author mate");
 			}
 
 			var model = new ArticleFormModel();
@@ -72,9 +72,9 @@ namespace EldenBoost.Controllers
 				return View(model);
 			}
 
-			if (await authorService.ExistsByUserIdAsync(User.Id()) == false)
+			if (await authorService.IsActiveAsync(User.Id()) == false)
 			{
-				return Unauthorized("You're not an author mate mate");
+				return Unauthorized("You're not an active author mate mate");
 			}
 
 			await articleService.CreateAsync(model, User.Id());

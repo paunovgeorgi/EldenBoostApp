@@ -9,6 +9,7 @@
 @{
     string userName = await userService.GetUserNicknameAsync(User.Id());
     bool isAuthor = await authorService.ExistsByUserIdAsync(User.Id());
+    bool isActiveAuthor = await authorService.IsActiveAsync(User.Id());
     bool isBooster = await boosterService.BoosterExistsByUserIdAsync(User.Id());
     string profilePicture = await userService.GetProfilePictureByUseIdAsync(User.Id());
     bool hasOrders = await userService.HasOrdersAsync(User.Id());
@@ -57,7 +58,11 @@
                 @if (isAuthor)
                 {
                     <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Author" asp-action="MyProfile">My Profile</a>
-                    <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Article" asp-action="Create">Create Article</a>
+                    if (isActiveAuthor)
+                    {
+                        <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Article" asp-action="Create">Create Article</a>
+                    }
+                
                 }
                 @if(!isBooster && !isAuthor)
                 {
