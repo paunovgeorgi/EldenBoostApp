@@ -4,6 +4,7 @@ using EldenBoost.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EldenBoost.Infrastructure.Migrations
 {
     [DbContext(typeof(EldenBoostDbContext))]
-    partial class EldenBoostDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241120124256_IsDemotedFlag_AddedTo_BoosterAndAuthor")]
+    partial class IsDemotedFlag_AddedTo_BoosterAndAuthor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

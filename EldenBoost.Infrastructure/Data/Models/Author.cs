@@ -27,5 +27,8 @@ namespace EldenBoost.Infrastructure.Data.Models
 
         [Comment("Collection of articles for the author.")]
         public ICollection<Article> Articles { get; set; } = new List<Article>();
+
+        [Comment("Flag for Active and Demoted authors.")]
+        public bool IsDemoted { get; set; }
     }
 }

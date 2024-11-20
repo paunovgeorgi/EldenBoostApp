@@ -43,5 +43,8 @@ namespace EldenBoost.Infrastructure.Data.Models
 
         [Comment("List of Payments made to the Booster.")]
         public List<Payment> Payments { get; set; } = new List<Payment>();
+
+        [Comment("Flag for Active and Demoted boosters.")]
+        public bool IsDemoted { get; set; }
     }
 }
