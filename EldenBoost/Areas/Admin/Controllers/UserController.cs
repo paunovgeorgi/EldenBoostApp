@@ -28,9 +28,9 @@ namespace EldenBoost.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Promote(string userId)
+        public async Task<IActionResult> Reinstate(string userId)
         {
-            await userService.PromoteAsync(userId);
+            await userService.ReinstateAsync(userId);
 
             return RedirectToAction(nameof(All));
         }

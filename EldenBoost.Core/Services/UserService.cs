@@ -140,7 +140,7 @@ namespace EldenBoost.Core.Services
                 .AnyAsync(o => o.ClientId == userId);
         }
 
-        public async Task PromoteAsync(string userId)
+        public async Task ReinstateAsync(string userId)
         {
             Booster? booster = await repository.All<Booster>()
           .FirstOrDefaultAsync(b => b.UserId == userId);

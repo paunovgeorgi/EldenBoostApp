@@ -44,9 +44,9 @@
                     {
                         if (user.IsDemoted)
                             {
-                                <form asp-action="Promote" asp-controller="User" asp-route-id="@user.UserId" method="post" style="display: inline">
+                                <form asp-action="Reinstate" asp-controller="User" asp-route-id="@user.UserId" method="post" style="display: inline">
                                     <input type="hidden" name="userId" value="@user.UserId" />
-                                    <button type="submit" class="btn btn-outline-success">Promote</button>
+                                    <button type="submit" class="btn btn-outline-success">Reinstate</button>
                                 </form>
                             }
                         else
