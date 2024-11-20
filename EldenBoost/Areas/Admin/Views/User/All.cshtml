@@ -1,0 +1,55 @@
+﻿@model IEnumerable<UserListViewModel>
+
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
+<hr />
+
+<div class="admin-table py-4 px-2 align-self-center">
+
+    <table class="table text-light" style=" margin-bottom: 0;border-radius: 12px;">
+    <thead class="text-light">
+        <tr>
+            <th></th>
+            <th><label>Username</label></th>
+            <th><label>Email</label></th>
+            <th><label>Position</label></th>
+            <th><label>Total Spent/Earned</label></th>
+            <th><label></label></th>
+        </tr>
+    </thead>
+    <tbody class="text-opacity-75 text-light">
+        @foreach (var user in Model)
+        {
+            <tr>
+                    <td><img src="@user.ProfilePicture" style="width: 64px; object-fit: cover; aspect-ratio:1;" /></td>
+                <td><label>@user.Nickname</label></td>
+                <td><label>@user.Email</label></td>
+                <td><label>@(user.Email == "admin@admin.com" ? "Administrator" : user.Position)</label></td>
+                <td>
+                    @if (user.IsBooster)
+                    {
+                        <label>@($"${user.MoneyMade:f2}")</label>
+                    }
+                    else
+                    {
+                        <label>@($"${user.MoneySpent:f2}")</label>
+                    }
+                </td>
+                <td>
+                    @if (user.IsBooster || user.IsAuthor)
+                    {
+                        <form asp-action="Demote" asp-controller="User" asp-route-id="@user.UserId" method="post" style="display: inline">
+                            <input type="hidden" name="userId" value="@user.UserId" />
+                            <button type="submit" class="btn btn-outline-danger">Demote</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
