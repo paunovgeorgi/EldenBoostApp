@@ -81,6 +81,7 @@ namespace EldenBoost.Core.Services
                .Select(s => new ServiceListViewModel()
                {
                    Id = s.Id,
+                   ImageURL = s.ImageURL,
                    Title = s.Title,
                    IsActive = s.IsActive,
                    PurchaseCount = s.PurchaseCount,

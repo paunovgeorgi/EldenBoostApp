@@ -30,6 +30,7 @@ async function toggleServices() {
             const row = document.createElement('tr');
 
             row.innerHTML = `
+                <td><img src="${service.imageURL}" style="width: 74px; object-fit: cover; aspect-ratio: 16/9;"/></td>
                 <td><label>${service.title}</label></td>
                 <td><label>${service.price}</label></td>
                 <td><label>${service.purchaseCount}</label></td>

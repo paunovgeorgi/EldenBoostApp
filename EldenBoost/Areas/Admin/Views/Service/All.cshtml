@@ -16,6 +16,7 @@
     <table class="table text-light" style=" margin-bottom: 0;border-radius: 12px;">
         <thead class="text-light">
             <tr>
+                <td></td>
                 <th><label>Title</label></th>
                 <th><label>Price</label></th>
                 <th><label>Purcase Count</label></th>
@@ -27,6 +28,7 @@
             @foreach (var service in Model)
             {
                 <tr>
+                    <td><img src="@service.ImageURL" style="width: 74px; object-fit: cover; aspect-ratio: 16/9;" /></td>
                     <td><label>@service.Title</label></td>
                     <td><label>$@service.Price</label></td>
                     <td><label>@service.PurchaseCount</label></td>

@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
 
+        public string ImageURL { get; set; } = null!;
+
         public string Title { get; set; } = null!;
 
         public decimal Price { get; set; }
