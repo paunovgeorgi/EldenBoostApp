@@ -139,5 +139,25 @@ namespace EldenBoost.Core.Services
             return await repository.AllReadOnly<Order>()
                 .AnyAsync(o => o.ClientId == userId);
         }
+
+        public async Task PromoteAsync(string userId)
+        {
+            Booster? booster = await repository.All<Booster>()
+          .FirstOrDefaultAsync(b => b.UserId == userId);
+
+            Author? author = await repository.All<Author>()
+                .FirstOrDefaultAsync(a => a.UserId == userId);
+
+            if (booster != null)
+            {
+                booster.IsDemoted = false;
+            }
+            if (author != null)
+            {
+                author.IsDemoted = false;
+            }
+
+            await repository.SaveChangesAsync();
+        }
     }
 }

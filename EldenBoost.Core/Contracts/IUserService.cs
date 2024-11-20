@@ -15,6 +15,7 @@ namespace EldenBoost.Core.Contracts
         Task<bool> HasOrdersAsync(string userId);
         Task<IEnumerable<UserListViewModel>> AllAsync();
         Task DemoteAsync(string userId);
+        Task PromoteAsync(string userId);
 
     }
 }
