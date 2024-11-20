@@ -114,6 +114,21 @@ namespace EldenBoost.Core.Services
             }
         }
 
+        public async Task<IEnumerable<ArticleListViewModel>> GetAllArticlesListViewModelAsync()
+        {
+            return await repository.AllReadOnly<Article>()
+                .Select(a => new ArticleListViewModel()
+                {
+                    Id = a.Id,
+                    Type = a.ArticleType.ToString(),
+                    ImgUrl = a.ImageURL,
+                    Title = a.Title,
+                    Author = a.Author.User.Nickname,
+                    PublishDate = a.ReleaseDate.ToShortDateString()
+                })
+                .ToListAsync();
+        }
+
         public async Task<ArticleEditViewModel?> GetArticleEditModelByIdAsync(int articleId)
         {
                return await repository.AllReadOnly<Article>()
