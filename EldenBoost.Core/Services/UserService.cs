@@ -2,6 +2,7 @@
 using EldenBoost.Core.Models.User;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
+using EldenBoost.Infrastructure.Migrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace EldenBoost.Core.Services
@@ -71,6 +72,26 @@ namespace EldenBoost.Core.Services
                 user.ProfilePicture = imgUrl;
                 await repository.SaveChangesAsync();
             }
+        }
+
+        public async Task DemoteAsync(string userId)
+        {
+            Booster? booster = await repository.All<Booster>()
+           .FirstOrDefaultAsync(b => b.UserId == userId);
+
+            Author? author = await repository.All<Author>()
+                .FirstOrDefaultAsync(a => a.UserId == userId);
+
+            if (booster != null)
+            {
+                booster.IsDemoted = true;
+            }
+            if (author != null)
+            {
+                author.IsDemoted = true;
+            }
+
+            await repository.SaveChangesAsync();
         }
 
         public async Task<string> GetProfilePictureByUseIdAsync(string userId)

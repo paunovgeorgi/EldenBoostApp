@@ -14,6 +14,7 @@ namespace EldenBoost.Core.Contracts
         Task ChangeProfilePictureAsync(string userId, string imgUrl);
         Task<bool> HasOrdersAsync(string userId);
         Task<IEnumerable<UserListViewModel>> AllAsync();
+        Task DemoteAsync(string userId);
 
     }
 }
