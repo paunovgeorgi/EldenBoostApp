@@ -25,6 +25,7 @@
 	};
 
 	bool IsBooster = await boosterService.BoosterExistsByUserIdAsync(User.Id());
+	bool isActiveBooster = await boosterService.IsActiveAsync(User.Id());
 	Order? order = await orderService.GetOrderWithClientByIdAsync(Model.Id);
 	int? boosterId = order!.BoosterId;
 	Booster? booster = null;
@@ -62,14 +63,14 @@
 
 			@if (this.User.Identity.IsAuthenticated)
 			{
-				@if (IsBooster && Model.Status == "Pending")
+				@if (isActiveBooster && Model.Status == "Pending")
 				{
 					<form asp-controller="Order" asp-area="" asp-action="Assign" method="post">
 						<input type="hidden" name="orderId" value="@Model.Id" />
 						<input class="btn btn-primary take-btn" type="submit" value="Take" />
 					</form>
 				}
-				else if (IsBooster && Model.Status == "Working")
+				else if (isActiveBooster && Model.Status == "Working")
 				{
 					<div style="display:flex; justify-content: center; gap: 8px; align-items: center; margin-top:6px;">
 					<form asp-controller="Order" asp-area="" asp-action="Complete" method="post">

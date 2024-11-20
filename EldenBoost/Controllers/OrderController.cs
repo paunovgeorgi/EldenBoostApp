@@ -20,7 +20,10 @@ namespace EldenBoost.Controllers
         public async Task<IActionResult> All()
         {
             var booster = await boosterService.GetBoosterByUserIdAsync(User.Id());
-            if (booster == null)
+            bool isActiveBooster = await boosterService.IsActiveAsync(User.Id());
+
+            //Check if the user is an active booster.
+            if (booster == null || !isActiveBooster)
             {
                 return Unauthorized("You don't have access to this page");
             }
@@ -49,10 +52,10 @@ namespace EldenBoost.Controllers
                 return BadRequest("Order does not exist");
             }
 
-            //Check if the user attempting the action is a booster.
-            if (await boosterService.BoosterExistsByUserIdAsync(userId) == false)
+            //Check if the user attempting the action is an active booster.
+            if (await boosterService.IsActiveAsync(userId) == false)
             {
-                TempData[WarningMessage] = "You're not a booster!";
+                TempData[WarningMessage] = "You're not an active booster!";
                 return RedirectToAction("Index", "Home");
             }
 

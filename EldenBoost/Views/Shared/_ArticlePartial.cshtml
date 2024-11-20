@@ -6,6 +6,7 @@
 
 @{
 	bool isTheAuthor = await authorService.HasArticleAsync(User.Id(), Model.Id);
+	bool isAuthorActive = await authorService.IsActiveAsync(User.Id());
 	string typeColor = Model.ArticleType == EldenBoost.Common.Enumerations.ArticleType.News ? "article-card-news" : "article-card-guide";
 
 }
@@ -20,7 +21,7 @@
 			   asp-route-information="@Model.GetArticleInformation()" class="btn btn-fancy-read">Read</a>
 			@if (this.User!.Identity!.IsAuthenticated)
 			{
-				@if (isTheAuthor || User.IsAdmin())
+				@if ((isTheAuthor && isAuthorActive) || User.IsAdmin())
 				{
 					<a asp-controller="Article" asp-area="" asp-action="Edit" asp-route-id="@Model.Id"
 					   class="btn btn-fancy-edit">Edit</a>

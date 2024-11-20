@@ -11,6 +11,7 @@
     bool isAuthor = await authorService.ExistsByUserIdAsync(User.Id());
     bool isActiveAuthor = await authorService.IsActiveAsync(User.Id());
     bool isBooster = await boosterService.BoosterExistsByUserIdAsync(User.Id());
+    bool isActiveBooster = await boosterService.IsActiveAsync(User.Id());
     string profilePicture = await userService.GetProfilePictureByUseIdAsync(User.Id());
     bool hasOrders = await userService.HasOrdersAsync(User.Id());
     int quantity = await cartService.GetCartQuantityByUserIdAsync(User.Id());
@@ -53,7 +54,11 @@
                 @if (isBooster)
                 {
                     <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Booster" asp-action="MyProfile">My Profile</a>
-                    <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Order" asp-action="All">Pending Orders</a>
+                    if (isActiveBooster)
+                    {
+                        <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="Order" asp-action="All">Pending Orders</a>
+                    }
+                    
                 }
                 @if (isAuthor)
                 {

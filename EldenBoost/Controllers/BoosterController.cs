@@ -28,7 +28,7 @@ namespace EldenBoost.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> All()
         {
-            var model = await boosterService.AllBoostersToCardModelAsync();
+            var model = await boosterService.AllActiveBoostersToCardModelAsync();
 
             return View(model);
         }
