@@ -93,7 +93,8 @@ namespace EldenBoost.Controllers
             }
 
             bool hasArticle = await authorService.HasArticleAsync(User.Id(), model.Id);
-            if (!hasArticle && !User.IsAdmin())
+            bool isActiveAuthor = await authorService.IsActiveAsync(User.Id());
+            if ((!hasArticle || !isActiveAuthor) && !User.IsAdmin())
             {
                 return RedirectToAction("All", "Article");
             }
@@ -111,7 +112,8 @@ namespace EldenBoost.Controllers
             }
 
             bool hasArticle = await authorService.HasArticleAsync(User.Id(), model.Id);
-            if (!hasArticle && !User.IsAdmin())
+            bool isActiveAuthor = await authorService.IsActiveAsync(User.Id());
+            if ((!hasArticle || !isActiveAuthor) && !User.IsAdmin())
             {
                 return RedirectToAction("All", "Article");
             }
