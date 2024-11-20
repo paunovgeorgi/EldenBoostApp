@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ArticleListViewModel>
+
+
+@{
+    ViewBag.Title = "All Services";
+}
+
+
+<h2 class="text-center" style="margin-top: 80px">@ViewBag.Title</h2>
+<hr />
+
+<div class="admin-table py-4 px-2 align-self-center">
+    <table class="table text-light" style=" margin-bottom: 0;border-radius: 12px;">
+        <thead class="text-light">
+            <tr>
+                <td></td>
+                <th><label>Title</label></th>
+                <th><label>Author</label></th>
+                <th><label>Type</label></th>
+                <th><label>Published On</label></th>
+                <th><label></label></th>
+                <th><label></label></th>
+            </tr>
+        </thead>
+        <tbody class="text-opacity-75 text-light">
+            @foreach (var article in Model)
+            {
+                <tr>
+                    <td><img src="@article.ImgUrl" style="width: 74px; object-fit: cover; aspect-ratio: 16/9;" /></td>
+                    <td><label>@article.Title</label></td>
+                    <td><label>@article.Author</label></td>
+                    <td><label>@article.Type</label></td>
+                    <td><label>@article.PublishDate</label></td>
+                  @*   <td>
+                        @if (article.IsActive)
+                        {
+                            <label>
+                                <form asp-controller="Service" asp-action="Deactivate" asp-route-id="@article.Id" method="post" style="display: inline;">
+                                    <button type="submit" class="btn btn-outline-danger">Deactivate</button>
+                                </form>
+                            </label>
+                        }
+                        else
+                        {
+                            <label>
+                                <form asp-controller="Service" asp-action="Activate" asp-route-id="@article.Id" method="post" style="display: inline;">
+                                    <button type="submit" class="btn btn-success">Activate</button>
+                                </form>
+                            </label>
+                        }
+                    </td> *@
+                    <td><a asp-controller="Article" asp-action="Edit" asp-area="" asp-route-id="@article.Id" class="btn btn-outline-light">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
