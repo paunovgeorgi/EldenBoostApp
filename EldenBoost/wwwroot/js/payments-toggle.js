@@ -50,6 +50,7 @@ async function togglePayments() {
                 <td></td>
                 <td><label>$${payment.amount.toFixed(2)}</label></td>
                 <td><label>${payment.issueDate}</label></td>
+                <td>${payment.isPaid ? payment.completionDate : ''}</td>
                 <td>
                     ${!payment.isPaid
                 ? `<form action="/Admin/Payment/Pay/${payment.id}" method="post" style="display: inline">

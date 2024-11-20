@@ -21,6 +21,7 @@
             <th><label>Orders</label></th>
             <th><label>Amount</label></th>
             <th><label>Issue Date</label></th>
+            <th><label>Completion Date</label></th>
             <th><label></label></th>
         </tr>
     </thead>
@@ -41,6 +42,7 @@
                 </td>
                 <td><label>@($"${payment.Amount:F2}")</label></td>
                 <td><label>@payment.IssueDate</label></td>
+                <td></td>
                 <td>
                     @if (payment.IsPaid == false)
                     {

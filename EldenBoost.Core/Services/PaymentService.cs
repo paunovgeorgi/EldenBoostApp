@@ -29,6 +29,7 @@ namespace EldenBoost.Core.Services
                   IsPaid = p.IsPaid,
                   Orders = p.Orders.Select(o => o.Id).ToList(),
                   IssueDate = p.IssueDate.ToShortDateString(),
+                  CompletionDate = p.CompletionDate.ToShortDateString()
               })
               .OrderByDescending(x => x.Id);
 
