@@ -24,6 +24,12 @@ namespace EldenBoost.Controllers
             string userId = User.Id();
 
             bool isBooster = await boosterService.BoosterExistsByUserIdAsync(userId);
+            bool isActiveBooster = await boosterService.IsActiveAsync(userId);
+
+            if (isBooster && !isActiveBooster)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             Order? order = await orderService.GetOrderWithBoosterByOrderIdAsync(id);
 
