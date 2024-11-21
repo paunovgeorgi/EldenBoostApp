@@ -35,6 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IChatMessageService, ChatMessageService>();
             services.AddScoped<IApplicationService, ApplicationService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IReviewService, ReviewService>();
 
             return services;
         }
