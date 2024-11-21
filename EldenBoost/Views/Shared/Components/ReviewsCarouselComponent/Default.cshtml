@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ReviewCardViewModel>;
+
+@{
+    var reviews = Model.ToList();
+}
+
+
+<div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @for (int i = 0; i < reviews.Count(); i += 4)
+        {
+            <div class="carousel-item @(i == 0 ? "active" : "")">
+                <div class="row justify-content-between p-4">
+                    @for (int j = i; j < i + 4 && j < reviews.Count(); j++)
+                    {
+                        <div class="col-lg-3 mb-1">
+                            <div class="review-card shadow" data-bs-toggle="modal" data-bs-target="#reviewModal"
+                                 data-nickname="@reviews[j].Nickname"
+                                 data-reviewdate="@reviews[j].ReviewDate"
+                                 data-content="@reviews[j].Content"
+                                 data-profilepicture="@reviews[j].ProfilePicture">
+                                <img src="@reviews[j].ProfilePicture" class="review-img" />
+                                <div class="review-textBox">
+                                    <div class="review-textContent">
+                                        <p class="review-h1">@reviews[j].Nickname</p>
+                                        <span class="review-span">@reviews[j].ReviewDate</span>
+                                    </div>
+                                    <p class="review-p">@reviews[j].Content</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-center">
+        <ol class="carousel-indicators position-static">
+            @for (int i = 0; i < (Model.Count() + 3) / 4; i++)
+            {
+                <li data-bs-target="#reviewsCarousel" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" style="width: 10px; height: 10px; background-color: #333; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer;"></li>
+            }
+        </ol>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: var(--main-dark); padding: .85em;">
+                <div class="review-card shadow">
+                    <img src="" id="modalProfilePicture" class="review-img" />
+                    <div class="review-textBox-modal">
+                        <div class="review-textContent">
+                            <p id="modalNickname" class="review-h1"></p>
+                            <span id="modalReviewDate" class="review-span"></span>
+                        </div>
+                        <p id="modalContent" class="review-p"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: var(--dark-grey-correct); padding: .25em;border-top: none;">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/review-card-modal.js"></script>
