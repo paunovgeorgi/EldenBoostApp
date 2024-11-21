@@ -1,4 +1,4 @@
-@import url('forms.css');
+﻿@import url('forms.css');
 @import url('cards.css');
 @import url('popular-services.css');
 @import url(faq.css);
@@ -7,6 +7,7 @@
 @import url(my-profile.css);
 @import url(chat.css);
 
+
 :root {
     --main-dark: #004c4c;
     --main-light: #006666;
@@ -14,6 +15,8 @@
     --secondary-light: #66b2b2;
     --lightest: #b2d8d8;
     --dark-grey-correct: rgba(24, 20, 20, 0.987);
+    --profile-shadow: #00C295;
+    --service-card-shadow: #065F69;
 }
 
 * {
@@ -30,8 +33,7 @@ html {
 body {
     margin-bottom: 60px;
     color: azure;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.7698880235688025) 50%, rgba(0,102,102,1) 74%);
-   
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.8698880235688025) 50%, rgba(0,102,102,1) 74%);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -40,9 +42,9 @@ body {
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 /*---------SWORDS MOBILE------------*/
@@ -59,7 +61,7 @@ body {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 .nav-item a:hover, .form-inline button:hover {
@@ -153,13 +155,13 @@ input[type="checkbox"]:focus {
 .custom-select:focus {
     outline: none;
     box-shadow: 0 0 0 0.25rem rgba(102, 178, 178, 0.25);
-/*    background-color: rgba(24, 20, 20, 0.75);
+    /*    background-color: rgba(24, 20, 20, 0.75);
     color: azure;*/
     border-color: var(--secondary-light);
 }
 
 .custom-select {
- /*   background-color: rgba(24, 20, 20, 0.75);
+    /*   background-color: rgba(24, 20, 20, 0.75);
     color: azure;*/
     border-color: var(--secondary-light);
 }
@@ -198,15 +200,14 @@ input[type="checkbox"]:focus {
 
 
 
-.table thead tr th{
-   /* padding:16px;*/
+.table thead tr th {
+    /* padding:16px;*/
     font-weight: bold;
-
 }
 
 .table tbody tr td {
-/*    padding-left: 16px;*/
-   /* border-left: 2px solid grey;*/
+    /*    padding-left: 16px;*/
+    /* border-left: 2px solid grey;*/
     /*border-left: 2px solid grey;*/
 }
 
@@ -221,24 +222,24 @@ input[type="checkbox"]:focus {
     box-shadow: inset 0px 6px 26px 1px rgba(0,0,0,0.51);
 }
 
-.admin-table a{
-    color:white;
-/*    border: 1px solid white;*/
-    border-radius: 50%;
-    padding: .35rem .6rem;
-    text-decoration: none;
-    background-color: dimgrey;
-    transition: .2s ease;
-}
-
-    .admin-table a:hover {
-        color: var(--dark-grey-correct);
-        background-color: var(--main-light);
+    .admin-table a.order-link {
+        color: white;
+        /*    border: 1px solid white;*/
+        border-radius: 50%;
+        padding: .35rem .6rem;
+        text-decoration: none;
+        background-color: dimgrey;
+        transition: .2s ease;
     }
 
+        .admin-table a.order-link:hover {
+            color: var(--dark-grey-correct);
+            background-color: var(--main-light);
+        }
 
 
-.slide-in-from-left {
+
+/*.slide-in-from-left {
     animation: slideLeft 0.2s ease-out;
 }
 
@@ -250,6 +251,22 @@ input[type="checkbox"]:focus {
 
     to {
         transform: translateX(0);
+        opacity: 1;
+    }
+}*/
+
+.zoom-modal .modal-dialog {
+    animation: zoomIn 0.2s ease-out;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
         opacity: 1;
     }
 }

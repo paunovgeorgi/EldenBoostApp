@@ -1,24 +1,24 @@
 ﻿.accordion-item {
-    background-color: #008080; 
+    background-color: var(--secondary-dark); 
 }
 
 .accordion-button {
     color: azure; 
-    background-color: #004c4c; 
+    background-color: var(--main-dark); 
     border: none; 
 }
 
     .accordion-button:not(.collapsed) {
-        color: #ffffff; 
-        background-color: #006666; 
-        -webkit-box-shadow: 1px 0px 67px -3px rgba(102,178,178,1);
-        -moz-box-shadow: 1px 0px 67px -3px rgba(102,178,178,1);
-        box-shadow: 1px 0px 67px -3px rgba(102,178,178,1);
+        color: #ffffff;
+        background-color: var(--main-light);
+        -webkit-box-shadow: 1px 0px 67px -3px var(--secondary-light);
+        -moz-box-shadow: 1px 0px 67px -3px var(--secondary-light);
+        box-shadow: 1px 0px 67px -3px var(--secondary-light);
     }
 
 
 .accordion-body {
-    background-color: #b2d8d8; 
+    background-color: var(--lightest); 
     color: #004d40; 
 }
 
