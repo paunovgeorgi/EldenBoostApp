@@ -1,48 +1,13 @@
-using EldenBoost.Core.Contracts;
-using EldenBoost.Core.Services;
-using EldenBoost.Data;
 using EldenBoost.Extensions;
 using EldenBoost.Hubs;
-using EldenBoost.Infrastructure.Data.Models;
-using EldenBoost.Infrastructure.Data.Repository;
 using EldenBoost.ModelBinders;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<EldenBoostDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddScoped<IRepository, Repository>();
-builder.Services.AddTransient<IPasswordHasher<ApplicationUser>, PasswordHasher<ApplicationUser>>();
-builder.Services.AddScoped<IServiceService, ServiceService>();
-builder.Services.AddScoped<IPlatformService, PlatformService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IBoosterService, BoosterService>();
-builder.Services.AddScoped<IAuthorService, AuthorService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IPaymentService, PaymentService>();
-builder.Services.AddScoped<IArticleService, ArticleService>();
-builder.Services.AddScoped<IChatMessageService, ChatMessageService>();
-builder.Services.AddScoped<IApplicationService, ApplicationService>();
-builder.Services.AddScoped<ICartService, CartService>();
-
-builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = false;
-    options.Password.RequireDigit = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireUppercase = false;
-})
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<EldenBoostDbContext>();
-
+builder.Services.AddApplicationDatabase(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddApplicationIdentity();
 
 builder.Services.AddControllersWithViews(options =>
 {
