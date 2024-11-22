@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ArticleCardViewModel>
+
+@{
+    var articles = Model.ToList();
+}
+
+
+<div class="col-4 " style="">
+    <h3 class="text-center" style="text-shadow: 2px 3px 1px #474747;">Latest News</h3>
+    <div id="carouselNewsControls" class="carousel slide" data-bs-ride="carousel" style="
+    box-shadow: 8px 8px 12px  black; border-radius: 30px;">
+        <div class="carousel-inner">
+            @for (int i = 0; i < articles.Count(); i++)
+            {
+                var article = articles[i];
+                <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
+                    <img class=" w-100 carousel-img"
+                         src="@article.ImageURL" alt="@article.Title">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <a class="btn btn-outline-light text-shadow" style="border-radius: 12px;border:3px solid; border-bottom: 0px; border-top: 0px;" asp-controller="Article" asp-action="Read" asp-route-id="@article.Id"
+                               asp-route-information="@article.GetArticleInformation()"><b>@article.Title</b></a>
+                        </h5>
+                    </div>
+                    <div class="carousel-caption d-block d-md-none">
+                        <h5>
+                            <a class="btn btn-outline-light text-shadow" style="border-radius: 16px;" asp-controller="Article" asp-action="Read" asp-route-id="@article.Id"
+                               asp-route-information="@article.GetArticleInformation()"><i class="fa-solid fa-computer-mouse"></i></a>
+                        </h5>
+                    </div>
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselNewsControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselNewsControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
