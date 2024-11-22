@@ -1,4 +1,5 @@
 ﻿using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.Order;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldenBoost.WebApi.Controllers
@@ -12,9 +13,13 @@ namespace EldenBoost.WebApi.Controllers
         {
             orderService = _orderService;
         }
-
         [HttpGet("getArchived")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(OrderCardViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetArchived()
         {
             try
@@ -33,6 +38,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("getActive")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(OrderCardViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetActive()
         {
             try
@@ -51,6 +61,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("get-pending")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(OrderCardViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetPending()
         {
            

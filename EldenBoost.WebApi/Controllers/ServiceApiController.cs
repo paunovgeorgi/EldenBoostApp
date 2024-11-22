@@ -1,4 +1,6 @@
 ﻿using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.Payment;
+using EldenBoost.Core.Models.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldenBoost.WebApi.Controllers
@@ -15,6 +17,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("getDeactivated")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ServiceListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetDeactivated()
         {
             try
@@ -33,6 +40,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("getActive")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ServiceListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetActive()
         {
             try

@@ -1,4 +1,6 @@
 ﻿using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.Application;
+using EldenBoost.Core.Models.Payment;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldenBoost.WebApi.Controllers
@@ -16,6 +18,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("getPaid")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(PaymentListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetPaid()
         {
             try
@@ -34,6 +41,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("getPending")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(PaymentListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetPending()
         {
             try

@@ -1,5 +1,7 @@
 ﻿using EldenBoost.Common.Enumerations;
 using EldenBoost.Core.Contracts;
+using EldenBoost.Core.Models.Application;
+using EldenBoost.Core.Models.Order;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +20,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("get-approved")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ApplicationListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetApproved()
         {
             try
@@ -33,6 +40,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("get-pending")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ApplicationListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetPending()
         {
             try
@@ -48,6 +60,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("get-approved-author")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ApplicationListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetApprovedAuthor()
         {
             try
@@ -65,6 +82,11 @@ namespace EldenBoost.WebApi.Controllers
 
         [HttpGet("get-pending-author")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ApplicationListViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetPendingAuthor()
         {
             try
