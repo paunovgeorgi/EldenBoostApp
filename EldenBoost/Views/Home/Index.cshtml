@@ -58,5 +58,27 @@
     </center>
 
 </div>
+<hr />
+
+<div class="row justify-content-center align-items-center bg-transparent p-4 mt-5 mb-5 shadow  ">
+    <div class="col-lg-6">
+        <img class="img-fluid" src="~/images/warrior.png" />
+    </div>
+    <div class="col-lg-5 p-6" style="display: flex; flex-direction: column; justify-content: space-around;">
+        @* <h2 class="px-5" style="font-weight: bold; margin-bottom: 80px;">Placing an order has never been easier! Just follow this few simple steps.</h2> *@
+        <div class="tips-card" style="margin: 0 auto;">
+            <a asp-action="All" asp-controller="Service" class="tips-card1 shadow">
+                <p class="text-center mb-2">It's Never Been More Simple!</p>
+                <p class="small">Placing an order has never been easier! Just follow this few simple steps and click BUY.</p>
+                <div class="go-corner" href="#">
+                    <div class="go-arrow">
+                        →
+                    </div>
+                </div>
+            </a>
+        </div>
+        @await Component.InvokeAsync("ThreeStepsComponent")
+    </div>
+</div>
 
 <hr />
