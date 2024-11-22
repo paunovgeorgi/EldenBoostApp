@@ -82,3 +82,11 @@
 </div>
 
 <hr />
+
+<div class="row justify-content-around align-items-center p-5">
+
+    @await Component.InvokeAsync("NewsCarouselComponent")
+    @await Component.InvokeAsync("ServicesCarouselComponent")
+    @await Component.InvokeAsync("GuidesCarouselComponent")
+
+</div>

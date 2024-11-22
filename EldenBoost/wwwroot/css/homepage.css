@@ -800,3 +800,18 @@
     top: calc(var(--support-size) * -1);
     opacity: 1;
 }
+
+
+
+/*------------- CAROUSEL ----------------*/
+
+
+.carousel-img {
+    height: 240px;
+    object-fit: cover;
+    box-shadow: 0px 9px 22px 8px #212121;
+}
+
+.carousel-inner {
+    border-radius: 30px;
+}
