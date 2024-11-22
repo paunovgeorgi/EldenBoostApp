@@ -1,4 +1,6 @@
 ﻿using EldenBoost.Core.Models.Article;
+using EldenBoost.Infrastructure.Data.Models;
+using System.Linq.Expressions;
 
 namespace EldenBoost.Core.Contracts
 {
@@ -11,5 +13,6 @@ namespace EldenBoost.Core.Contracts
         Task<ArticleEditViewModel?> GetArticleEditModelByIdAsync(int articleId);
         Task EditArticleAsync(ArticleEditViewModel model);
         Task<IEnumerable<ArticleListViewModel>> GetAllArticlesListViewModelAsync();
+        Task<IEnumerable<ArticleCardViewModel>> LastThreeArticlesAsync(Expression<Func<Article, bool>> predicate);
     }
 }

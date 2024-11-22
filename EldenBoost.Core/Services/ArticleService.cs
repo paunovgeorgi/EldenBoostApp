@@ -5,6 +5,7 @@ using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Ganss.Xss;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using System.Net;
 
 namespace EldenBoost.Core.Services
@@ -159,5 +160,23 @@ namespace EldenBoost.Core.Services
 			  })
 			  .FirstOrDefaultAsync();
 		}
-	}
+
+        public async Task<IEnumerable<ArticleCardViewModel>> LastThreeArticlesAsync(Expression<Func<Article, bool>> predicate)
+        {
+            var articlesQuery = repository.AllReadOnly<Article>()
+             .Where(predicate)
+             .Take(3)
+             .Select(a => new ArticleCardViewModel()
+             {
+                 Id = a.Id,
+                 Title = a.Title,
+                 ImageURL = a.ImageURL
+             })
+             .OrderByDescending(x => x.Id);
+
+            var articles = await articlesQuery.ToListAsync();
+
+            return articles;
+        }
+    }
 }
