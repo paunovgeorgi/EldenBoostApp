@@ -18,6 +18,20 @@ namespace EldenBoost.Core.Services
         {
             repository = _repository;
         }
+
+        public async Task CreateReviewAsync(string content, string userId)
+        {
+            Review review = new Review
+            {
+                Content = content,
+                UserId = userId,
+                ReviewDate = DateTime.UtcNow,
+            };
+
+            await repository.AddAsync(review);
+            await repository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<ReviewCardViewModel>> GetLatestReviewsAsync()
         {
             return await repository.AllReadOnly<Review>()
