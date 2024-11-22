@@ -1,0 +1,13 @@
+﻿@model ReviewFormViewModel
+<h4 class="text-center" style="text-shadow: 1px 2px 1px #474747;">Tell us what you think!</h4>
+<div style="max-width: 364px; padding:0;" class="col text-center">
+    <form asp-action="Submit" asp-controller="Review" method="post">
+        <textarea asp-for="Content" class="review-input" placeholder="Your review..."></textarea>
+        <span asp-validation-for="Content" class="small text-danger"></span>
+        <button type="submit" class="home-button" style="max-width: 100px; padding: 4px 8px; height: 2.25em; width: 8em;">Submit</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
