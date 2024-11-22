@@ -1,13 +1,11 @@
 ﻿using EldenBoost.Common.Enumerations;
 using EldenBoost.Core.Contracts;
-using EldenBoost.Core.Models.Order;
 using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Models.Service.Enums;
 using EldenBoost.Core.Models.ServiceOption;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace EldenBoost.Core.Services
@@ -254,6 +252,21 @@ namespace EldenBoost.Core.Services
                .FirstOrDefaultAsync();
       
             return service;
+        }
+
+        public async Task<IEnumerable<ServiceCarouselViewModel>> LastThreeServicesAsync()
+        {
+            return await repository.AllReadOnly<Service>()
+               .Where(s => s.IsActive)
+               .OrderByDescending(s => s.Id)
+               .Take(3)
+               .Select(s => new ServiceCarouselViewModel()
+               {
+                   Id = s.Id,
+                   Title = s.Title,
+                   ImageURL = s.ImageURL ?? string.Empty
+               })
+               .ToListAsync();
         }
     }
 }

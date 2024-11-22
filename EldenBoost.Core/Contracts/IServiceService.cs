@@ -24,6 +24,7 @@ namespace EldenBoost.Core.Contracts
 		Task<bool> ExistsByIdAsync(int serviceId);
         Task<IEnumerable<ServiceListViewModel>> AllServiceListViewModelFilteredAsync(Expression<Func<Service, bool>> predicate);
         Task ActivateByIdAsync(int serviceId);
+        Task<IEnumerable<ServiceCarouselViewModel>> LastThreeServicesAsync();
 
     }
 }
