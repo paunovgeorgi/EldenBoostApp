@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ServiceCarouselViewModel>
+
+@{
+    var services = Model.ToList();
+}
+
+
+<div class="col-4 ">
+    <h3 class="text-center" style="text-shadow: 2px 3px 1px #474747;">Latest Services</h3>
+    <div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel" style="
+    box-shadow: 8px 8px 12px black; border-radius: 30px;">
+        <div class="carousel-inner">
+            @for (int i = 0; i < services.Count(); i++)
+            {
+                var service = services[i];
+                <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
+                    <img class=" w-100 carousel-img" style="height: 280px;"
+                         src="@service.ImageURL" alt="@service.Title">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <a class="btn btn-outline-light text-shadow" style="border-radius: 12px;border:3px solid; border-bottom: 0px; border-top: 0px;" asp-controller="Service" asp-action="Details" asp-route-id="@service.Id"
+                               asp-route-information="@service.GetInformation()"><b>@service.Title</b></a>
+                        </h5>
+                    </div>
+                    <div class="carousel-caption d-block d-md-none">
+                        <h5>
+                            <a class="btn btn-outline-light text-shadow" style="border-radius: 16px;" asp-controller="Article" asp-action="Read" asp-route-id="@service.Id"
+                               asp-route-information="@service.GetInformation()"><i class="fa-solid fa-computer-mouse"></i></a>
+                        </h5>
+                    </div>
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
