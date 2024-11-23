@@ -89,3 +89,35 @@
             margin-right: 60px;
         }
 }
+
+/*
+------------------ features ---------------------*/
+
+.features{
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.feature-bg {
+    background: linear-gradient(135deg, #fffffff4, var(--main-light), #ffffff98);
+    padding: 1px;
+    border-radius: 1rem;
+    box-shadow: 0px 1rem 1.5rem -0.9rem #000000e1;
+    max-width: 300px;
+}
+
+.feature-card {
+    font-size: 1rem;
+    color: var(--lightest);
+    background: linear-gradient(135deg, var(--main-dark) 0%, var(--secondary-dark) 43%, var(--main-dark) 100%);
+    padding: .45rem .75rem;
+    border-radius: 1rem;
+}
+
+    .feature-card:hover {
+        color: #fffffff4;
+        background: linear-gradient(135deg, var(--main-dark) 10%, var(--secondary-dark) 53%, var(--main-dark) 80%);
+        transition: .4s ease;
+    }
