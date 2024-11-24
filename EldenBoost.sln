@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldenBoost.Core", "EldenBoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldenBoost.Common", "EldenBoost.Common\EldenBoost.Common.csproj", "{229C847D-647B-43C3-9203-E98D8FE924A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldenBoost.WebApi", "EldenBoost.WebApi\EldenBoost.WebApi.csproj", "{369BC75C-23A9-49E4-9DB4-87F1F9948941}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldenBoost.WebApi", "EldenBoost.WebApi\EldenBoost.WebApi.csproj", "{369BC75C-23A9-49E4-9DB4-87F1F9948941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldenBoost.Tests", "EldenBoost.Tests\EldenBoost.Tests.csproj", "{30294203-FF14-4BF2-BB50-E58E839F3CC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{369BC75C-23A9-49E4-9DB4-87F1F9948941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{369BC75C-23A9-49E4-9DB4-87F1F9948941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{369BC75C-23A9-49E4-9DB4-87F1F9948941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30294203-FF14-4BF2-BB50-E58E839F3CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30294203-FF14-4BF2-BB50-E58E839F3CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30294203-FF14-4BF2-BB50-E58E839F3CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30294203-FF14-4BF2-BB50-E58E839F3CC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
