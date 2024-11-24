@@ -89,5 +89,39 @@ namespace EldenBoost.Tests.UnitTests
             bool result = userService.HasOrdersAsync(User2.Id).Result;
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void DemoteAsync_ShouldWorkCorrectlyWithBooster()
+        {
+            Booster.IsDemoted = false;
+            userService.DemoteAsync(Booster.UserId);
+            Assert.IsTrue(Booster.IsDemoted);
+        }
+
+        [Test]
+        public void DemoteAsync_ShouldWorkCorrectlyWithAuthor()
+        {
+            Author.IsDemoted = false;
+            userService.DemoteAsync(Author.UserId);
+            Assert.IsTrue(Author.IsDemoted);
+        }
+
+        [Test]
+        public void ReinstateAsync_ShouldWorkCorrectlyWithBooster()
+        {
+            Booster.IsDemoted = true;
+            userService.ReinstateAsync(Booster.UserId);
+            Assert.IsFalse(Booster.IsDemoted);
+        }
+
+
+        [Test]
+        public void ReinstateAsync_ShouldWorkCorrectlyWithAuthor()
+        {
+            Author.IsDemoted = true;
+            userService.ReinstateAsync(Author.UserId);
+            Assert.IsFalse(Author.IsDemoted);
+        }
+
     }
 }
