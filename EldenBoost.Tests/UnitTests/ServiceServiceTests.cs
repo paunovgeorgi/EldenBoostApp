@@ -28,41 +28,41 @@ namespace EldenBoost.Tests.UnitTests
         }
 
         [Test]
-        public void ActivateByIdAsync_SetsIsActive_ToTrue()
+        public async Task ActivateByIdAsync_SetsIsActive_ToTrue()
         {
             // Arrange
             Service.IsActive = false;
 
             // Act
-            serviceService.ActivateByIdAsync(Service.Id);
+            await serviceService.ActivateByIdAsync(Service.Id);
 
             // Assert
             Assert.IsTrue(Service.IsActive);
         }
 
         [Test]
-        public void AllAsync_ReturnsCorrect_NumberOfServices()
+        public async Task AllAsync_ReturnsCorrect_NumberOfServices()
         {
             // Arrange
-            int expected = 2;
+            int expected = 3;
             var model = new AllServicesQueryModel
             {
                 SearchString = string.Empty,
-                CurrentPage = 2,
-                ServicesPerPage = 2,
-                TotalServices = 2,
+                CurrentPage = 1,
+                ServicesPerPage = 3,
+                TotalServices = 3,
                 ServiceSorting = Core.Models.Service.Enums.ServiceSorting.Newest,
             };
 
             // Act
-            var services = serviceService.AllAsync(model).Result;
+            var services = await serviceService.AllAsync(model);
 
             // Assert
             Assert.That(expected, Is.EqualTo(services.TotalServicesCount));
         }
 
         [Test]
-        public void AllAsync_SearchString_ReturnsCorrectServices()
+        public async Task AllAsync_SearchString_ReturnsCorrectServices()
         {
             // Arrange
             int expected = 1;
@@ -76,27 +76,27 @@ namespace EldenBoost.Tests.UnitTests
             };
 
             // Act
-            var services = serviceService.AllAsync(model).Result;
+            var services = await serviceService.AllAsync(model);
 
             // Assert
             Assert.That(expected, Is.EqualTo(services.TotalServicesCount));
         }
 
         [Test]
-        public void AllServiceListViewModelFilteredAsync_ShouldReturnCorrectServices()
+        public async Task AllServiceListViewModelFilteredAsync_ShouldReturnCorrectServices()
         {
             // Arrange
             int expectedNumber = 1;
 
             // Act
-            var services = serviceService.AllServiceListViewModelFilteredAsync(s => s.ServiceType == Common.Enumerations.ServiceType.Slider).Result;
+            var services = await serviceService.AllServiceListViewModelFilteredAsync(s => s.ServiceType == Common.Enumerations.ServiceType.Slider);
 
             // Assert
             Assert.That(expectedNumber, Is.EqualTo(services.Count()));
         }
 
         [Test]
-        public void CreateServiceAsync_ShouldWorkProperly()
+        public async Task CreateServiceAsync_ShouldWorkProperly()
         {
             // Arrange
             ServiceFormViewModel model = new ServiceFormViewModel()
@@ -110,22 +110,29 @@ namespace EldenBoost.Tests.UnitTests
             };
 
             // Act
-            serviceService.CreateServiceAsync(model);
-            var services = serviceService.AllServiceListViewModelFilteredAsync(s => s.ServiceType == Common.Enumerations.ServiceType.Slider).Result;
+            await serviceService.CreateServiceAsync(model);
+            var services = await serviceService.AllServiceListViewModelFilteredAsync(s => s.ServiceType == Common.Enumerations.ServiceType.Slider);
 
             // Assert
             int expectedNumber = 2;
             Assert.That(expectedNumber, Is.EqualTo(services.Count()));
+
+            // Cleanup
+            var createdService = data.Services.FirstOrDefault(s => s.Title == model.Title && s.Description == model.Description);
+            if (createdService != null)
+            {
+                data.Services.Remove(createdService);
+            }
         }
 
         [Test]
-        public void DeactivateByIdAsync_ShouldDeactivateService()
+        public async Task DeactivateByIdAsync_ShouldDeactivateService()
         {
             // Arrange
             Assert.IsTrue(Service2.IsActive);
 
             // Act
-            serviceService.DeactivateByIdAsync(Service2.Id);
+            await serviceService.DeactivateByIdAsync(Service2.Id);
 
             // Assert
             Assert.IsFalse(Service2.IsActive);
@@ -135,7 +142,7 @@ namespace EldenBoost.Tests.UnitTests
         }
 
         [Test]
-        public void EditAsync_ShouldEditServiceCorrectly()
+        public async Task EditAsync_ShouldEditServiceCorrectly()
         {
             // Arrange
             Assert.That(Service.Title, Is.EqualTo("Game Completion"));
@@ -152,7 +159,7 @@ namespace EldenBoost.Tests.UnitTests
             };
 
             // Act
-            serviceService.EditAsync(model);
+            await serviceService.EditAsync(model);
 
             // Assert
             Assert.That(Service.Title, Is.Not.EqualTo("Game Completion"));
@@ -160,27 +167,27 @@ namespace EldenBoost.Tests.UnitTests
         }
 
         [Test]
-        public void ExistsByIdAsync_ReturnsTrue_WhenIdIsCorrect()
+        public async Task ExistsByIdAsync_ReturnsTrue_WhenIdIsCorrect()
         {
             // Arrange & Act
-            bool result = serviceService.ExistsByIdAsync(Service.Id).Result;
+            bool result = await serviceService.ExistsByIdAsync(Service.Id);
 
             // Assert
             Assert.IsTrue(result);
         }
 
         [Test]
-        public void ExistsByIdAsync_ReturnsFalse_WhenIdIsIncorrect()
+        public async Task ExistsByIdAsync_ReturnsFalse_WhenIdIsIncorrect()
         {
             // Arrange & Act
-            bool result = serviceService.ExistsByIdAsync(5000).Result;
+            bool result = await serviceService.ExistsByIdAsync(5000);
 
             // Assert
             Assert.IsFalse(result);
         }
 
         [Test]
-        public void GetServiceDetailsViewModelByIdAsync_WorksCorrectly()
+        public async Task GetServiceDetailsViewModelByIdAsync_WorksCorrectly()
         {
             // Arrange
             int expectedId = Service.Id;
@@ -192,7 +199,7 @@ namespace EldenBoost.Tests.UnitTests
             int expectedMaxAmount = Service.MaxAmount;
 
             // Act
-            var service = serviceService.GetServiceDetailsViewModelByIdAsync(Service.Id).Result;
+            var service = await serviceService.GetServiceDetailsViewModelByIdAsync(Service.Id);
 
             // Assert
             Assert.That(service!.Id, Is.EqualTo(expectedId));
@@ -220,18 +227,62 @@ namespace EldenBoost.Tests.UnitTests
         }
 
         [Test]
-        public void GetServiceEditViewModelByIdAsync_ShouldReturnCorrectService()
+        public async Task GetServiceEditViewModelByIdAsync_ShouldReturnCorrectService()
         {
             // Arrange
             int expectedId = Service2.Id;
             string expectedTitle = Service2.Title;
 
             // Act
-            var service = serviceService.GetServiceEditViewModelByIdAsync(Service2.Id).Result;
+            var service =  await serviceService.GetServiceEditViewModelByIdAsync(Service2.Id);
 
             // Assert
             Assert.That(service.Id, Is.EqualTo(expectedId));
             Assert.That(service.Title, Is.EqualTo(expectedTitle));
+        }
+
+        [Test]
+        public async Task GetServiceViewModelByIdAsync_ShouldReturnCorrectService()
+        {
+            // Arrange
+            int expectedId = Service2.Id;
+            string expectedTitle = Service2.Title;
+
+            // Act
+            var service = await serviceService.GetServiceViewModelByIdAsync(Service2.Id);
+
+            // Assert
+            Assert.That(service.Id, Is.EqualTo(expectedId));
+            Assert.That(service.Title, Is.EqualTo(expectedTitle));
+        }
+
+        [Test]
+        public async Task GetServiceOptionsAsync_ShouldReturnCorrectOptions()
+        {
+            //Arrange
+            int expectedAmount = 2;
+            string optionName = ServiceOption1.Name;
+
+            //Act
+            var options = await serviceService.GetServiceOptionsAsync(ServiceWithOptions.Id);
+
+            //Assert
+            Assert.That(options.Count, Is.EqualTo(expectedAmount));
+            Assert.IsTrue(options.Any(o => o.Name == optionName));
+            Assert.IsFalse(options.Any(o => o.Name == "WrongName"));
+        }
+
+        [Test]
+        public async Task LastThreeServicesAsync_ShouldReturnCorrectOrderOfServices()
+        {
+            //Arrange
+            int expectedId = 4;
+
+            //Act
+            var services = await serviceService.LastThreeServicesAsync();
+
+            //Assert
+            Assert.That(services.First().Id, Is.EqualTo(expectedId));
         }
     }
 }
