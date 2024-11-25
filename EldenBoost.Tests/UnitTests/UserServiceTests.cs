@@ -25,103 +25,155 @@ namespace EldenBoost.Tests.UnitTests
             orderService = new OrderService(repository);
             boosterService = new BoosterService(repository);
             authorService = new AuthorService(repository);
-            userService = new UserService(repository,boosterService, authorService, orderService);
+            userService = new UserService(repository, boosterService, authorService, orderService);
         }
 
         [Test]
-        public void AllAsync_ShouldReturn3Users()
+        public async Task AllAsync_ShouldReturn3Users()
         {
+            // Arrange
             int expectedCount = 3;
-            var users = userService.AllAsync().Result;
 
+            // Act
+            var users = await userService.AllAsync();
+
+            // Assert
             Assert.That(users.Count(), Is.EqualTo(expectedCount));
         }
 
         [Test]
-        public void AllAsync_ReturnListShouldContainUser()
+        public async Task AllAsync_ReturnListShouldContainUser()
         {
-            var users = userService.AllAsync().Result;
+            // Arrange & Act
+            var users = await userService.AllAsync();
+
+            // Assert
             Assert.That(users.Any(u => u.Nickname == User.Nickname));
         }
 
         [Test]
-        public void GetProfilePictureAsync_ShouldRetrieveTheCorrectProfilePicture()
+        public async Task GetProfilePictureAsync_ShouldRetrieveTheCorrectProfilePicture()
         {
+            // Arrange
             string expectedPic = User.ProfilePicture!;
-            string retrievedPic = userService.GetProfilePictureByUseIdAsync(User.Id).Result;
+
+            // Act
+            string retrievedPic = await userService.GetProfilePictureByUseIdAsync(User.Id);
+
+            // Assert
             Assert.That(retrievedPic, Is.EqualTo(expectedPic));
         }
 
         [Test]
-        public void GetProfilePictureAsync_ShouldRetrieveIncorrectProfilePicture()
+        public async Task GetProfilePictureAsync_ShouldRetrieveIncorrectProfilePicture()
         {
+            // Arrange
             string expectedPic = "WrongPicture";
-            string retrievedPic = userService.GetProfilePictureByUseIdAsync(User.Id).Result;
+
+            // Act
+            string retrievedPic = await userService.GetProfilePictureByUseIdAsync(User.Id);
+
+            // Assert
             Assert.That(expectedPic, Is.Not.SameAs(retrievedPic));
         }
 
         [Test]
-        public void ChangeProfilePicutre_ShouldWork()
+        public async Task ChangeProfilePicture_ShouldWork()
         {
+            // Arrange
             string expectedPic = "NewClientPicture";
-            userService.ChangeProfilePictureAsync(User.Id, expectedPic);
+
+            // Act
+            await userService.ChangeProfilePictureAsync(User.Id, expectedPic);
+
+            // Assert
             Assert.That(User.ProfilePicture, Is.EqualTo(expectedPic));
         }
 
         [Test]
-        public void GetUserNicknameAsync_ShouldReturnCorrectNickname()
+        public async Task GetUserNicknameAsync_ShouldReturnCorrectNickname()
         {
+            // Arrange
             string expected = User2.Nickname;
-            string retrieved = userService.GetUserNicknameAsync("BoosterUserId").Result;
+
+            // Act
+            string retrieved = await userService.GetUserNicknameAsync("BoosterUserId");
+
+            // Assert
             Assert.That(expected, Is.EqualTo(retrieved));
         }
 
         [Test]
-        public void HasOrdersAsync_ShouldReturn_True()
+        public async Task HasOrdersAsync_ShouldReturn_True()
         {
-            bool result = userService.HasOrdersAsync(User.Id).Result;
+            // Arrange & Act
+            bool result = await userService.HasOrdersAsync(User.Id);
+
+            // Assert
             Assert.IsTrue(result);
         }
 
         [Test]
-        public void HasOrdersAsync_ShouldReturn_False()
+        public async Task HasOrdersAsync_ShouldReturn_False()
         {
-            bool result = userService.HasOrdersAsync(User2.Id).Result;
+            // Arrange & Act
+            bool result = await userService.HasOrdersAsync(User2.Id);
+
+            // Assert
             Assert.IsFalse(result);
         }
 
         [Test]
-        public void DemoteAsync_ShouldWorkCorrectlyWithBooster()
+        public async Task DemoteAsync_ShouldWorkCorrectlyWithBooster()
         {
+            // Arrange
             Booster.IsDemoted = false;
-            userService.DemoteAsync(Booster.UserId);
+
+            // Act
+            await userService.DemoteAsync(Booster.UserId);
+
+            // Assert
             Assert.IsTrue(Booster.IsDemoted);
         }
 
         [Test]
-        public void DemoteAsync_ShouldWorkCorrectlyWithAuthor()
+        public async Task DemoteAsync_ShouldWorkCorrectlyWithAuthor()
         {
+            // Arrange
             Author.IsDemoted = false;
-            userService.DemoteAsync(Author.UserId);
+
+            // Act
+            await userService.DemoteAsync(Author.UserId);
+
+            // Assert
             Assert.IsTrue(Author.IsDemoted);
         }
 
         [Test]
-        public void ReinstateAsync_ShouldWorkCorrectlyWithBooster()
+        public async Task ReinstateAsync_ShouldWorkCorrectlyWithBooster()
         {
+            // Arrange
             Booster.IsDemoted = true;
-            userService.ReinstateAsync(Booster.UserId);
+
+            // Act
+            await userService.ReinstateAsync(Booster.UserId);
+
+            // Assert
             Assert.IsFalse(Booster.IsDemoted);
         }
 
-
         [Test]
-        public void ReinstateAsync_ShouldWorkCorrectlyWithAuthor()
+        public async Task ReinstateAsync_ShouldWorkCorrectlyWithAuthor()
         {
+            // Arrange
             Author.IsDemoted = true;
-            userService.ReinstateAsync(Author.UserId);
+
+            // Act
+            await userService.ReinstateAsync(Author.UserId);
+
+            // Assert
             Assert.IsFalse(Author.IsDemoted);
         }
-
     }
 }
+
