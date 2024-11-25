@@ -28,6 +28,9 @@ namespace EldenBoost.Tests.UnitTests
 
         public Service Service { get; private set; }
         public Service Service2 { get; set; }
+        public Service ServiceWithOptions { get; set; }
+        public ServiceOption ServiceOption1 { get; set; }
+        public ServiceOption ServiceOption2 { get; set; }
         public Platform Platform { get; set; }
 
         public CartItem CartItem { get; set; }
@@ -113,7 +116,45 @@ namespace EldenBoost.Tests.UnitTests
                 MaxAmount = 100,
                 ServiceType = ServiceType.Slider,
             };
-            data.Services.Add(Service2);
+            data.Services.Add(Service2);       
+
+            ServiceOption1 = new ServiceOption()
+            {
+                Id = 1,
+                Name = "Margit the Fell Omen",
+                Price = 10.00M,
+                ServiceId = 4
+            };
+
+            data.ServiceOptions.Add(ServiceOption1);
+
+            ServiceOption2 = new ServiceOption()
+            {
+                Id = 2,
+                Name = "Godrick the Grafted",
+                Price = 12.00M,
+                ServiceId = 4
+            };
+
+            data.ServiceOptions.Add(ServiceOption2);
+
+
+            ServiceWithOptions = new Service()
+            {
+                Id = 4,
+                Title = "Service with options",
+                Description = "This is a service with options",
+                Price = 2.50M,
+                ImageURL = "ServiceWithOptionPic",
+                IsActive = true,
+                PurchaseCount = 0,
+                MaxAmount = 0,
+                ServiceType = ServiceType.Option,
+                Options = new List<ServiceOption>() { ServiceOption1, ServiceOption2 }
+
+            };
+            data.Services.Add(ServiceWithOptions);
+
 
             Platform = new Platform()
             {
