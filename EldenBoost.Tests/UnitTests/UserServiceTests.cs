@@ -24,7 +24,7 @@ namespace EldenBoost.Tests.UnitTests
             repository = new Repository(data);
             orderService = new OrderService(repository);
             boosterService = new BoosterService(repository);
-            authorService = new AuthorService(repository);  
+            authorService = new AuthorService(repository);
             userService = new UserService(repository,boosterService, authorService, orderService);
         }
 

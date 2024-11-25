@@ -27,7 +27,7 @@ namespace EldenBoost.Tests.UnitTests
         public Author Author { get; private set; }
 
         public Service Service { get; private set; }
-
+        public Service Service2 { get; set; }
         public Platform Platform { get; set; }
 
         public CartItem CartItem { get; set; }
@@ -100,6 +100,20 @@ namespace EldenBoost.Tests.UnitTests
             };
 
             data.Services.Add(Service);
+
+            Service2 = new Service()
+            {
+                Id = 3,
+                Title = "Leveling",
+                Description = "Select the desired amount of levels you'd like and we'll levep-up your character in no time!",
+                Price = 2.50M,
+                ImageURL = "/images/service/leveling.png",
+                IsActive = true,
+                PurchaseCount = 0,
+                MaxAmount = 100,
+                ServiceType = ServiceType.Slider,
+            };
+            data.Services.Add(Service2);
 
             Platform = new Platform()
             {
