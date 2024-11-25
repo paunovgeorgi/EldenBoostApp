@@ -1,6 +1,8 @@
-﻿using EldenBoost.Core.Contracts;
+﻿using EldenBoost.Common.Enumerations;
+using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Services;
+using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -59,7 +61,68 @@ namespace EldenBoost.Tests.UnitTests
                 ServiceSorting = Core.Models.Service.Enums.ServiceSorting.Newest,
             };
             var services = serviceService.AllAsync(model).Result;
-            Assert.That(expected, Is.EqualTo(services.TotalServicesCount))
+            Assert.That(expected, Is.EqualTo(services.TotalServicesCount));
+        }
+
+        [Test]
+        public void AllServiceListViewModelFilteredAsync_ShouldReturnCorrectServices()
+        {
+            int expectedNumber = 1;
+            var services = serviceService.AllServiceListViewModelFilteredAsync(s => s.ServiceType == Common.Enumerations.ServiceType.Slider).Result;
+            Assert.That(expectedNumber, Is.EqualTo(services.Count()));
+        }
+
+        [Test]
+        public void CreateServiceAsync_ShouldWorkProperly()
+        {
+            ServiceFormViewModel model = new ServiceFormViewModel()
+            {
+                Title = "Service 3",
+                Description = "Third service",
+                Price = 30m,
+                ImageURL = "Service Image",
+                ServiceType = Common.Enumerations.ServiceType.Slider,
+                MaxAmount = 50
+            };
+
+            serviceService.CreateServiceAsync(model);
+
+            int expectedNumber = 2;
+            var services = serviceService.AllServiceListViewModelFilteredAsync(s => s.ServiceType == Common.Enumerations.ServiceType.Slider).Result;
+            Assert.That(expectedNumber, Is.EqualTo(services.Count()));
+        }
+
+        [Test]
+        public void DeactivateByIdAsync_ShouldDeactivateService()
+        {
+            Assert.IsTrue(Service2.IsActive);
+
+            serviceService.DeactivateByIdAsync(Service2.Id);
+
+            Assert.IsFalse(Service2.IsActive);
+        }
+
+        [Test]
+        public void EditAsync_ShouldEditServiceCorrectly()
+        {
+            Assert.That(Service.Title, Is.EqualTo("Game Completion"));
+
+            ServiceEditViewModel model = new ServiceEditViewModel()
+            {
+                Id = 1,
+                Title = "Game Completion - Edited",
+                Description = "You will get a 100% game completion and all the items we aquire along the way!",
+                Price = 300.00M,
+                ImageURL = "/images/service/gameCompletion.jpg",
+                MaxAmount = 0,
+                ServiceType = ServiceType.Basic
+            };
+
+            serviceService.EditAsync(model);
+
+            Assert.That(Service.Title, Is.Not.EqualTo("Game Completion"));
+            Assert.That(Service.Title, Is.EqualTo("Game Completion - Edited"));
+
         }
     }
 }
