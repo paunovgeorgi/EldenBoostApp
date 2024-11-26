@@ -34,5 +34,24 @@ namespace EldenBoost.Tests.UnitTests
             Assert.That(expectedId, Is.EqualTo(platforms.First().Id), "Platform id of the retrieved platform should match the expected id");
         }
 
+        [Test]
+        public async Task PlatformExistsByIdAsync_ShouldReturnTrue_WithCorrectId()
+        {
+            //Act
+            bool result = await platformService.PlatformExistsByIdAsync(Platform.Id);
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task PlatformExistsByIdAsync_ShouldReturnFalse_WithIncorrectId()
+        {
+            //Act
+            bool result = await platformService.PlatformExistsByIdAsync(Platform.Id);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
     }
 }
