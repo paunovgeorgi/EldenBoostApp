@@ -58,8 +58,28 @@ namespace EldenBoost.WebApi.Controllers
             }
         }
 
+		[HttpGet("get-data")]
+		[Produces("application/json")]
+		public async Task<IActionResult> GetOrdersData()
+        {
+			try
+			{
+				var data = await orderService.GetOrderCountDataAsync();
+				return Ok(data);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, new
+				{
+					Message = "An error occurred while processing your request.",
+					Details = ex.Message // Optional: Include this only if safe.
+				});
+			}
 
-        [HttpGet("get-pending")]
+		}
+
+
+		[HttpGet("get-pending")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(OrderCardViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
