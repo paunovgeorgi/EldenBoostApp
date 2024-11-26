@@ -58,5 +58,84 @@ namespace EldenBoost.Tests.UnitTests
             //Assert
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public async Task HasOrdersToRequestAsync_ShouldReturnTrue()
+        {
+            //Arrange
+            Order.BoosterId = Booster.Id;
+            Order.Status = "Completed";
+            string boosterUserId = Booster.UserId;
+            Booster.Orders.Add(Order);
+            await data.SaveChangesAsync();
+
+            //Act
+            bool result = await paymentService.HasOrdersToRequestAsync(boosterUserId);
+
+            //Assert
+            Assert.IsTrue(result);
+
+            //Cleanup
+            Order.Status = "Pending";
+        }
+
+        [Test]
+        public async Task HasOrdersToRequestAsync_ShouldReturnFalse()
+        {
+            //Arrange
+            string boosterUserId = Booster.UserId;
+
+            //Act
+            bool result = await paymentService.HasOrdersToRequestAsync(boosterUserId);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public async Task IsPendingAsync_ShouldReturnTrue()
+        {
+            //Arrange
+            string boosterUserId = Booster.UserId;
+
+            //Act
+            bool result = await paymentService.IsPendingAsync(boosterUserId);
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task IsPendingAsync_ShouldReturnFalse_WithNoUnpaidPayment()
+        {
+            //Arrange
+            Booster.Payments.First().IsPaid = true;
+            await data.SaveChangesAsync();
+            string boosterUserId = Booster.UserId;
+
+            //Act
+            bool result = await paymentService.IsPendingAsync(boosterUserId);
+
+            //Assert
+            Assert.IsFalse(result);
+
+            //Cleanup
+            Booster.Payments.First().IsPaid = false;
+            await data.SaveChangesAsync();
+        }
+
+
+        [Test]
+        public async Task IsPendingAsync_ShouldReturnFalse_WithWrongUserId()
+        {
+            //Arrange
+            string boosterUserId = "WrongUserId";
+
+            //Act
+            bool result = await paymentService.IsPendingAsync(boosterUserId);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
     }
 }
