@@ -37,8 +37,11 @@ namespace EldenBoost.Tests.UnitTests
         [Test]
         public async Task PlatformExistsByIdAsync_ShouldReturnTrue_WithCorrectId()
         {
+            //Arrange
+            int correctId = Platform.Id;
+
             //Act
-            bool result = await platformService.PlatformExistsByIdAsync(Platform.Id);
+            bool result = await platformService.PlatformExistsByIdAsync(correctId);
 
             //Assert
             Assert.IsTrue(result);
@@ -47,8 +50,11 @@ namespace EldenBoost.Tests.UnitTests
         [Test]
         public async Task PlatformExistsByIdAsync_ShouldReturnFalse_WithIncorrectId()
         {
+            //Arrange
+            int incorrectId = 200;
+
             //Act
-            bool result = await platformService.PlatformExistsByIdAsync(Platform.Id);
+            bool result = await platformService.PlatformExistsByIdAsync(incorrectId);
 
             //Assert
             Assert.IsFalse(result);
