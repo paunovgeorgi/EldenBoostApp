@@ -31,5 +31,32 @@ namespace EldenBoost.Tests.UnitTests
 
             //Assert
             Assert.That(expectedCount, Is.EqualTo(data.Payments.Count()), "After CreateReviewAsync reviews count should be = 2");
+        }
+
+        [Test] 
+        public async Task ExistsByIdAsync_ShoudReturnTrue_WithCorrecId()
+        {
+            //Arrange
+            int correctId = 1;
+
+            //Act
+            bool result = await paymentService.ExistsByIdAsync(correctId);
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task ExistsByIdAsync_ShoudReturnFalse_WithIncorrecId()
+        {
+            //Arrange
+            int incorrectId = 100;
+
+            //Act
+            bool result = await paymentService.ExistsByIdAsync(incorrectId);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
     }
 }
