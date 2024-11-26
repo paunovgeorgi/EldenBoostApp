@@ -30,7 +30,7 @@ namespace EldenBoost.Tests.UnitTests
             string userId = User.Id;
             int currentCount = 1;
             int expectedCount = 2;
-            Assert.AreEqual(currentCount, data.Reviews.Count());
+            Assert.That(data.Reviews.Count(), Is.EqualTo(currentCount));
 
             //Act
             await reviewService.CreateReviewAsync(content, userId);
