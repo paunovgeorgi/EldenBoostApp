@@ -265,7 +265,23 @@ namespace EldenBoost.Core.Services
 			return await repository.GetByIdAsync<Order>(orderId);
 		}
 
-        public async Task<OrderDetailsViewModel?> GetOrderDetailsAsync(int orderId)
+		public async Task<OrderCountDataModel> GetOrderCountDataAsync()
+		{
+            int pending = await repository.AllReadOnly<Order>().CountAsync(o => o.Status == "Pending");
+            int working = await repository.AllReadOnly<Order>().CountAsync(o => o.Status == "Working");
+            int completed = await repository.AllReadOnly<Order>().CountAsync(o => o.Status == "Completed");
+            int total = await repository.AllReadOnly<Order>().CountAsync();
+
+            return new OrderCountDataModel()
+            {
+                Pending = pending,
+                Working = working,
+                Completed = completed,
+                Total = total
+            };
+		}
+
+		public async Task<OrderDetailsViewModel?> GetOrderDetailsAsync(int orderId)
         {
             return await repository.AllReadOnly<Order>()
                .Where(o => o.Id == orderId)

@@ -26,5 +26,7 @@ namespace EldenBoost.Core.Contracts
         Task<OrderDetailsViewModel?> GetOrderDetailsAsync(int orderId);
         Task CreateOrdersFromCartAsync(int cartId, string clientId);
         Task ArchiveAsync(int orderId);
-    }
+		Task<OrderCountDataModel> GetOrderCountDataAsync();
+
+	}
 }
