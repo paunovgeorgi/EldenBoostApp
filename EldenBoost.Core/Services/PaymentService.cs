@@ -116,7 +116,7 @@ namespace EldenBoost.Core.Services
             .SumAsync(o => o.BoosterPay);
         }
 
-        public async Task<decimal> RequsetedAmountAsync(string userId)
+        public async Task<decimal> RequestedAmountAsync(string userId)
         {
             return await repository.AllReadOnly<Payment>()
             .Where(p => p.IsPaid == false && p.Booster.UserId == userId)

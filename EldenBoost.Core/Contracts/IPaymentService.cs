@@ -15,7 +15,7 @@ namespace EldenBoost.Core.Contracts
         Task<bool> IsPendingAsync(string userId);
         Task<bool> HasOrdersToRequestAsync(string userId);
         Task<decimal> ReadyForRequstAsync(string userId);
-        Task<decimal> RequsetedAmountAsync(string userId);
+        Task<decimal> RequestedAmountAsync(string userId);
         Task<IEnumerable<PaymentListViewModel>> AllPaymentsFiltered(Expression<Func<Payment, bool>> predicate);
         Task PayAsync(int paymentId);
         Task<bool> ExistsByIdAsync(int paymentId);

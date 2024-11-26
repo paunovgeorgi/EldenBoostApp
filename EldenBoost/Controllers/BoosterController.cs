@@ -46,7 +46,7 @@ namespace EldenBoost.Controllers
             ViewBag.Username = await userService.GetUserNicknameAsync(User.Id());
             ViewBag.TotalEarned = booster.TotalEarned;
             ViewBag.ReadyForRequst = await paymentService.ReadyForRequstAsync(User.Id());
-            ViewBag.RequestedAmount = await paymentService.RequsetedAmountAsync(User.Id());
+            ViewBag.RequestedAmount = await paymentService.RequestedAmountAsync(User.Id());
             ViewBag.ProfilePicture = await userService.GetProfilePictureByUseIdAsync(User.Id());
 
             var orders = await orderService.AllByBoosterIdAsync(booster.Id);
