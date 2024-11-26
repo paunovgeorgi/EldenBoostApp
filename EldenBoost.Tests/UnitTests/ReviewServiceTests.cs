@@ -22,6 +22,35 @@ namespace EldenBoost.Tests.UnitTests
             reviewService = new ReviewService(repository);
         }
 
+        [Test]
+        public async Task CreateReviewAsync_ShouldCreateNewReview()
+        {
+            //Arrange
+            string content = "This is my new review!";
+            string userId = User.Id;
+            int currentCount = 1;
+            int expectedCount = 2;
+            Assert.AreEqual(currentCount, data.Reviews.Count());
 
+            //Act
+            await reviewService.CreateReviewAsync(content, userId);
+
+            //Assert
+            Assert.That(expectedCount, Is.EqualTo(data.Reviews.Count()), "After CreateReviewAsync reviews count should be = 2");
+        }
+
+        [Test]
+        public async Task GetLatestReviewsAsync_ShouldReturnCorrectOrderOfReviews()
+        {
+            //Arrange
+            string content = "Latest Review that should be first in the list";
+            await reviewService.CreateReviewAsync(content, User.Id);
+
+            //Act
+            var reviews = await reviewService.GetLatestReviewsAsync();
+
+            //Assert
+            Assert.That(content, Is.EqualTo(reviews.First().Content));
+        }
     }
 }

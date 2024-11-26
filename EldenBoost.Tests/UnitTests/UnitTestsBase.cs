@@ -214,9 +214,10 @@ namespace EldenBoost.Tests.UnitTests
             {
                 Id = 1,
                 Content = "Amazing service! Got my Runes fast, and the booster was super friendly. Helped me clear some tough bosses I’ve been stuck on for weeks. Totally worth it! Will definitely use this service again. 10/10!",
-                UserId = "CLient2UserId",
+                UserId = "CLientUserId",
                 ReviewDate = new DateTime(2024, 9, 3)
             };
+            data.Reviews.Add(Review);
 
             data.SaveChanges();
         }
