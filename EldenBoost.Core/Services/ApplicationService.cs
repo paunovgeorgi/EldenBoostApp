@@ -127,7 +127,23 @@ namespace EldenBoost.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task<bool> HasAppliedByUserIdAsync(string userId, Expression<Func<Application, bool>> predicate)
+		public async Task<ApplicationCountDataModel> GetApplicationCaountDataAsync()
+		{
+            int boosterPending = await repository.AllReadOnly<Application>().CountAsync(a => !a.IsApproved && a.ApplicationType == ApplicationType.Booster);
+            int boosterApproved = await repository.AllReadOnly<Application>().CountAsync(a => a.IsApproved && a.ApplicationType == ApplicationType.Booster);
+            int authorPending = await repository.AllReadOnly<Application>().CountAsync(a => !a.IsApproved && a.ApplicationType == ApplicationType.Author);
+            int authorApproved = await repository.AllReadOnly<Application>().CountAsync(a => a.IsApproved && a.ApplicationType == ApplicationType.Author);
+
+            return new ApplicationCountDataModel()
+            {
+                BoosterPending = boosterPending,
+                BoosterApproved = boosterApproved,
+                AuthorPending = authorPending,
+                AuthorApproved = authorApproved
+            };
+		}
+
+		public async Task<bool> HasAppliedByUserIdAsync(string userId, Expression<Func<Application, bool>> predicate)
         {
             return await repository.AllReadOnly<Application>()
               .Where(predicate)
