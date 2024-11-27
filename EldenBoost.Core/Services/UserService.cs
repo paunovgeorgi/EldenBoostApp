@@ -120,7 +120,24 @@ namespace EldenBoost.Core.Services
             return string.Empty;
         }
 
-        public async Task<string> GetUserNicknameAsync(string userId)
+		public async Task<UserCountDataModel> GetUserCountDataAsync()
+		{
+			int clients = await repository.AllReadOnly<ApplicationUser>()
+                .CountAsync(a => a.Cart != null);
+            int boosters = await repository.AllReadOnly<Booster>().CountAsync();
+            int authors = await repository.AllReadOnly<Author>().CountAsync();
+            int total = await repository.AllReadOnly<ApplicationUser>().CountAsync();
+
+            return new UserCountDataModel()
+            {
+                Clients = clients,
+                Boosters = boosters,
+                Authors = authors,
+                Total = total
+            };
+		}
+
+		public async Task<string> GetUserNicknameAsync(string userId)
         {
             string? nickname = await repository.AllReadOnly<ApplicationUser>()
                .Where(u => u.Id == userId)

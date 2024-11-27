@@ -16,5 +16,6 @@ namespace EldenBoost.Core.Contracts
         Task<IEnumerable<UserListViewModel>> AllAsync();
         Task DemoteAsync(string userId);
         Task ReinstateAsync(string userId);
+        Task<UserCountDataModel> GetUserCountDataAsync();
     }
 }
