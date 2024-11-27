@@ -1,4 +1,5 @@
-﻿using EldenBoost.Core.Models.Service;
+﻿using EldenBoost.Core.Models.Order;
+using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Models.ServiceOption;
 using EldenBoost.Infrastructure.Data.Models;
 using System;
@@ -25,6 +26,6 @@ namespace EldenBoost.Core.Contracts
         Task<IEnumerable<ServiceListViewModel>> AllServiceListViewModelFilteredAsync(Expression<Func<Service, bool>> predicate);
         Task ActivateByIdAsync(int serviceId);
         Task<IEnumerable<ServiceCarouselViewModel>> LastThreeServicesAsync();
-
+        Task<ServiceCountDataModel> GetServiceCountDataAsync();
     }
 }

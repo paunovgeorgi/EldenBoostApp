@@ -186,7 +186,23 @@ namespace EldenBoost.Core.Services
               .ToListAsync();
         }
 
-		public async Task<ServiceDetailsViewModel?> GetServiceDetailsViewModelByIdAsync(int serviceId)
+        public async Task<ServiceCountDataModel> GetServiceCountDataAsync()
+        {
+            int standard = await repository.AllReadOnly<Service>().CountAsync(s => s.ServiceType == ServiceType.Basic);
+            int slider = await repository.AllReadOnly<Service>().CountAsync(s => s.ServiceType == ServiceType.Slider); 
+            int option = await repository.AllReadOnly<Service>().CountAsync(s => s.ServiceType == ServiceType.Option);
+            int total = await repository.AllReadOnly<Service>().CountAsync();
+
+            return new ServiceCountDataModel()
+            {
+                Standard = standard,
+                Slider = slider,
+                Option = option,
+                Total = total
+            };
+        }
+
+        public async Task<ServiceDetailsViewModel?> GetServiceDetailsViewModelByIdAsync(int serviceId)
 		{
 			var service = await repository.AllReadOnly<Service>()
 			  .Where(s => s.Id == serviceId)
