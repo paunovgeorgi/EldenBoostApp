@@ -22,6 +22,7 @@ builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IBoosterService, BoosterService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IArticleService, ArticleService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
