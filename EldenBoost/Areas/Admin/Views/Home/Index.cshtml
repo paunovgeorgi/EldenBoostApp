@@ -1,0 +1,225 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+@* <h2 class="text-center" style="margin-top: 80px;">@ViewBag.Title</h2>
+<hr />
+ *@
+<div class="row justify-content-center" style="margin-top: 80px;">
+		<center>
+		<h3><a asp-area="Admin" asp-controller="Order" asp-action="All" class="dashboard-link btn">Orders</a></h3>
+		</center>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Pending</h5>
+					<p class="text-muted" id="ordersPending">Loading...</p>
+					<p><span style="font-size: 22px; color: lightgrey"><i class="fa-solid fa-hourglass-start"></i></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Working</h5>
+					<p class="text-muted" id="ordersWorking">Loading...</p>
+					<p><span style="font-size: 22px; color: orange"><i class="fa-solid fa-wand-magic-sparkles"></i></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Completed</h5>
+					<p class="text-muted" id="ordersCompleted">Loading...</p>
+					<p><span style="font-size: 22px; color: seagreen"><i class="fa-solid fa-circle-check"></i></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Total</h5>
+					<p class="text-muted" id="ordersTotal">Loading...</p>
+					<p><span style="font-size: 22px; color: cornflowerblue"><i class="fa-solid fa-chart-simple"></i></span></p>
+				</div>
+			</div>
+		</div>
+	<hr style="width: 40%; margin-top: 12px" />
+	</div>
+
+<div class="row justify-content-center">
+	<div class="row justify-content-between">
+	<div class="col-3 text-start" style="padding-left: 59px;">
+		<h3><a asp-area="Admin" asp-controller="Article" asp-action="All" class="dashboard-link btn">Articles</a></h3>
+	</div>
+		<div class="col-3 text-center">
+			<h3><a asp-area="Admin" asp-controller="Application" asp-action="All" class="dashboard-link btn">Applications</a></h3>
+		</div>
+		<div class="col-3 text-end" style="padding-right: 47px;">
+			<h3><a asp-area="Admin" asp-controller="Payment" asp-action="All" class="dashboard-link btn">Payments</a></h3>
+		</div>
+	</div>
+
+
+	<div class="row justify-content-center align-items-center">
+		<div class="col-md-2">
+			<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>News</h5>
+					<p class="text-muted" id="articleNews">Loading...</p>
+					<p><span style="font-size: 22px; color: dodgerblue"><i class="fa-solid fa-earth-oceania"></i></span></p>
+					<h5>Guides</h5>
+					<p class="text-muted" id="articleGuides">Loading...</p>
+					<p><span style="font-size: 22px; color: mediumpurple"><i class="fa-solid fa-book-journal-whills"></i></span></p>
+				</div>
+			</div>
+		</div>
+	<div class="col-md-4">
+		<div class="card mb-3 dashboard-card text-center">
+			<center><h5>Booster</h5></center>
+			<div class="dashboard-box">
+				<div>
+					<h6>Pending</h6>
+					<p class="text-muted" id="boosterPending">Loading...</p>
+					<p><span style="font-size: 22px; color: dimgrey"><i class="fa-solid fa-clock"></i></span></p>
+				</div>
+				<div class="separator"></div>
+				<div>
+					<h6>Approved</h6>
+					<p class="text-muted" id="boosterApproved">Loading...</p>
+					<p><span style="font-size: 22px; color: mediumseagreen"><i class="fa-solid fa-square-check"></i></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card mb-3 dashboard-card text-center">
+			<center><h5>Author</h5></center>
+			<div class="dashboard-box">
+				<div>
+					<h6>Pending</h6>
+					<p class="text-muted" id="authorPending">Loading...</p>
+					<p><span style="font-size: 22px; color: dimgrey"><i class="fa-solid fa-clock"></i></span></p>
+				</div>
+				<div class="separator"></div>
+				<div>
+					<h6>Approved</h6>
+					<p class="text-muted" id="authorApproved">Loading...</p>
+					<p><span style="font-size: 22px; color: mediumseagreen"><i class="fa-solid fa-square-check"></i></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="col-md-2">
+			<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Pending</h5>
+					<p class="text-muted" id="paymentPending">Loading...</p>
+					<p><span style="font-size: 22px; color: lightgrey"><i class="fa-regular fa-clock"></i></span></p>
+					<h5>Paid</h5>
+					<p class="text-muted" id="paymentPaid">Loading...</p>
+					<p><span style="font-size: 22px; color: forestgreen"><i class="fa-solid fa-sack-dollar"></i></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr class="col-12" style="width: 40%; margin-top: 12px" />
+</div>
+
+<div class="row justify-content-center">
+	<div class="col-12">
+	<center>
+		<h3><a asp-area="Admin" asp-controller="Service" asp-action="All" class="dashboard-link btn">Services</a></h3>
+	</center>
+	</div>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Standard</h5>
+				<p class="text-muted" id="servicesStandard">Loading...</p>
+					<p><span style="font-size: 22px; color: lightslategrey"><i class="fa-solid fa-gamepad"></i></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Slider</h5>
+				<p class="text-muted" id="servicesSlider">Loading...</p>
+				<p><span style="font-size: 22px; color: peachpuff"><i class="fa-solid fa-sliders"></i></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Option</h5>
+				<p class="text-muted" id="servicesOption">Loading...</p>
+					<p><span style="font-size: 22px; color:  lightseagreen"><i class="fa-solid fa-bars"></i></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+				<div>
+					<h5>Total</h5>
+				<p class="text-muted" id="servicesTotal">Loading...</p>
+					<p><span style="font-size: 22px; color: steelblue"><i class="fa-solid fa-fire"></i></span></p>
+				</div>
+			</div>
+		</div>
+
+
+	<hr style="width: 40%; margin-top: 12px" />
+</div>
+
+<div class="row justify-content-center">
+	<center>
+		<h3><a asp-area="Admin" asp-controller="User" asp-action="All" class="dashboard-link btn">Users</a></h3>
+	</center>
+	<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+			<div>
+				<h5>Clients</h5>
+				<p class="text-muted" id="usersClients">Loading...</p>
+				<p><span style="font-size: 22px; color: lightslategrey"><i class="fa-solid fa-user-tie"></i></span></p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+			<div>
+				<h5>Boosters</h5>
+				<p class="text-muted" id="usersBoosters">Loading...</p>
+				<p><span style="font-size: 22px; color: lightseagreen"><i class="fa-solid fa-gun"></i></span></p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+			<div>
+				<h5>Authors</h5>
+				<p class="text-muted" id="usersAuthors">Loading...</p>
+				<p><span style="font-size: 22px; color: rosybrown"><i class="fa-solid fa-feather-pointed"></i></span></p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="card mb-3 dashboard-card text-center">
+			<div>
+				<h5>Total</h5>
+				<p class="text-muted" id="usersTotal">Loading...</p>
+				<p><span style="font-size: 22px; color: steelblue"><i class="fa-solid fa-people-group"></i></span></p>
+			</div>
+		</div>
+	</div>
+
+
+@* 	<hr style="width: 40%; margin-top: 12px" /> *@
+</div>
+
+
+<script src="~/js/dashboard.js"></script>
