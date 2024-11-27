@@ -2,6 +2,7 @@
 using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Application;
 using EldenBoost.Core.Models.Order;
+using EldenBoost.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -101,5 +102,25 @@ namespace EldenBoost.WebApi.Controllers
                 return BadRequest();
             }
         }
-    }
+
+		[HttpGet("get-data")]
+		[Produces("application/json")]
+		public async Task<IActionResult> GetApplicationsData()
+		{
+			try
+			{
+				var data = await applicationService.GetApplicationCaountDataAsync();
+				return Ok(data);
+			}
+			catch (Exception ex)
+			{
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Message = ex
+                });
+			}
+
+		}
+
+	}
 }
