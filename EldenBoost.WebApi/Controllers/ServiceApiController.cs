@@ -1,6 +1,7 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Payment;
 using EldenBoost.Core.Models.Service;
+using EldenBoost.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldenBoost.WebApi.Controllers
@@ -58,6 +59,25 @@ namespace EldenBoost.WebApi.Controllers
 
                 return BadRequest();
             }
+        }
+
+        [HttpGet("get-data")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetServiceData()
+        {
+            try
+            {
+                var data = await serviceService.GetServiceCountDataAsync();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Message = "An error occurred while processing your request."
+                });
+            }
+
         }
     }
 }

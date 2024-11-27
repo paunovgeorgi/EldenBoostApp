@@ -72,7 +72,6 @@ namespace EldenBoost.WebApi.Controllers
 				return StatusCode(StatusCodes.Status500InternalServerError, new
 				{
 					Message = "An error occurred while processing your request.",
-					Details = ex.Message // Optional: Include this only if safe.
 				});
 			}
 
