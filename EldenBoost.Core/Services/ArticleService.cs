@@ -1,4 +1,5 @@
-﻿using EldenBoost.Core.Contracts;
+﻿using EldenBoost.Common.Enumerations;
+using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Article;
 using EldenBoost.Core.Models.Article.Enums;
 using EldenBoost.Infrastructure.Data.Models;
@@ -130,7 +131,19 @@ namespace EldenBoost.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<ArticleEditViewModel?> GetArticleEditModelByIdAsync(int articleId)
+		public async Task<ArticleCountDataModel> GetArticleCountDataAsync()
+		{
+            int news = await repository.AllReadOnly<Article>().CountAsync(a => a.ArticleType == ArticleType.News);
+            int guides = await repository.AllReadOnly<Article>().CountAsync(a => a.ArticleType == ArticleType.Guide);
+
+            return new ArticleCountDataModel()
+            {
+                News = news,
+                Guides = guides
+            };
+		}
+
+		public async Task<ArticleEditViewModel?> GetArticleEditModelByIdAsync(int articleId)
         {
                return await repository.AllReadOnly<Article>()
                .Where(a => a.Id == articleId)

@@ -14,5 +14,6 @@ namespace EldenBoost.Core.Contracts
         Task EditArticleAsync(ArticleEditViewModel model);
         Task<IEnumerable<ArticleListViewModel>> GetAllArticlesListViewModelAsync();
         Task<IEnumerable<ArticleCardViewModel>> LastThreeArticlesAsync(Expression<Func<Article, bool>> predicate);
+        Task<ArticleCountDataModel> GetArticleCountDataAsync();
     }
 }
