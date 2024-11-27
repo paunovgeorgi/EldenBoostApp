@@ -1,4 +1,5 @@
-﻿
+﻿import { apiPort } from "./config.js"
+
 
 let filterBtn = document.querySelector('#show-archived');
 let isShowingArchived = false; 
@@ -8,7 +9,7 @@ filterBtn.addEventListener('click', toggleOrders);
 async function toggleOrders() {
     const tableBody = document.querySelector('table tbody');
 
-    let url = 'https://localhost:7277/api/order/';
+    let url = `https://localhost:${apiPort}/api/order/`;
     if (isShowingArchived) {
         url += 'getActive';
     } else {

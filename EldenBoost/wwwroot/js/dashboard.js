@@ -1,5 +1,8 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
-    const apiBaseUrl = "https://localhost:7277/api";
+﻿
+import { apiPort } from "./config.js"
+
+document.addEventListener('DOMContentLoaded', function () {
+    const apiBaseUrl = `https://localhost:${apiPort}/api`;
 
     // Function to update counts for orders, services, and users
     function updateDashboardCounts() {

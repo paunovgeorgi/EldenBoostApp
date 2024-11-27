@@ -1,4 +1,7 @@
-﻿let filterBtn = document.querySelector('#show-approved');
+﻿import { apiPort } from "./config.js"
+
+
+let filterBtn = document.querySelector('#show-approved');
 let isShowingApproved = false;
 
 
@@ -7,7 +10,7 @@ filterBtn.addEventListener('click', toggleApplications);
 async function toggleApplications() {
     const tableBody = document.querySelector('table tbody');
 
-    let url = 'https://localhost:7277/api/application/';
+    let url = `https://localhost:${apiPort}/api/application/`;
     if (isShowingApproved) {
         url += 'get-pending-author';
     } else {

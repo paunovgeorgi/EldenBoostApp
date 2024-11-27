@@ -1,4 +1,5 @@
-﻿
+﻿import { apiPort } from "./config.js"
+
 const filterBtn = document.querySelector('#show-paid');
 let isShowingPaid = false; 
 
@@ -7,7 +8,7 @@ filterBtn.addEventListener('click', togglePayments);
 async function togglePayments() {
     const tableBody = document.querySelector('table tbody');
 
-    let url = 'https://localhost:7277/api/payment/';
+    let url = `https://localhost:${apiPort}/api/payment/`;
     url += isShowingPaid ? 'getPending' : 'getPaid';
 
     try {

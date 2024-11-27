@@ -1,4 +1,5 @@
-﻿
+﻿import { apiPort } from "./config.js"
+
 let filterBtn = document.querySelector('#show-deactivated');
 let isShowingDeactivated = false;
 
@@ -7,7 +8,7 @@ filterBtn.addEventListener('click', toggleServices);
 async function toggleServices() {
     const tableBody = document.querySelector('table tbody');
 
-    let url = 'https://localhost:7277/api/service/';
+    let url = `https://localhost:${apiPort}/api/service/`;
     if (isShowingDeactivated) {
         url += 'getActive';
     } else {
