@@ -3,6 +3,7 @@ using EldenBoost.Core.Models.Payment;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Linq.Expressions;
 
 namespace EldenBoost.Core.Services
@@ -73,7 +74,19 @@ namespace EldenBoost.Core.Services
                 .AnyAsync(p => p.Id == paymentId);
         }
 
-        public async Task<bool> HasOrdersToRequestAsync(string userId)
+		public async Task<PaymentCountDataModel> GetPaymentCountDataAsync()
+		{
+            int pending = await repository.AllReadOnly<Payment>().CountAsync(p => !p.IsPaid);
+            int paid = await repository.AllReadOnly<Payment>().CountAsync(p => p.IsPaid);
+
+            return new PaymentCountDataModel()
+            {
+                Pending = pending,
+                Paid = paid
+            };
+		}
+
+		public async Task<bool> HasOrdersToRequestAsync(string userId)
         {
             return await repository.AllReadOnly<Booster>()
                 .Where(b => b.UserId == userId)
