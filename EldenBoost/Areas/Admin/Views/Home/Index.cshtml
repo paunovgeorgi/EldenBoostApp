@@ -54,7 +54,10 @@
 		<h3><a asp-area="Admin" asp-controller="Article" asp-action="All" class="dashboard-link btn">Articles</a></h3>
 	</div>
 		<div class="col-3 text-center">
-			<h3><a asp-area="Admin" asp-controller="Application" asp-action="All" class="dashboard-link btn">Applications</a></h3>
+			<div class="lined-title">
+				<h3>Applications</h3>
+			</div>
+
 		</div>
 		<div class="col-3 text-end" style="padding-right: 47px;">
 			<h3><a asp-area="Admin" asp-controller="Payment" asp-action="All" class="dashboard-link btn">Payments</a></h3>
@@ -77,7 +80,7 @@
 		</div>
 	<div class="col-md-4">
 		<div class="card mb-3 dashboard-card text-center">
-			<center><h5>Booster</h5></center>
+			<center><h5><a asp-area="Admin" asp-controller="Application" asp-action="AllBooster" class="dashboard-link btn" style="font-size: 16px;">Booster</a></h5></center>
 			<div class="dashboard-box">
 				<div>
 					<h6>Pending</h6>
@@ -95,7 +98,7 @@
 	</div>
 	<div class="col-md-4">
 		<div class="card mb-3 dashboard-card text-center">
-			<center><h5>Author</h5></center>
+			<center><h5><a asp-area="Admin" asp-controller="Application" asp-action="AllAuthor" class="dashboard-link btn" style="font-size: 16px;">Author</a></h5></center>
 			<div class="dashboard-box">
 				<div>
 					<h6>Pending</h6>

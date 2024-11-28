@@ -47,10 +47,41 @@ a.dashboard-link {
 }
 
     a.dashboard-link:hover {
-        border-color: var(--secondary-dark);
+        border-color: var(--secondary-light);
         color: var(--lightest);
         background-color: transparent;
         border-bottom: 0px;
         border-top: 0px;
         transition: .3s ease;
     }
+
+
+
+
+
+.lined-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+    .lined-title::before,
+    .lined-title::after {
+        content: '';
+        display: block;
+        width: 80px; 
+        height: 1px; 
+        background-color: var(--lightest);
+        position: relative;
+    }
+
+    .lined-title::before {
+        margin-right: 10px;
+    }
+
+    .lined-title::after{
+        margin-left: 10px;
+    }
+
+  
