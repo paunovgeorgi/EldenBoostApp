@@ -8,5 +8,10 @@
 
         public const string AdminRole = "Administrator";
         public const string AdminArea = "Admin";
+
+        public const string PolicyAppURL = "https://localhost:7112";
+
+        public const string OnlineUsersCookieName = "IsOnline";
+        public const int LastActivityBeforeOfflineMinutes = 10;
     }
 }
