@@ -24,14 +24,21 @@ namespace EldenBoost.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error(int? statusCode = null)
+        public IActionResult Error(int statusCode)
         {
-            if (statusCode == 400 || statusCode == 404 || statusCode == 401)
+            if (statusCode == 404)
             {
-                return View("Error400");
+                return View("Error404");
             }
-
-            return View("Error500");
+            else if (statusCode == 403)
+            {
+                return View("Error403");
+            }
+            else if (statusCode == 500)
+            {
+                return View("Error500");
+            }
+            return View();
         }
     }
 }
