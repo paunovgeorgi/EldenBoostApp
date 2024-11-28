@@ -2,7 +2,9 @@ using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Services;
 using EldenBoost.Data;
 using EldenBoost.Infrastructure.Data.Repository;
+using static EldenBoost.Common.Constants.GeneralApplicationConstants;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +33,7 @@ builder.Services.AddCors(setup =>
 {
     setup.AddPolicy("EldenBoost", policyBuilder =>
     {
-        policyBuilder.WithOrigins("https://localhost:7112")
+        policyBuilder.WithOrigins(PolicyAppURL)
         .AllowAnyHeader()
         .AllowAnyMethod();
     });

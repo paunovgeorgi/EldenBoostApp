@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EldenBoost.Common\EldenBoost.Common.csproj" />
     <ProjectReference Include="..\EldenBoost.Core\EldenBoost.Core.csproj" />
     <ProjectReference Include="..\EldenBoost.Infrastructure\EldenBoost.Infrastructure.csproj" />
   </ItemGroup>
