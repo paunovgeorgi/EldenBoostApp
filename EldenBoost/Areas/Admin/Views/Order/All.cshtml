@@ -46,7 +46,10 @@
 
                 </td>
                 <td>
-                        <a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@order.Id" class="btn btn-outline-light">Order Chat</a>
+                    @if (order.Status != "Pending")
+                        {
+                            <a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@order.Id" class="btn btn-outline-light">Order Chat</a>
+                        }
                 </td>
             </tr>
         }
