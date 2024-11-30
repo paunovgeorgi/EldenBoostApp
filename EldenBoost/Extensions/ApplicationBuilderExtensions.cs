@@ -1,4 +1,5 @@
 ﻿using EldenBoost.Infrastructure.Data.Models;
+using EldenBoost.Middlewares;
 using Microsoft.AspNetCore.Identity;
 using static EldenBoost.Common.Constants.GeneralApplicationConstants;
 
@@ -24,6 +25,11 @@ namespace EldenBoost.Extensions
                     await userManager.AddToRoleAsync(admin, role.Name!);
                 }
             }
+        }
+
+        public static IApplicationBuilder EnableOnlineUsersCheck(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<OnlineUserStatusMiddleware>();
         }
     }
 }

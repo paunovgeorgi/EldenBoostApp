@@ -1,4 +1,5 @@
-﻿@model IEnumerable<UserListViewModel>
+﻿@using EldenBoost.Middlewares
+@model IEnumerable<UserListViewModel>
 
 
 @{
@@ -18,6 +19,7 @@
             <th><label>Email</label></th>
             <th><label>Position</label></th>
             <th><label>Total Spent/Earned</label></th>
+            <th><label>User Is Online</label></th>
             <th><label></label></th>
         </tr>
     </thead>
@@ -39,6 +41,16 @@
                         <label>@($"${user.MoneySpent:f2}")</label>
                     }
                 </td>
+                    <td>
+                        @if (OnlineUserStatusMiddleware.CheckIfUserIsOnline(user.UserId))
+                        {
+                            <label>✔</label>
+                        }
+                        else
+                        {
+                            <label>❌</label>
+                        }
+                    </td>
                 <td>
                     @if (user.IsBooster || user.IsAuthor)
                     {
