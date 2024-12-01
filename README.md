@@ -73,7 +73,179 @@ Follow these steps to set up the application after cloning the repository:
 3.  **Database Initialization:**\
     Run the `update-database` command to create and seed the database. The seed data includes:
 
-    -   **Users:** ApplicationUsers, including Clients, Boosters, Authors, and an Admin.
-    -   **Services:** Services, ServiceOptions, and Platforms.
-    -   **Boosters:** Boosters and their associated platforms.
-    -   **Content:** Articles and Reviews.
+    -   **Users:**\
+        The database includes seeded `ApplicationUsers` for different roles:
+
+        -   **Clients:** Seeded users with emails ending in `@client.com`.
+        -   **Boosters:** Seeded users with emails ending in `@booster.com`.
+        -   **Authors:** Seeded users with emails ending in `@author.com`.
+        -   **Admin:** A dedicated admin user with the email `admin@admin.com`. This user is created specifically to manage the admin functionalities of the application.
+    -   **Services:**\
+        Includes a variety of services, service options (for option-based services), and platforms (PC, PlayStation, Xbox).
+
+    -   **Boosters:**\
+        Seeded boosters include their respective platform associations (e.g., PC-only or multi-platform).
+
+    -   **Content:**\
+        Seeded articles and reviews showcase the application's features and serve as initial content.
+  
+USER TYPES AND APP FUNCTIONALITIES
+==================================
+
+USERS
+-----
+
+### Anonymous User
+
+Anonymous users can access the following pages:
+
+-   **Home Page:**\
+    The default page of the application. It serves as an introduction to the website, showcasing what the site offers, customer reviews, the latest guides/news, and featured services. Note: Leaving a review is only possible for registered users (specifically clients who have purchased at least one service).
+
+-   **Popular Services Page:**\
+    Displays the 8 most-purchased services in a visually appealing diamond grid layout.
+
+-   **All Services Page:**\
+    Allows users to browse all available services. Users can:
+
+    -   Customize the number of services displayed per page.
+    -   Sort services by different criteria (e.g., price, popularity).
+    -   Use a search field to find specific services.\
+        By clicking the **Details** button, users can view detailed information about a service.
+-   **All Articles Page:**\
+    Users can browse and sort all articles by type (e.g., News, Guides) or use a search field to find articles. Clicking the **Read** button opens the selected article.
+
+-   **Boosters Page:**\
+    Lists all boosters, displaying their information and ratings.
+
+-   **Themes:**\
+    Users can choose from a variety of themes to customize their UX preferences.
+
+* * * * *
+
+### Registered User
+
+Registered users inherit all the capabilities of anonymous users. By default, registered users are treated as potential **clients** but may also apply for positions (Booster/Author). A registered user gains additional functionalities and restrictions once they make a purchase or their application is approved.
+
+-   **My Profile Page:**\
+    Registered users can change their profile picture here. After becoming a client, booster, or author, the profile page adapts to reflect their new status.
+
+-   **Manage Account Page:**\
+    Registered users can update their account details.
+
+* * * * *
+
+### CLIENT
+
+Once a registered user purchases a service, they are treated as a **Client**. Clients can no longer apply for booster/author positions (and vice versa).
+
+#### Client Functionalities:
+
+1.  **Cart System:**
+
+    -   Clients can add services to their cart, where each service becomes a **CartItem**.
+    -   They can remove individual cart items or clear the entire cart (with confirmation prompts).
+    -   Clicking the **Checkout** button creates a separate **Order** for each cart item.
+        -   **Why separate orders?**\
+            Each purchased service may be handled by a different booster. Additionally, each order includes a unique order chat between the client and assigned booster.
+2.  **My Profile Page:**
+
+    -   Displays **profile stats** such as the total number of orders, total spending, and account level progression.
+    -   Includes a **Loyal Customer Program** visualization, showing progress toward the next level. This program rewards clients with badges and perks at spending thresholds (future perks include discounts and store credit).
+3.  **Order Management:**\
+    Orders are categorized into **Pending**, **Active**, and **Completed**:
+
+    -   **Pending Orders:**\
+        Show basic service details (platform, status, paid amount, additional options).
+    -   **Active Orders:**\
+        Display assigned booster details and include an **Order Chat** button for secure communication. Communication rules are enforced via on-site monitoring, preventing external communication (e.g., Discord/Skype).
+    -   **Completed Orders:**\
+        The order chat is disabled, but clients can now rate their booster via a **Rate** button. Booster ratings are displayed on the **Boosters Page**.
+
+* * * * *
+
+### BOOSTER
+
+To become a booster, a registered user must submit an application detailing their experience, availability, and platforms they boost on.
+
+#### Booster Functionalities:
+
+1.  **Pending Orders Page:**
+
+    -   Boosters see pending orders for the platforms they boost on (e.g., PC, PlayStation).
+    -   Orders include details such as service type, booster pay, and client username.
+    -   Boosters can take orders only if:
+        -   They have no ongoing orders.
+        -   Any ongoing orders are for the same client.
+2.  **My Profile Page:**
+
+    -   Displays **profile stats** such as completed orders, earnings, and payout requests.
+    -   Boosters can request payment if they:
+        -   Have no pending payment requests.
+        -   Have completed orders not yet included in a previous payment.
+3.  **Order Management:**
+
+    -   **Active Orders:** Include an **Order Chat** button for client communication and a **Complete Order** button.
+    -   **Completed Orders:** The booster can no longer modify these orders.
+
+* * * * *
+
+### AUTHOR
+
+To become an author, a registered user must submit an application.
+
+#### Author Functionalities:
+
+1.  **Create Articles:**
+
+    -   Authors can create articles using the **TinyMCE API**. Articles can be categorized as News or Guides.
+2.  **Edit Articles:**
+
+    -   Authors can edit their published articles.
+3.  **My Profile Page:**
+
+    -   Displays **profile stats** such as the number of articles written and their categories.
+
+* * * * *
+
+### ADMIN
+
+The admin has access to a **Dashboard** with real-time updates (every 30 seconds) and the ability to manage all critical entities.
+
+#### Admin Functionalities:
+
+1.  **Orders Management:**
+
+    -   Archive completed orders.
+    -   Access order chats for ongoing/completed orders.
+2.  **Services Management:**
+
+    -   View, edit, or deactivate services.
+    -   Switch between active and deactivated services.
+3.  **Users Management:**
+
+    -   View all registered users, including their roles and online/offline status.
+    -   Promote/demote boosters and authors. Demoted users lose privileges immediately.
+4.  **Articles Management:**
+
+    -   View and edit all articles.
+5.  **Payments Management:**
+
+    -   View pending and paid payments.
+    -   Access details for each order included in payments.
+6.  **Applications Management:**
+
+    -   Approve or decline booster/author applications.
+7.  **Create Services:**\
+    Admins can create 3 service types:
+
+    -   **Basic Service:** A simple service requiring a title, description, image, and price.
+    -   **Slider Service:** A service with a selectable range (e.g., coaching hours, item collection). Requires a max purchasable amount.
+    -   **Option Service:** A service offering multiple options (e.g., boss kills, dungeon runs). Each option includes a name and price.
+
+* * * * *
+
+CONCLUSION
+----------
+
+While this README cannot cover every detail of the application, it provides a clear overview of its structure, features, and functionalities. This should serve as a comprehensive guide for understanding the purpose and capabilities of the application.
