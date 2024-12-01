@@ -7,17 +7,20 @@
 @import url(my-profile.css);
 @import url(chat.css);
 @import url(homepage.css);
+@import url(toastr-notifications.css);
+@import url(dashboard.css);
+
 
 
 :root {
-    --main-dark: #004c4c;
-    --main-light: #006666;
-    --secondary-dark: #008080;
-    --secondary-light: #66b2b2;
-    --lightest: #b2d8d8;
+    --main-dark: #032F30;
+    --main-light: #274D60;
+    --secondary-dark: #0A7075;
+    --secondary-light: #0C969C;
+    --lightest: #6BA3BE;
     --dark-grey-correct: rgba(24, 20, 20, 0.987);
-    --profile-shadow: #00C295;
-    --service-card-shadow: #065F69;
+    --profile-shadow: #6BA3BE;
+    --service-card-shadow: #0A7075;
 }
 
 * {
@@ -34,7 +37,8 @@ html {
 body {
     margin-bottom: 60px;
     color: azure;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.8698880235688025) 50%, rgba(0,102,102,1) 74%);
+    background: rgb(3,23,22);
+    background: linear-gradient(90deg, rgba(3,23,22,1) 0%, rgba(39,77,96,0.8970588919161415) 50%, rgba(3,47,48,1) 100%);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -76,8 +80,8 @@ body {
 }
 
 .nav-custom {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.6698880235688025) 49%, rgba(0,102,102,1) 74%);
+    background: rgb(3,23,22);
+    background: linear-gradient(90deg, rgba(3,23,22,1) 0%, rgba(39,77,96,0.8970588919161415) 50%, rgba(3,47,48,1) 100%);
 }
 
 
@@ -275,4 +279,29 @@ input[type="checkbox"]:focus {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+
+/*-------------- managa nav ---------------*/
+
+.nav-pills .nav-link.active {
+    background-color: var(--main-light);
+}
+
+.nav-pills .nav-link {
+    color: var(--lightest);
+}
+
+html body div.container main.pb-3.min-vh-100 div div.row.justify-content-center div.col-md-9 div.row div.col-md-6 {
+    width: 100%;
+}
+.form-floating {
+    color: var(--main-dark);
+}
+
+
+/*---------------- ERROR PAGE ---------------*/
+.error-img {
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0));
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0));
 }

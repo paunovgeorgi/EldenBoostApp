@@ -6,7 +6,16 @@
     <title>@ViewData["Title"] - EldenBoost</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script>
+        // Apply the saved theme as early as possible
+        const savedTheme = localStorage.getItem('theme') || 'default';
+        const themeLink = document.createElement('link');
+        themeLink.rel = 'stylesheet';
+        themeLink.id = 'theme-stylesheet';
+        themeLink.href = `/css/theme-${savedTheme}.css`;
+        document.head.appendChild(themeLink);
+    </script>
+
     <link rel="stylesheet" href="~/EldenBoost.styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -37,7 +46,7 @@
                         </li>
                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" style="color: var(--lightest)" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Actions
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,6 +80,8 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/toastr/toastr.min.js"></script>
+    <script src="~/js/theme-switcher.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

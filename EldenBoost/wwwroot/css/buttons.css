@@ -25,7 +25,7 @@
 /* -----------------READ BUTTON-----------------*/
 
 .btn-fancy-read {
-    --color: #b2d8d8;
+    --color: var(--lightest);
     padding: 0.4em .9em;
     background-color: transparent;
     border-radius: .3em;
@@ -75,6 +75,8 @@
     .btn-fancy-read:hover {
         /*color: rgb(10, 25, 30);*/
         color: rgba(24, 20, 20, 0.987);
+
+
     }
 
     .btn-fancy-read:active {

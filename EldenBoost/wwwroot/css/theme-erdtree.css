@@ -7,6 +7,9 @@
 @import url(my-profile.css);
 @import url(chat.css);
 @import url(homepage.css);
+@import url(toastr-notifications.css);
+@import url(dashboard.css);
+
 
 
 :root {
@@ -17,7 +20,7 @@
     --lightest: #b2d8d8;
     --dark-grey-correct: rgba(24, 20, 20, 0.987);
     --profile-shadow: #00C295;
-    --service-card-shadow: #065F69;
+    --service-card-shadow: #008080;
 }
 
 * {
@@ -34,7 +37,7 @@ html {
 body {
     margin-bottom: 60px;
     color: azure;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.8698880235688025) 50%, rgba(0,102,102,1) 74%);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.9098880235688025) 50%, rgba(0,102,102,1) 74%);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -275,4 +278,29 @@ input[type="checkbox"]:focus {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+
+/*-------------- managa nav ---------------*/
+
+.nav-pills .nav-link.active {
+    background-color: var(--main-light);
+}
+
+.nav-pills .nav-link {
+    color: var(--lightest);
+}
+
+html body div.container main.pb-3.min-vh-100 div div.row.justify-content-center div.col-md-9 div.row div.col-md-6 {
+    width: 100%;
+}
+
+.form-floating {
+    color: var(--main-dark);
+}
+
+/*---------------- ERROR PAGE ---------------*/
+.error-img {
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0));
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0));
 }

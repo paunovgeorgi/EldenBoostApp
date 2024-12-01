@@ -27,8 +27,11 @@
     }
 
     .custom-card:hover {
-         background-color: rgba(24, 20, 20, 0.96);
-        transition: background .3s ease;
+        background-color: rgba(24, 20, 20, 0.96);
+        box-shadow: 0px 6px 16px 0px var(--service-card-shadow);
+        -webkit-box-shadow: 0px 6px 16px 0px var(--service-card-shadow);
+        -moz-box-shadow: 0px 6px 16px 0px var(--service-card-shadow);
+        transition: background .3s ease, box-shadow .3s ease text-shadow .3s ease;
     }
 
 .custom-card:hover img {
@@ -38,14 +41,15 @@
         .custom-card:hover .card-body h4,
         .custom-card:hover .card-body h5 {
             color: white;
-            text-shadow: 0px 9px 20px var(--service-card-shadow), 0px 4px 4px var(--service-card-shadow);
+            text-shadow: 0px 4px 10px var(--service-card-shadow), 0px 4px 4px var(--service-card-shadow);
         }
 
-    .custom-card:hover {
-        -webkit-box-shadow: 0px 8px 28px 0px var(--service-card-shadow);
-        -moz-box-shadow: 0px 8px 28px 0px var(--service-card-shadow);
-        box-shadow: 0px 8px 28px 0px var(--service-card-shadow);
-    }
+  /*  .custom-card:hover {
+        -webkit-box-shadow: 0px 8px 18px 0px var(--service-card-shadow);
+        -moz-box-shadow: 0px 8px 18px 0px var(--service-card-shadow);
+        box-shadow: 0px 8px 18px 0px var(--service-card-shadow);
+        transition: .3s ease;
+    }*/
 
 .custom-card .card-body {
     padding: .75rem;
@@ -68,7 +72,8 @@
 
     .custom-card .btn-details {
         margin-top: .5rem;
-        background-color: var(--secondary-dark);
+        /*     background-color: var(--secondary-dark);*/
+        background-color: var(--main-light);
         color: aliceblue;
         font-size: 1rem;
         padding: 0.25rem 1.25rem;
@@ -77,8 +82,8 @@
     }
 
         .custom-card .btn-details:hover {
-            background-color: var(--main-light);
-            
+            /*    background-color: var(--main-light);*/
+            background-color: var(--secondary-dark);
         }
 
     .custom-card .btn-delete {
@@ -157,12 +162,16 @@
 }
 
 
-.article-card-news{
-    color:deepskyblue;
+.article-card-news {
+    color: deepskyblue;
+    color: var(--main-light);
+    filter: brightness(1.5);
 }
 
 .article-card-guide {
     color: var(--secondary-light);
+    color: var(--secondary-dark);
+    filter: brightness(1.3);
 }
 
 
