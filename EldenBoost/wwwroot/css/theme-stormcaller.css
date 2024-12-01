@@ -304,4 +304,7 @@ html body div.container main.pb-3.min-vh-100 div div.row.justify-content-center 
 .error-img {
     mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0));
     -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0));
+    max-height: 90vh;
+    object-fit: cover;
+    object-position: center;
 }
