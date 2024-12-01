@@ -1,3 +1,38 @@
+EldenBoost Application
+======================
+
+This application was developed as a graduate project for SoftUni's C# Web Development career program.
+
+About EldenBoostApp
+-------------------
+
+The **EldenBoostApp** is an Elden Ring game boosting application. Before diving into the technical details, let's first understand what a game boosting service is.
+
+A game boosting service (in this case for Elden Ring) allows a client to pay a professional player (a booster) to log in to their account and achieve in-game goals that the client cannot or chooses not to achieve themselves.
+
+These services vary widely depending on the game but often include:
+
+-   Completing specific quests requiring advanced skills or additional party members.
+-   Leveling up characters to save time for clients who prefer to enjoy the game during weekends but lack the time to grind for levels or items during the week.
+
+While Elden Ring serves as the focus for this application, the underlying logic and architecture can be adapted to other games.
+
+We will explore the app's functionalities in more detail in the following sections.
+
+* * * * *
+
+Technologies Used
+-----------------
+
+-   **Languages & Frameworks:**\
+    C#, ASP.NET MVC, Entity Framework Core, MSSQL, JavaScript, SignalR, HTML, CSS, Bootstrap
+-   **Additional Tools:**\
+    SweetAlert2, Toastr, TinyMCE API
+-   **Browser Compatibility:**\
+    Mainly developed and tested on Mozilla Firefox.
+
+* * * * *
+
 Application Structure
 ---------------------
 
