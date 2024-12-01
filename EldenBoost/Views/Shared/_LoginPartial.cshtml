@@ -31,11 +31,25 @@
                 <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .5;" asp-area="" asp-controller="Application" asp-action="SubmitAuthor">Become Author</a>
             </div>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="themeDropdown" role="button" data-bs-toggle="dropdown">
+                Themes
+            </a>
+            <ul class="dropdown-menu bg-dark pb-0" style=" --bs-bg-opacity: .4;">
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="default" href="#">Blade of Miquella</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="stormcaller" href="#">Stormcaller</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="night" href="#">Eldritch Night</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="eternity" href="#">Prism of Eternity</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="hollow" href="#">Ashen Hollow</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="erdtree" href="#">Erdtree Veil</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="twilight" href="#">Amethyst Twilight</a></li>
+            </ul>
+        </li>
     }
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @userName!</a>
+            <span class="nav-link text-light">Hello, @userName!</span>
         </li>
         if (!User.IsAdmin() && !isBooster && !isAuthor)
         {
@@ -73,8 +87,10 @@
                 {
                     <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="" asp-controller="User" asp-action="MyProfile">My Profile</a>
                 }
+                <a class="dropdown-item text-light bg-dark pb-2" style="--bs-bg-opacity: .4;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a>
             </div>
         </li>
+
         @if (!User.IsAdmin() && !isBooster && !isAuthor && !hasOrders)
         {
             <li class="nav-item dropdown">
@@ -87,6 +103,20 @@
                 </div>
             </li>
         }
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="themeDropdown" role="button" data-bs-toggle="dropdown">
+                Themes
+            </a>
+            <ul class="dropdown-menu bg-dark pb-0" style=" --bs-bg-opacity: .4;">
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="default" href="#">Blade of Miquella</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="stormcaller" href="#">Stormcaller</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="night" href="#">Eldritch Night</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="eternity" href="#">Prism of Eternity</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="hollow" href="#">Ashen Hollow</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="erdtree" href="#">Erdtree Veil</a></li>
+                <li><a class="dropdown-item theme-switcher text-light bg-dark" style="--bs-bg-opacity: .4;" data-theme="twilight" href="#">Amethyst Twilight</a></li>
+            </ul>
+        </li>
         if (User.IsAdmin())
         {
             <li class="nav-item">
@@ -99,6 +129,7 @@
                 <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
             </form>
         </li>
+
     }
     else
     {
