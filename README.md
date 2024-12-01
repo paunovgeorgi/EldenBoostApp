@@ -109,7 +109,7 @@ Anonymous users can access the following pages:
     Allows users to browse all available services. Users can:
 
     -   Customize the number of services displayed per page.
-    -   Sort services by different criteria (e.g., price, popularity).
+    -   Sort services by different criteria (e.g., price, date).
     -   Use a search field to find specific services.\
         By clicking the **Details** button, users can view detailed information about a service.
 -   **All Articles Page:**\
