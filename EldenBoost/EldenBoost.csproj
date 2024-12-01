@@ -8,17 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\Error400.cshtml" />
+    <Content Remove="wwwroot\js\config.js" />
     <Content Remove="wwwroot\js\order-details-modal.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Home\Error400.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\config.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\order-details-modal.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\Error400.cshtml" />
+    <None Include="wwwroot\js\config.js" />
     <None Include="wwwroot\js\order-details-modal.js" />
   </ItemGroup>
 
@@ -40,10 +40,6 @@
     <ProjectReference Include="..\EldenBoost.Common\EldenBoost.Common.csproj" />
     <ProjectReference Include="..\EldenBoost.Core\EldenBoost.Core.csproj" />
     <ProjectReference Include="..\EldenBoost.Infrastructure\EldenBoost.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Home\Error400.cshtml" />
   </ItemGroup>
 
 </Project>
