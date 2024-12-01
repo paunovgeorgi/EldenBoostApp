@@ -15,7 +15,7 @@ namespace EldenBoost.Tests.Mocks
             get
             {
                 var dbContextOptions = new DbContextOptionsBuilder<EldenBoostDbContext>()
-                    .UseInMemoryDatabase("HouseRentingInMemoryDb" + DateTime.Now.Ticks.ToString())
+                    .UseInMemoryDatabase("EldenBoostInMemoryDb" + DateTime.Now.Ticks.ToString())
                     .Options;
 
                 return new EldenBoostDbContext(dbContextOptions);
