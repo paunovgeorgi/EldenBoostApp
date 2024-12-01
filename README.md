@@ -81,6 +81,7 @@ Follow these steps to set up the application after cloning the repository:
         -   **Boosters:** Seeded users with emails ending in `@booster.com`.
         -   **Authors:** Seeded users with emails ending in `@author.com`.
         -   **Admin:** A dedicated admin user with the email `admin@admin.com`. This user is created specifically to manage the admin functionalities of the application.
+        -   **Note:** The email suffixes indicate the intended roles of the users; however, users remain standard users by default. To become a booster or author, they must submit an application and have it approved.  
     -   **Services:**\
         Includes a variety of services, service options (for option-based services), and platforms (PC, PlayStation, Xbox).
 
@@ -113,6 +114,7 @@ Anonymous users can access the following pages:
     -   Sort services by different criteria (e.g., price, date).
     -   Use a search field to find specific services.\
         By clicking the **Details** button, users can view detailed information about a service.
+    - Choose from additional options like **Stream**, **Express**, and **Select Platform**. Depending on the service type, the page may also include a slider for level selection or a dropdown menu for choosing specific options. (Add to Cart works only for registered users).   
 -   **All Articles Page:**\
     Users can browse and sort all articles by type (e.g., News, Guides) or use a search field to find articles. Clicking the **Read** button opens the selected article.
 
