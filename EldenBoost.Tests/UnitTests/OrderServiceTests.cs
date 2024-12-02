@@ -1,5 +1,6 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Services;
+using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -112,6 +113,186 @@ namespace EldenBoost.Tests.UnitTests
             //Assert
             Assert.IsNull(order);
         }
+
+        [Test]
+        public async Task AllOrdersFilteredAsync_ShouldReturnCorrectOrder()
+        {
+            //Arrange
+            string expectedStatus = "Pending";
+            int expectedAmount = 1;
+
+            //Act
+            var orders = await orderService.AllOrdersFilteredAsync(o => o.Status == expectedStatus);
+
+            //Assert
+            Assert.IsNotEmpty(orders);
+            Assert.That(orders.Count(), Is.EqualTo(expectedAmount));
+        }
+
+        [Test]
+        public async Task ArchiveAsync_ShouldWorkCorrectly()
+        {
+            //Arrange
+            int orderId = Order.Id;
+
+            //Assert
+            Assert.IsFalse(Order.IsArchived);
+
+            //Act
+            await orderService.ArchiveAsync(orderId);
+
+            //Assert
+            Assert.IsTrue(Order.IsArchived);
+        }
+
+        [Test]
+        public async Task AssignBoosterAsync_ShouldWorkCorrectly()
+        {
+            //Arrange
+            int orderId = Order.Id;
+            int boosterId = Booster.Id;
+
+            Assert.IsNull(Order.BoosterId);
+
+            //Act
+            await orderService.AssignBoosterAsync(orderId, boosterId);
+
+            //Assert
+            Assert.IsNotNull(Order.BoosterId);
+            Assert.That(Order.BoosterId, Is.EqualTo(boosterId));
+
+            //Cleanup
+            Order.BoosterId = null;
+            Order.Status = "Pending";
+            await data.SaveChangesAsync();
+        }
+
+        [Test]
+        public async Task CompleteAsync_ShouldChangeOrderStatusTo_Completed()
+        {
+            //Arrange
+            int orderId = Order.Id;
+            string currentStatus = "Pending";
+            string updatedStatus = "Completed";
+
+            Assert.That(Order.Status, Is.EqualTo(currentStatus));
+
+            //Act
+            await orderService.CompleteAsync(orderId);
+
+            //Assert
+            Assert.That(Order.Status, Is.EqualTo(updatedStatus));
+
+            //Cleanup
+            Order.Status = "Pending";
+            await data.SaveChangesAsync();
+        }
+
+        [Test]
+        public async Task CreateOrdersFromCartAsync_ShouldCreateOrdersFromCartItems()
+        {
+            // Arrange
+            Service.PurchaseCount = 1;
+            Cart cart = new Cart
+            {
+                Id = 1,
+                ClientId = User.Id
+            };
+            cart.CartItems.Add(CartItem);
+            // Act
+            await orderService.CreateOrdersFromCartAsync(cart.Id, User.Id);
+
+            // Assert
+            Assert.That(Service.PurchaseCount, Is.EqualTo(2));
+            Assert.That(data.Orders.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public async Task ExistsByIdAsync_ShouldReturnTrue_WithCorrectId()
+        {
+            //Arrange
+            int orderId = Order.Id;
+
+            //Act
+            bool exists = await orderService.ExistsByIdAsync(orderId);
+
+            //Assert
+            Assert.IsTrue(exists);
+        }
+
+        [Test]
+        public async Task ExistsByIdAsync_ShouldReturnFalse_WithIncorrectId()
+        {
+            //Arrange
+            int orderId = 100;
+
+            //Act
+            bool exists = await orderService.ExistsByIdAsync(orderId);
+
+            //Assert
+            Assert.IsFalse(exists);
+        }
+
+        [Test]
+        public async Task GetOrderCountDataAsync_ShouldReturnCorrectData()
+        {
+            //Arrange
+            int pending = 2;
+            int working = 0;
+            int completed = 0;
+            int total = 2;
+
+            //Act
+            var orderData = await orderService.GetOrderCountDataAsync();
+
+            //Assert
+            Assert.That(orderData.Pending, Is.EqualTo(pending));
+            Assert.That(orderData.Working, Is.EqualTo(working));
+            Assert.That(orderData.Completed, Is.EqualTo(completed));
+            Assert.That(orderData.Total, Is.EqualTo(total));
+
+            Order.Status = "Completed";
+            await data.SaveChangesAsync();
+
+            var newData = await orderService.GetOrderCountDataAsync();
+
+            Assert.That(newData.Completed, Is.EqualTo(1));
+
+            //Cleanup
+            Order.Status = "Pending";
+            await data.SaveChangesAsync();
+        }
+
+        [Test]
+        public async Task GetOrderDetailsAsync_ShouldReturnCorrectOrderDetails()
+        {
+            //Arrange
+            int orderId = Order.Id;
+            string expectedServiceTitle = Order.Service.Title;
+            decimal expectedBoosterPay = Order.BoosterPay;
+
+            //Act
+            var order = await orderService.GetOrderDetailsAsync(orderId);
+
+            //Assert
+            Assert.IsNotNull(order);
+            Assert.That(order.ServiceName, Is.EqualTo(expectedServiceTitle));
+            Assert.That(order.BoosterPay, Is.EqualTo(expectedBoosterPay));
+        }
+
+        [Test]
+        public async Task GetOrderDetailsAsync_ReturnsNull_WithInvalid()
+        {
+            //Arrange
+            int invalidId = 100;
+
+            //Act
+            var order = await orderService.GetOrderDetailsAsync(invalidId);
+
+            //Assert
+            Assert.IsNull(order);
+        }
+
 
     }
 }
