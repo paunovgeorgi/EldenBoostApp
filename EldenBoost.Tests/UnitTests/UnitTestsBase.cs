@@ -169,7 +169,7 @@ namespace EldenBoost.Tests.UnitTests
                 CartId = 1,
                 ServiceId = Service.Id,
                 PlatformId = Platform.Id,
-                Price = 50,
+                Price = Service.Price,
                 HasStream = true,
                 IsExpress = false,
                 OptionId = null,

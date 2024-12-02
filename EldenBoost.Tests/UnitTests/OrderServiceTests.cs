@@ -293,6 +293,209 @@ namespace EldenBoost.Tests.UnitTests
             Assert.IsNull(order);
         }
 
+        [Test]
+        public async Task GetOrderWithBoosterByOrderIdAsync_ShouldWorkCorrectly()
+        {
+            //Arrange
+            Booster.Orders.Add(Order);
+            Order.BoosterId = Booster.Id;
+            await data.SaveChangesAsync();
 
+            //Act
+            var order = await orderService.GetOrderWithBoosterByOrderIdAsync(Order.Id);
+
+            //Assert
+            Assert.IsNotNull(order);
+            Assert.IsNotNull(order.Booster);
+            Assert.That(order.BoosterId, Is.EqualTo(Booster.Id));
+            Assert.That(order.Id, Is.EqualTo(Order.Id));
+
+            //CleanUp
+            Booster.Orders.Remove(Order);
+            Order.BoosterId = null;
+            await data.SaveChangesAsync();
+        }
+
+        [Test]
+        public async Task GetOrderWithBoosterByOrderIdAsync_ShouldReturnNull_WithInvalidId()
+        {
+            //Arrange
+            int invalidId = 100;
+
+            //Act
+            var order = await orderService.GetOrderWithBoosterByOrderIdAsync(invalidId);
+
+            //Assert
+            Assert.IsNull(order);
+        }
+
+        [Test]
+        public async Task GetOrderWithClientByIdAsync_ShouldWorkCorrectly()
+        {
+            //Arrange
+            int orderId = Order.Id;
+            string expectedClientId = User.Id;
+
+            //Act
+            var order = await orderService.GetOrderWithClientByIdAsync(orderId);
+
+            //Assert
+            Assert.IsNotNull(order);
+            Assert.IsNotNull(order.Client);
+            Assert.That(order.Client.Id, Is.EqualTo(expectedClientId));
+        }
+
+        [Test]
+        public async Task GetOrderWithClientByIdAsync_ShouldReturnNull_WithInvalidOrderId()
+        {
+            //Arrange
+            int invalidId = 100;
+
+            //Act
+            var order = await orderService.GetOrderWithClientByIdAsync(invalidId);
+
+            //Assert
+            Assert.IsNull(order);
+        }
+
+        [Test]
+        public async Task HasBoosterWithIdAsync_ShouldReturnTrue()
+        {
+            //Arrange
+            Order.BoosterId = Booster.Id;
+            Booster.Orders.Add(Order);
+            await data.SaveChangesAsync();
+
+            //Act
+            var result = await orderService.HasBoosterWithIdAsync(Order.Id, Booster.Id);
+
+            //Assert
+            Assert.IsTrue(result);
+
+            //Cleanup
+            Booster.Orders.Remove(Order);
+            Order.BoosterId = null;
+            await data.SaveChangesAsync();
+        }
+
+        [Test]
+        public async Task HasBoosterWithIdAsync_ShouldReturnFalse_WithValidOrderId_WithoutExpectedBooster()
+        {
+            //Arrange
+            int orderId = Order.Id;
+            int boosterId = Booster.Id;
+
+            //Act
+            var result = await orderService.HasBoosterWithIdAsync(orderId, boosterId);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public async Task HasBoosterWithIdAsync_ShouldReturnFalse_WithInvalidOrderId()
+        {
+            //Arrange
+            int invalidOrderId = 100;
+            int boosterId = Booster.Id;
+
+            //Act
+            var result = await orderService.HasBoosterWithIdAsync(invalidOrderId, Booster.Id);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public async Task HasBoosterWithIdAsync_ShouldReturnFalse_WithValidOrderId_AndInvalidBoosterId()
+        {
+            //Arrange
+            Order.BoosterId = Booster.Id;
+            await data.SaveChangesAsync();
+            int orderId = Order.Id;
+            int invalidBoosterId = 100;
+
+            //Act
+            var result = await orderService.HasBoosterWithIdAsync(orderId, invalidBoosterId);
+
+            //Assert
+            Assert.IsFalse(result);
+
+            //Cleanup
+            Order.BoosterId = null;
+        }
+
+        [Test]
+        public async Task IsTakenAsync_ShouldReturnTrue_WithCorrectOrderId()
+        {
+            //Arrange
+            Order.BoosterId = Booster.Id;
+            int orderId = Order.Id;
+
+            //Act
+            bool result = await orderService.IsTakenAsync(Order.Id);
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task IsTakenAsync_ShouldReturnFalse_WithOrderWithoutBooster()
+        {
+            //Arrange
+            int orderId = Order.Id;
+
+            //Act
+            bool result = await orderService.IsTakenAsync(orderId);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public async Task NumberOfOrdersByClientIdAsync_ShouldWorkCorrectly()
+        {
+            //Arrange
+            int expected = 2;
+            string clientId = User.Id;
+            string check = Order.ClientId;
+
+            //Act
+            int result = await orderService.NumberOfOrdersByClientIdAsync(clientId);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expected));
+
+            //Arrange
+            Order.ClientId = "differentClient";
+            await data.SaveChangesAsync();
+            int modifiedExpected = 1;
+
+            //Act
+            int modifiedResult = await orderService.NumberOfOrdersByClientIdAsync(clientId);
+
+            //Assert
+            Assert.That(modifiedExpected, Is.EqualTo(modifiedResult));
+
+            //Cleanup
+            Order.ClientId = User.Id;
+            await data.SaveChangesAsync();
+        }
+
+        [Test]
+        public async Task TotalPaidByClientIdAsync_ShouldReturnCorrectAmount()
+        {
+            //Arrange
+            
+            decimal expected = 600;
+            string clienId = User.Id;
+
+            //Act
+            decimal result = await orderService.TotalPaidByClientIdAsync(clienId);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expected));
+
+        }
     }
 }
