@@ -81,7 +81,7 @@ Follow these steps to set up the application after cloning the repository:
         -   **Boosters:** Seeded users with emails ending in `@booster.com`.
         -   **Authors:** Seeded users with emails ending in `@author.com`.
         -   **Admin:** A dedicated admin user with the email `admin@admin.com`. This user is created specifically to manage the admin functionalities of the application.
-        -   **Note:** The email suffixes indicate the intended roles of the users; however, users remain standard users by default. To become a booster or author, they must submit an application and have it approved.  
+        -   **Note:** The @client.com email suffixes indicate the intended roles of the users; however, users remain standard users by default. Unless you make a purchase they can still apply for Booster or Author position.
     -   **Services:**\
         Includes a variety of services, service options (for option-based services), and platforms (PC, PlayStation, Xbox).
 
