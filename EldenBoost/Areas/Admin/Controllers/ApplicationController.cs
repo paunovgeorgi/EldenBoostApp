@@ -1,6 +1,7 @@
 ﻿using EldenBoost.Common.Enumerations;
 using EldenBoost.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using static EldenBoost.Common.Constants.NotificationConstants;
 
 namespace EldenBoost.Areas.Admin.Controllers
 {
@@ -32,6 +33,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         {
             await applicationService.ApproveBoosterAsync(id);
 
+            TempData[SuccessMessage] = "Booster appliction has been approved!";
             return RedirectToAction(nameof(AllBooster));
         }
 
@@ -40,6 +42,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         {
             await applicationService.ApproveAuthorAsync(id);
 
+            TempData[SuccessMessage] = "Author appliction has been approved!";
             return RedirectToAction(nameof(AllAuthor));
         }
 
@@ -48,6 +51,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         {
             await applicationService.RejectAsync(id);
 
+            TempData[SuccessMessage] = "Application has been rejected!";
             return RedirectToAction(returnUrl);
         }
     }
