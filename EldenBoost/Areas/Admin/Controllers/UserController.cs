@@ -1,6 +1,6 @@
 ﻿using EldenBoost.Core.Contracts;
-using EldenBoost.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using static EldenBoost.Common.Constants.NotificationConstants; 
 
 namespace EldenBoost.Areas.Admin.Controllers
 {
@@ -24,6 +24,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         {
             await userService.DemoteAsync(userId);
 
+            TempData[SuccessMessage] = "User successfully Demoted!";
             return RedirectToAction(nameof(All));
         }
 
@@ -32,6 +33,7 @@ namespace EldenBoost.Areas.Admin.Controllers
         {
             await userService.ReinstateAsync(userId);
 
+            TempData[SuccessMessage] = "User successfully Reinstated!";
             return RedirectToAction(nameof(All));
         }
     }
