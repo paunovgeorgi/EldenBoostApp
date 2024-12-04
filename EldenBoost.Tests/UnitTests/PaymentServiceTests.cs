@@ -31,7 +31,7 @@ namespace EldenBoost.Tests.UnitTests
             await paymentService.CreatePaymentAsync(userId);
 
             //Assert
-            Assert.That(expectedCount, Is.EqualTo(data.Payments.Count()), "After CreateReviewAsync reviews count should be = 2");
+            Assert.That(expectedCount, Is.EqualTo(data.Payments.Count()), "After CreatePaymentsync payments count should be = 1");
         }
 
         [Test]
@@ -190,6 +190,21 @@ namespace EldenBoost.Tests.UnitTests
 
             //Assert
             Assert.That(expectedAmounnt, Is.EqualTo(result));
+        }
+
+        [Test]
+        public async Task GetPaymentCountDataAsync_ShouldReturnCorrectData()
+        {
+            //Arrange
+            int expectedPending = 1;
+            int expectedPaid = 0;
+
+            //Act
+            var data = await paymentService.GetPaymentCountDataAsync();
+
+            //Assert
+            Assert.That(data.Pending, Is.EqualTo(expectedPending));
+            Assert.That(data.Paid, Is.EqualTo(expectedPaid));
         }
     }
 }

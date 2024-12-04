@@ -174,6 +174,25 @@ namespace EldenBoost.Tests.UnitTests
             // Assert
             Assert.IsFalse(Author.IsDemoted);
         }
+
+        [Test]
+        public async Task GetUserCountDataAsync_ShouldReturnCorrectData()
+        {
+            //Arrange
+            int expectedClients = 0;
+            int expectedBoosters = 1;
+            int expectedAuthors = 1;
+            int expectedTotal = 3;
+
+            //Act
+            var data = await userService.GetUserCountDataAsync();
+
+            //Assert
+            Assert.That(data.Clients, Is.EqualTo(expectedClients));
+            Assert.That(data.Boosters, Is.EqualTo(expectedBoosters));
+            Assert.That(data.Authors, Is.EqualTo(expectedAuthors));
+            Assert.That(data.Total, Is.EqualTo(expectedTotal));
+        }
     }
 }
 
