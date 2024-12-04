@@ -2,11 +2,6 @@
 using EldenBoost.Core.Services;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Tests.UnitTests
 {
@@ -496,6 +491,31 @@ namespace EldenBoost.Tests.UnitTests
             //Assert
             Assert.That(result, Is.EqualTo(expected));
 
+        }
+
+        [Test]
+        public async Task GetOrderCountDataAsync_ShouldReturnCorrectOrdersData()
+        {
+            //Arrange
+            Order.Status = "Completed";
+            await data.SaveChangesAsync();
+            int expectedPending = 1;
+            int expectedWorking = 0;
+            int expectedCompleted = 1;
+            int expectedTotal = 2;
+
+            //Act
+            var orderData = await orderService.GetOrderCountDataAsync();
+
+            //Assert
+            Assert.That(orderData.Pending, Is.EqualTo(expectedPending));
+            Assert.That(orderData.Working, Is.EqualTo(expectedWorking));
+            Assert.That(orderData.Completed, Is.EqualTo(expectedCompleted));
+            Assert.That(orderData.Total, Is.EqualTo(expectedTotal));
+
+            //Cleanup
+            Order.Status = "Pending";
+            await data.SaveChangesAsync();
         }
     }
 }
