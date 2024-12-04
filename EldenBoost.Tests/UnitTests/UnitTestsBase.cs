@@ -39,6 +39,9 @@ namespace EldenBoost.Tests.UnitTests
 
         public Review Review { get; set; }
 
+        public Application AuthorApplication { get; set; }
+        public Application BoosterApplication { get; set; }
+
         public void SeedDataBase()
         {
             User = new ApplicationUser()
@@ -218,6 +221,29 @@ namespace EldenBoost.Tests.UnitTests
                 ReviewDate = new DateTime(2024, 9, 3)
             };
             data.Reviews.Add(Review);
+
+            AuthorApplication = new Application()
+            {
+                Id = 1,
+                UserId = "UserApplyingForAuthor",
+                Country = "Atlantis",
+                Experience = "Plenty of experience.",
+                ApplicationType = ApplicationType.Author,
+                Availability = 4
+            };
+            data.Applications.Add(AuthorApplication);
+
+            BoosterApplication = new Application()
+            {
+                Id = 2,
+                UserId = "UserApplyingForBooster",
+                Country = "Nebula",
+                Experience = "Boosting for many years, top ranked player.",
+                ApplicationType = ApplicationType.Booster,
+                Availability = 9
+            };
+            BoosterApplication.Platforms.Add(Platform);
+            data.Applications.Add(BoosterApplication);
 
             data.SaveChanges();
         }
