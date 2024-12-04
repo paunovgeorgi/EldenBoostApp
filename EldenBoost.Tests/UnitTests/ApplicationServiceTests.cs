@@ -143,7 +143,7 @@ namespace EldenBoost.Tests.UnitTests
         }
 
         [Test]
-        public async Task GetApplicationCaountDataAsync_ShouldReturnCorrectData()
+        public async Task GetApplicationCountDataAsync_ShouldReturnCorrectData()
         {
             //Assert
             int expectedBoosterPending = 1;
@@ -152,7 +152,7 @@ namespace EldenBoost.Tests.UnitTests
             int expectedAuthorApproved = 1;
 
             //Act
-            var appData = await applicationService.GetApplicationCaountDataAsync();
+            var appData = await applicationService.GetApplicationCountDataAsync();
 
             //Assert
             Assert.That(appData.BoosterPending, Is.EqualTo(expectedBoosterPending));

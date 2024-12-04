@@ -109,7 +109,7 @@ namespace EldenBoost.WebApi.Controllers
 		{
 			try
 			{
-				var data = await applicationService.GetApplicationCaountDataAsync();
+				var data = await applicationService.GetApplicationCountDataAsync();
 				return Ok(data);
 			}
 			catch (Exception ex)
