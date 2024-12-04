@@ -127,7 +127,7 @@ namespace EldenBoost.Core.Services
             await repository.SaveChangesAsync();
         }
 
-		public async Task<ApplicationCountDataModel> GetApplicationCaountDataAsync()
+		public async Task<ApplicationCountDataModel> GetApplicationCountDataAsync()
 		{
             int boosterPending = await repository.AllReadOnly<Application>().CountAsync(a => !a.IsApproved && a.ApplicationType == ApplicationType.Booster);
             int boosterApproved = await repository.AllReadOnly<Application>().CountAsync(a => a.IsApproved && a.ApplicationType == ApplicationType.Booster);
@@ -154,7 +154,7 @@ namespace EldenBoost.Core.Services
         {
             Application? application = await repository.GetByIdAsync<Application>(applicationId);
 
-            if (application != null)
+            if (application != null && application.IsApproved == false)
             {
                 application.IsRejected = true;
                 await repository.SaveChangesAsync();
