@@ -284,6 +284,25 @@ namespace EldenBoost.Tests.UnitTests
             //Assert
             Assert.That(services.First().Id, Is.EqualTo(expectedId));
         }
+
+        [Test]
+        public async Task GetServiceCountDataAsync_ShouldReturnCorrectData()
+        {
+            //Arrange
+            int expectedTotal = 3;
+            int expectedStandard = 1;
+            int expectedSlider = 1;
+            int expectedOption = 1;
+
+            //Act
+            var data = await serviceService.GetServiceCountDataAsync();
+
+            //Assert
+            Assert.That(data.Standard, Is.EqualTo(expectedStandard));
+            Assert.That(data.Slider, Is.EqualTo(expectedSlider));
+            Assert.That(data.Option, Is.EqualTo(expectedOption));
+            Assert.That(data.Total, Is.EqualTo(expectedTotal));
+        }
     }
 }
 
