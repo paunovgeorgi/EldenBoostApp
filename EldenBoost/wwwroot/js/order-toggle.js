@@ -48,7 +48,7 @@ async function toggleOrders() {
                     : ''}
                 </td>
                 <td>
-                    ${order.status !== 'Pending' ? `<a href="/Chat/OrderChat/${order.id}?area=" class="btn btn-outline-light">Order Chat</a>` : ''}  
+                    ${order.status !== 'Pending' ? `<a href="/Chat/OrderChat/${order.id}?area=" class="btn btn-outline-light" target="_blank">Order Chat</a>` : ''}  
                 </td>
             `;
 
