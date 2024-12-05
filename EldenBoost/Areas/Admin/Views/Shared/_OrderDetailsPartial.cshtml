@@ -22,6 +22,7 @@
             <td><label>@(Model.HasStream ? "✔" : "❌")</label></td>
             <td><label>@(Model.IsExpress ? "✔" : "❌")</label></td>
             <td><label>@($"${Model.BoosterPay:F2}")</label></td>
+            <td><label> <a asp-controller="Chat" asp-area="" asp-action="OrderChat" asp-route-id="@Model.Id" class="btn btn-outline-light" target="_blank">Order Chat</a></label></td>
         </tr>
     </tbody>
 </table>
