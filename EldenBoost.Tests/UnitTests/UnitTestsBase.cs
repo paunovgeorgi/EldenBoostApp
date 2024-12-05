@@ -33,6 +33,7 @@ namespace EldenBoost.Tests.UnitTests
         public ServiceOption ServiceOption2 { get; set; }
         public Platform Platform { get; set; }
 
+        public Cart Cart { get; set; }
         public CartItem CartItem { get; set; }
         public Order Order { get; set; }
         public Article Article { get; set; }
@@ -49,7 +50,7 @@ namespace EldenBoost.Tests.UnitTests
                 Id = "ClientUserId",
                 Email = "client@client.com",
                 Nickname = "The Client",
-                ProfilePicture = "ClientPicture"
+                ProfilePicture = "ClientPicture",
             };
 
             data.Users.Add(User);
@@ -181,6 +182,15 @@ namespace EldenBoost.Tests.UnitTests
             };
 
             data.CartItems.Add(CartItem);
+
+            Cart = new Cart()
+            {
+                Id = 10,
+                ClientId = User.Id,
+                Client = User
+            };
+
+            data.Carts.Add(Cart);
 
             Order = new Order()
             {

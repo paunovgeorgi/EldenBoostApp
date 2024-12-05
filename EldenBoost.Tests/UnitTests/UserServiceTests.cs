@@ -179,7 +179,7 @@ namespace EldenBoost.Tests.UnitTests
         public async Task GetUserCountDataAsync_ShouldReturnCorrectData()
         {
             //Arrange
-            int expectedClients = 0;
+            int expectedClients = 1;
             int expectedBoosters = 1;
             int expectedAuthors = 1;
             int expectedTotal = 3;
