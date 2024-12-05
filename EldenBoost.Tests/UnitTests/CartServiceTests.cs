@@ -40,13 +40,64 @@ namespace EldenBoost.Tests.UnitTests
 
             //Assert current conditions
             Assert.IsEmpty(Cart.CartItems);
+            Assert.That(Cart.CartItems.Count(), Is.EqualTo(currentCount));
 
             //Act
             await cartService.AddToCartAsync(userId, serviceId, platformId, updatedPrice, hasStream, isExpress, optionId, sliderValue);
             
             //Assert
             Assert.IsNotEmpty(Cart.CartItems);
+            Assert.That(Cart.CartItems.Count(), Is.EqualTo(expectedCount));
+
             Assert.That(Cart.CartItems.FirstOrDefault().Price, Is.EqualTo(updatedPrice));
+        }
+
+        [Test]
+        public async Task ClearCartAsync_ShouldWorkCorrectly()
+        {
+            //Arrange
+            int cartId = Cart.Id;
+            int currentCount = 1;
+            int expectedCount = 0;
+
+            //Assert current
+            Assert.IsNotEmpty(Cart.CartItems);
+            Assert.That(Cart.CartItems.Count(), Is.EqualTo(currentCount));
+
+            //Act
+            await cartService.ClearCartAsync(cartId);
+
+            //Assert
+            Assert.IsEmpty(Cart.CartItems);
+            Assert.That(Cart.CartItems.Count(), Is.EqualTo(expectedCount));
+        }
+
+        [Test]
+        public async Task GetCartIdAsync_ShouldReturnCorrectId()
+        {
+            //Arrange
+            string userId = User.Id;
+            int expectedCartId = Cart.Id;
+
+            //Act 
+            int result = await cartService.GetCartIdAsync(userId);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedCartId));
+        }
+
+        [Test]
+        public async Task GetCartIdAsync_ShouldReturnZero_WithWrongUserId()
+        {
+            //Arrange
+            string userId = Booster.UserId;
+            int expectedResult = 0;
+
+            //Act 
+            int result = await cartService.GetCartIdAsync(userId);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
     }
 }
