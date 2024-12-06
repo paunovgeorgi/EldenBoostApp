@@ -1,4 +1,5 @@
-﻿using EldenBoost.Core.Contracts;
+﻿using AngleSharp.Html;
+using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Services;
 using EldenBoost.Infrastructure.Data.Repository;
 using System;
@@ -98,6 +99,62 @@ namespace EldenBoost.Tests.UnitTests
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public async Task GetCartQuantityByUserIdAsync_ShouldReturnCorrectQuantity()
+        {
+            //Arrange
+            string userId = User.Id;
+            int expectedQuantity = 1;
+
+            //Assert current conditions
+            var current = await cartService.GetCartQuantityByUserIdAsync(userId);
+            Assert.That(current, Is.Zero);
+
+            //Act
+            //await cartService.AddToCartAsync(userId, serviceId, platformId, updatedPrice, hasStream, isExpress, optionId, sliderValue);
+            Cart.CartItems.Add(CartItem);
+            await data.SaveChangesAsync();
+            var result = await cartService.GetCartQuantityByUserIdAsync(userId);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedQuantity));
+        }
+
+        [Test]
+        public async Task GetCartViewModelAsync_ShouldReturnCorrectModel()
+        {
+            //Arrange
+            string userId = User.Id;
+            decimal expectedPrice = CartItem.Price;
+            int expectedCount = 1;
+
+            //Act
+            var model = await cartService.GetCartViewModelAsync(userId);
+
+            //Assert
+            Assert.That(model.TotalPrice, Is.EqualTo(expectedPrice));
+            Assert.That(model.CartItems.Count, Is.EqualTo(expectedCount));
+        }
+
+        [Test]
+        public async Task RemoveItemAsync_ShouldRemoveItemFromDB()
+        {
+            //Arrange
+            int cartItemId = CartItem.Id;
+
+
+            //Assert current conditions
+            var item = await data.CartItems.FindAsync(cartItemId);
+            Assert.IsNotNull(item);
+
+            //Act
+            await cartService.RemoveItemAsync(cartItemId);
+
+            //Assert
+            var removedItem = await data.CartItems.FindAsync(cartItemId);
+            Assert.IsNull(removedItem);
         }
     }
 }
