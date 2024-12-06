@@ -42,6 +42,7 @@ namespace EldenBoost.Tests.UnitTests
 
         public Application AuthorApplication { get; set; }
         public Application BoosterApplication { get; set; }
+        public ChatMessage ChatMessage { get; set; }
 
         public void SeedDataBase()
         {
@@ -207,6 +208,18 @@ namespace EldenBoost.Tests.UnitTests
             };
 
             data.Orders.Add(Order);
+
+            ChatMessage = new ChatMessage()
+            {
+                Id = 1,
+                ReceiverId = User.Id,
+                SenderId = Booster.UserId,
+                Message = "This is my first message!",
+                OrderId = Order.Id,
+                Timestamp = DateTime.Now
+            };
+
+            data.ChatMessages.Add(ChatMessage);
 
             Article = new Article
             {
