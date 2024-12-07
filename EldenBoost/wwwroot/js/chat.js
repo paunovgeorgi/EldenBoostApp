@@ -62,7 +62,7 @@ document.getElementById("sendButton").addEventListener("click", function () {
 
 document.getElementById("messageInput").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevent default Enter key behavior
+        event.preventDefault();
         sendMessage(userId, receiverId, orderId);
     }
 });
