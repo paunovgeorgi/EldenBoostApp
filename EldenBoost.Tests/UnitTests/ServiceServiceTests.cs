@@ -4,13 +4,6 @@ using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Services;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Tests.UnitTests
 {

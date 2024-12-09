@@ -1,12 +1,6 @@
-﻿using AngleSharp.Html;
-using EldenBoost.Core.Contracts;
+﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Services;
 using EldenBoost.Infrastructure.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Tests.UnitTests
 {

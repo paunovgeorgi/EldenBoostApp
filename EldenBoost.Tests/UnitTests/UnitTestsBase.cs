@@ -2,9 +2,6 @@
 using EldenBoost.Data;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Tests.Mocks;
-using Microsoft.Extensions.Options;
-using System.Diagnostics;
-using System;
 
 namespace EldenBoost.Tests.UnitTests
 {

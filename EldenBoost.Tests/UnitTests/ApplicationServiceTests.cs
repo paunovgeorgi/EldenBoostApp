@@ -3,12 +3,6 @@ using EldenBoost.Core.Models.Application;
 using EldenBoost.Core.Models.Platform;
 using EldenBoost.Core.Services;
 using EldenBoost.Infrastructure.Data.Repository;
-using NuGet.Frameworks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldenBoost.Tests.UnitTests
 {
