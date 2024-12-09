@@ -1,5 +1,4 @@
 ﻿using EldenBoost.Core.Contracts;
-using EldenBoost.Core.Services;
 using EldenBoost.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using static EldenBoost.Common.Constants.NotificationConstants;

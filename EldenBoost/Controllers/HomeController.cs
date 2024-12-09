@@ -1,6 +1,4 @@
-using EldenBoost.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace EldenBoost.Controllers
 {

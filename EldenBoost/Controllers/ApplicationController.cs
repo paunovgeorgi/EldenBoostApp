@@ -1,10 +1,8 @@
 ﻿using EldenBoost.Common.Enumerations;
 using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Application;
-using EldenBoost.Core.Services;
 using EldenBoost.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using static EldenBoost.Common.Constants.NotificationConstants;
 
 namespace EldenBoost.Controllers

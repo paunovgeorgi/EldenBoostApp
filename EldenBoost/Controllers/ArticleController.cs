@@ -1,11 +1,8 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Article;
 using EldenBoost.Extensions;
-using EldenBoost.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using System.Text.RegularExpressions;
 using static EldenBoost.Common.Constants.NotificationConstants;
 using static EldenBoost.Core.Extensions.ModelExtensions;
 

@@ -1,6 +1,5 @@
 ﻿using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Chat;
-using EldenBoost.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace EldenBoost.Hubs

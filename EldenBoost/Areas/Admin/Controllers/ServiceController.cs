@@ -2,7 +2,6 @@
 using EldenBoost.Core.Contracts;
 using EldenBoost.Core.Models.Service;
 using EldenBoost.Core.Models.ServiceOption;
-using EldenBoost.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using static EldenBoost.Common.Constants.NotificationConstants;
