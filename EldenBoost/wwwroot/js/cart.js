@@ -9,17 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     viewCartButton.addEventListener("click", function (event) {
         event.preventDefault();
 
-        // Fetch the cart details using AJAX
+       
         fetch("/Cart/ShowCart")
             .then(response => response.text())
             .then(html => {
-                // Insert the cart content into the modal
                 document.querySelector("#cartDetailsContent").innerHTML = html;
-
-                // Attach event listeners for the cart buttons
                 attachEventListeners();
-
-                // Show the modal
                 modal.show();
             })
             .catch(error => console.error("Error fetching cart details:", error));
@@ -154,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to update the cart quantity displayed in the _LoginPartial
     function updateCartQuantity() {
-        fetch("/Cart/GetCartQuantity") // Assuming you have a method to get the current cart quantity
+        fetch("/Cart/GetCartQuantity") 
             .then(response => response.json())
             .then(quantity => {
                 document.querySelector("#viewCartButton sub").textContent = quantity;

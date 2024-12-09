@@ -7,7 +7,7 @@ document.querySelectorAll('a.scroll-link').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
 
         // Get the position of the target and subtract the offset
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80; // 40px offset
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80; 
 
         // Smooth scroll to the target position
         window.scrollTo({
