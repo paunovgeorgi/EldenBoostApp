@@ -1,6 +1,4 @@
-﻿using EldenBoost.Common.Enumerations;
-using EldenBoost.Core.Models.Service.Contracts;
-using EldenBoost.Core.Models.ServiceOption;
+﻿using EldenBoost.Core.Models.Service.Contracts;
 
 namespace EldenBoost.Core.Models.Service
 {

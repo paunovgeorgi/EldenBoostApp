@@ -2,7 +2,6 @@
 using EldenBoost.Core.Models.User;
 using EldenBoost.Infrastructure.Data.Models;
 using EldenBoost.Infrastructure.Data.Repository;
-using EldenBoost.Infrastructure.Migrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace EldenBoost.Core.Services

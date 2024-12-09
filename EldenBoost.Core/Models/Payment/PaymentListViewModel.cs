@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EldenBoost.Core.Models.Payment
+﻿namespace EldenBoost.Core.Models.Payment
 {
     public class PaymentListViewModel
     {
