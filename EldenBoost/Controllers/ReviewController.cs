@@ -10,13 +10,16 @@ namespace EldenBoost.Controllers
     {
         private readonly IReviewService reviewService;
         private readonly IUserService userService;
+        private readonly ILogger<ReviewController> logger;
 
-        public ReviewController(IReviewService _reviewService,IUserService _userService)
+        public ReviewController(IReviewService _reviewService,IUserService _userService, ILogger<ReviewController> _logger)
         {
             reviewService = _reviewService;
             userService = _userService;
+            logger = _logger;
         }
 
+        // Submit client review
         [HttpPost]
         public async Task<IActionResult> Submit(ReviewFormViewModel model)
         {
@@ -25,6 +28,7 @@ namespace EldenBoost.Controllers
                 return ViewComponent("ReviewFormComponent", new { model });
             }
 
+            // Check if the user has any purchases (needs at least one to submit a review)
             bool hasOrders = await userService.HasOrdersAsync(User.Id());
 
             if (!hasOrders)
@@ -33,7 +37,16 @@ namespace EldenBoost.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            await reviewService.CreateReviewAsync(model.Content, User.Id());
+            try
+            {
+                // Create the review
+                await reviewService.CreateReviewAsync(model.Content, User.Id());
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while submitting the review for user {UserId}.", User.Id());
+                TempData[ErrorMessage] = "There was an error while submitting your review. Please try again.";
+            }
 
             return RedirectToAction("Index", "Home");
         }
