@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const isExpress = document.getElementById("isExpress");
     const optionSelect = document.getElementById("optionSelect");
     const sliderValueHidden = document.getElementById("sliderValueHidden");
-    const basePrice = document.getElementById("basePriceField").value;
+    const basePrice = parseFloat(document.getElementById("basePriceField").value);
 
     function updatePrice() {
         let updatedPrice = basePrice; // Use the global basePrice variable
