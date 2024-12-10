@@ -10,14 +10,21 @@ namespace EldenBoost.Controllers
         private readonly IBoosterService boosterService;
         private readonly IOrderService orderService;
         private readonly IChatMessageService chatMessageService;
+        private readonly ILogger<ChatController> logger;
 
-        public ChatController(IBoosterService _boosterService, IOrderService _orderService, IChatMessageService _chatMessageService)
+        public ChatController(
+            IBoosterService _boosterService,
+            IOrderService _orderService,
+            IChatMessageService _chatMessageService,
+            ILogger<ChatController> _logger)
         {
             boosterService = _boosterService;
             orderService = _orderService;
             chatMessageService = _chatMessageService;
+            logger = _logger;
         }
 
+        [HttpGet]
         public async Task<IActionResult> OrderChat(int id)
         {
             string receiverId = ""; 
@@ -26,11 +33,13 @@ namespace EldenBoost.Controllers
             bool isBooster = await boosterService.BoosterExistsByUserIdAsync(userId);
             bool isActiveBooster = await boosterService.IsActiveAsync(userId);
 
+            // Check if the user is a booster, and if so if they're active or demoted
             if (isBooster && !isActiveBooster)
             {
                 return RedirectToAction("Index", "Home");
             }
 
+            // Get order with booster 
             Order? order = await orderService.GetOrderWithBoosterByOrderIdAsync(id);
 
             if (order == null)
@@ -38,19 +47,20 @@ namespace EldenBoost.Controllers
                 return NotFound(); 
             }
 
-            if (isBooster)
+            // Determine sender and receiver
+            receiverId = isBooster ? order.ClientId : order.Booster!.UserId;
+
+            try
             {
-                receiverId = order.ClientId;
+                var model = await chatMessageService.GetChatViewModelAsync(id, receiverId);
+                return View(model);
             }
-            else
+            catch (Exception ex)
             {
-                receiverId = order.Booster!.UserId;
+                logger.LogError(ex, "An error occurred while fetching the chat model for order ID: {OrderId}", id);
+                return StatusCode(500);
             }
-
-            var model = await chatMessageService.GetChatViewModelAsync(id, receiverId);
-
-
-            return View(model);
+   
         }
     }
 }
