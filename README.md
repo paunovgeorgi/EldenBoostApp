@@ -30,7 +30,7 @@ Technologies Used
 -   **Additional Tools:**\
     SweetAlert2, Toastr, TinyMCE API
 -   **Browser Compatibility:**\
-    Mainly developed and tested on Mozilla Firefox.
+    Mainly developed and tested on Mozilla Firefox | 1920x1080 screen resolution.
 
 * * * * *
 
