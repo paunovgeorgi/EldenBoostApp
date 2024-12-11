@@ -35,8 +35,7 @@ builder.Services.AddCors(setup =>
     {
         policyBuilder.WithOrigins(PolicyAppURL)
         .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowAnyOrigin(); // added due to issues with testing the app from another system
+        .AllowAnyMethod();
     });
 });
 
