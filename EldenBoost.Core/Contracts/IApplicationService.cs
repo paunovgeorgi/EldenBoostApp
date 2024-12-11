@@ -14,5 +14,6 @@ namespace EldenBoost.Core.Contracts
         Task ApproveAuthorAsync(int applicationId);
         Task RejectAsync(int applicationId);
         Task<ApplicationCountDataModel> GetApplicationCountDataAsync();
+        Task<string?> GetApplicantUserIdByApplicationIdAsync(int applicationId);
     }
 }
