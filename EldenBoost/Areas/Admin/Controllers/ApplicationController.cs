@@ -10,26 +10,51 @@ namespace EldenBoost.Areas.Admin.Controllers
         private readonly IApplicationService applicationService;
         private readonly IBoosterService boosterService;
         private readonly IAuthorService authorService;
+        private readonly ILogger<ApplicationController> logger;
 
-        public ApplicationController(IApplicationService _applicationService, IBoosterService _boosterService, IAuthorService _authorService)
+        public ApplicationController(IApplicationService _applicationService,
+            IBoosterService _boosterService,
+            IAuthorService _authorService,
+            ILogger<ApplicationController> _logger)
         {
             applicationService = _applicationService;
             boosterService = _boosterService;
             authorService = _authorService;
+            logger = _logger;
         }
 
         [HttpGet]
         public async Task<IActionResult> AllBooster()
         {
-            var models = await applicationService.AllAsync(a => !a.IsApproved && !a.IsRejected && a.ApplicationType == ApplicationType.Booster);
-            return View(models);
+            try
+            {
+                // Retrieve all pending booster applications.
+                var models = await applicationService.AllAsync(a => !a.IsApproved && !a.IsRejected && a.ApplicationType == ApplicationType.Booster);
+                return View(models);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while retrieving booster applications.");
+                TempData[ErrorMessage] = "Failed to load booster applications.";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> AllAuthor()
         {
-            var models = await applicationService.AllAsync(a => !a.IsApproved && !a.IsRejected && a.ApplicationType == ApplicationType.Author);
-            return View(models);
+            try
+            {
+                // Retrieve all pending author applications.
+                var models = await applicationService.AllAsync(a => !a.IsApproved && !a.IsRejected && a.ApplicationType == ApplicationType.Author);
+                return View(models);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while retrieving author applications.");
+                TempData[ErrorMessage] = "Failed to load author applications.";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -44,11 +69,20 @@ namespace EldenBoost.Areas.Admin.Controllers
                 return RedirectToAction(nameof(AllBooster));
             }
 
-            // Approve the application
-            await applicationService.ApproveBoosterAsync(id);
-
-            TempData[SuccessMessage] = "Booster application has been approved!";
+            try
+            {
+                // Approve the application
+                await applicationService.ApproveBoosterAsync(id);
+                TempData[SuccessMessage] = "Booster application has been approved!";
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while approving booster application with ID {ApplicationId}.", id);
+                TempData[ErrorMessage] = "Failed to approve the booster application.";
+            }
+              
             return RedirectToAction(nameof(AllBooster));
+           
         }
 
         [HttpPost]
@@ -63,19 +97,36 @@ namespace EldenBoost.Areas.Admin.Controllers
                 return RedirectToAction(nameof(AllAuthor));
             }
 
-            // Approve the application
-            await applicationService.ApproveAuthorAsync(id);
+            try
+            {
+                // Approve the application
+                await applicationService.ApproveAuthorAsync(id);
+                TempData[SuccessMessage] = "Author application has been approved!";
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while approving author application with ID {ApplicationId}.", id);
+                TempData[ErrorMessage] = "Failed to approve the author application.";
+            }
 
-            TempData[SuccessMessage] = "Author application has been approved!";
             return RedirectToAction(nameof(AllAuthor));
         }
 
         [HttpPost]
         public async Task<IActionResult> Reject(int id, string returnUrl)
         {
-            await applicationService.RejectAsync(id);
+            try
+            {
+                // Reject application.
+                await applicationService.RejectAsync(id);
+                TempData[SuccessMessage] = "Application has been rejected!";
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while rejecting application with ID {ApplicationId}.", id);
+                TempData[ErrorMessage] = "Failed to reject the application.";
+            }
 
-            TempData[SuccessMessage] = "Application has been rejected!";
             return RedirectToAction(returnUrl);
         }
     }
