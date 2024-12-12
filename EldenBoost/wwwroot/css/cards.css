@@ -41,7 +41,7 @@
         .custom-card:hover .card-body h4,
         .custom-card:hover .card-body h5 {
             color: white;
-            text-shadow: 0px 2px 8px var(--service-card-shadow), 0px 4px 4px var(--service-card-shadow);
+            text-shadow: 0px 2px 8px var(--service-card-shadow), 0px 2px 4px var(--service-card-shadow);
         }
 
   /*  .custom-card:hover {
