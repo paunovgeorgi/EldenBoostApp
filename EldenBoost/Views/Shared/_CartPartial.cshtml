@@ -38,6 +38,7 @@
     <center>
         <div style="display: flex; justify-content: space-around; align-items-center;">
         <button type="button" class="btn btn-outline-warning clear-cart">Clear Cart</button>
+        <span>Total Price: @($"${Model.TotalPrice:F2}")</span>
         <form asp-controller="Cart" asp-action="Checkout" method="post">
             <button class="btn btn-outline-light" >Checkout</button>
         </form>
