@@ -49,7 +49,6 @@ await app.CreateAdminRoleAsync();
 
 app.EnableOnlineUsersCheck();
 
-
 app.MapControllerRoute(
      name: "areas",
            pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}");
