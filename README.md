@@ -1,3 +1,4 @@
+![EldenBoost Logo](EldenBoost/wwwroot/images/hero2.jpg "EldenBoost Logo")
 EldenBoost Application
 ======================
 
