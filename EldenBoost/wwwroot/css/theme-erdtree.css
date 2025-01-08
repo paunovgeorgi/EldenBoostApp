@@ -80,7 +80,7 @@ body {
 
 .nav-custom {
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.6698880235688025) 49%, rgba(0,102,102,1) 74%);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,158,190,0.7098880235688025) 49%, rgba(0,102,102,1) 74%);
 }
 
 
@@ -128,7 +128,7 @@ body {
 .hero {
     width: 100%;
     height: 280px;
-    background: url(../images/hero.jpg);
+    background: url(../images/hero2.jpg);
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
