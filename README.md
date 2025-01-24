@@ -138,9 +138,21 @@ Anonymous users can access the following pages:
    
    ![Popular Services](https://github.com/user-attachments/assets/02009bec-a215-461b-a915-d2aa92c84f95)
 
-**All Services Example**
+**All Services**
    
    ![All Services](https://github.com/user-attachments/assets/73a5069b-a3b2-4e12-a0e5-fa5b041607aa)
+
+**Articles**
+   
+   ![Articles](https://github.com/user-attachments/assets/040d366d-5661-4b15-b1f6-bf1b5d1e086c)
+
+**Boosters**
+   
+   ![Boosters](https://github.com/user-attachments/assets/9544771a-0f83-4356-9832-cf116599849f)
+
+**Register | Login**
+   
+   ![Register - Login](https://github.com/user-attachments/assets/c5dade74-153a-423a-ad6a-ec1a99c63fd7)
 
 </details>
 
