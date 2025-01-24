@@ -6,7 +6,7 @@ This application was developed as a graduate project for SoftUni's C# Web Develo
 
 The application is built using C# on ASP.NET Core 8, with Entity Framework Core (EFCore) as the ORM and Microsoft SQL Server (MSSQL) as the database server. It features custom CSS and JavaScript for styling and interactivity.
 
-To see a preview of the application pages, you can click on **SHOW MEDIA** in the **User Types** section:  
+To see a preview of the application in action, click on **SHOW MEDIA** located at the bottom of each type of the **User Types** section:  
 [Anonymous User](#anonymous-user) | [Client](#client) | [Booster](#booster) | [Admin](#admin)
 
 -------------------
