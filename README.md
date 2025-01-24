@@ -154,6 +154,15 @@ Anonymous users can access the following pages:
    
    ![Register - Login](https://github.com/user-attachments/assets/c5dade74-153a-423a-ad6a-ec1a99c63fd7)
 
+**Themes**
+   
+   ![Themes](https://github.com/user-attachments/assets/9660797f-ab86-4ebf-95c5-3c72ed995976)
+
+
+**Service Types: Standard | Option | Slider**
+   
+   ![Service Types](https://github.com/user-attachments/assets/25f01b5a-5593-4485-9e97-f962624ddef3)
+
 </details>
 
 * * * * *
