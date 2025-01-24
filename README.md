@@ -125,6 +125,25 @@ Anonymous users can access the following pages:
 -   **Themes:**\
     Users can choose from a variety of themes to customize their UX preferences.
 
+<details>
+<summary>*SHOW MEDIA*</summary>
+
+#### Media for Anonymous User Section
+
+**Home Page**
+   
+   ![Home Page](https://github.com/user-attachments/assets/e7da0eda-5077-404e-9d1f-e08c161affb9)
+
+**Popular Services**
+   
+   ![Popular Services](https://github.com/user-attachments/assets/02009bec-a215-461b-a915-d2aa92c84f95)
+
+**All Services Example**
+   
+   ![All Services](https://github.com/user-attachments/assets/73a5069b-a3b2-4e12-a0e5-fa5b041607aa)
+
+</details>
+
 * * * * *
 
 ### Registered User
