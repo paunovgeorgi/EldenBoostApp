@@ -1,5 +1,5 @@
 ![EldenBoost Logo](EldenBoost/wwwroot/images/hero2.jpg "EldenBoost Logo")
-EldenBoost Application
+EldenBoost (Elden Ring Boosting Application)
 ======================
 
 This application was developed as a graduate project for SoftUni's C# Web Development career program.
