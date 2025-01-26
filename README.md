@@ -129,9 +129,10 @@ Anonymous users can access the following pages:
     Users can choose from a variety of themes to customize their UX preferences.
 
 <details>
-<summary>*SHOW MEDIA*</summary>
+<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
 
-#### Media for Anonymous User Section
+
+#### $${\color{lightblue}Media \space for \space Anonymous \space Registered\space User}$$
 
 **Home Page**
    
@@ -210,9 +211,9 @@ Once a registered user purchases a service, they are treated as a **Client**. Cl
         The order chat is disabled, but clients can now rate their booster via a **Rate** button. Booster ratings are displayed on the **Boosters Page**.
 
 <details>
-<summary>*SHOW MEDIA*</summary>
+<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
 
-#### Media for Anonymous User Section
+#### $${\color{lightblue}Media \space for \space Client \space User}$$
 
 **Cart System (Remove Item | Clear Cart)**
    
