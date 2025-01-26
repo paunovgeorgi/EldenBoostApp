@@ -209,6 +209,33 @@ Once a registered user purchases a service, they are treated as a **Client**. Cl
     -   **Completed Orders:**\
         The order chat is disabled, but clients can now rate their booster via a **Rate** button. Booster ratings are displayed on the **Boosters Page**.
 
+<details>
+<summary>*SHOW MEDIA*</summary>
+
+#### Media for Anonymous User Section
+
+**Cart System (Remove Item | Clear Cart)**
+   
+   ![Cart System](https://github.com/user-attachments/assets/ded72620-5736-4baf-839c-5a8bdd8b5973)
+
+**Cart System (Add to cart | Checkout)**
+   
+   ![Checkout](https://github.com/user-attachments/assets/2fd2d66f-22b8-489d-b6e8-9b2f7803ad63)
+
+**All Services**
+   
+   ![All Services]()
+
+**Articles**
+   
+   ![Articles]()
+
+**Boosters**
+   
+   ![Boosters]()
+
+</details>
+
 * * * * *
 
 ### BOOSTER
