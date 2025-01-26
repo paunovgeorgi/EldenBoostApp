@@ -223,17 +223,13 @@ Once a registered user purchases a service, they are treated as a **Client**. Cl
    
    ![Checkout](https://github.com/user-attachments/assets/2fd2d66f-22b8-489d-b6e8-9b2f7803ad63)
 
-**All Services**
+**Client Profile (Update Picture | Rate Booster)**
    
-   ![All Services]()
+   ![Client Profile](https://github.com/user-attachments/assets/1606b0e6-5068-4995-9b62-81aa3d08c407)
 
-**Articles**
+**Client Profile (Order Chat)**
    
-   ![Articles]()
-
-**Boosters**
-   
-   ![Boosters]()
+   ![Order Chat](https://github.com/user-attachments/assets/5ec4cf83-89c8-41a8-8b7c-46a478109ee8)
 
 </details>
 
