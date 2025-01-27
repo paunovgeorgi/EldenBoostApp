@@ -366,6 +366,14 @@ The admin has access to a **Dashboard** with real-time updates (every 30 seconds
    
    ![Payments](https://github.com/user-attachments/assets/dbc34eb0-1759-4b50-b0c0-6e7c37814bf8)
 
+**Users**
+   
+   ![Users](https://github.com/user-attachments/assets/c986a5ad-d945-47c5-80b7-b4d0e58dce72)
+
+**Applications**
+   
+   ![Applications](https://github.com/user-attachments/assets/2d3aff9e-c1f8-4466-8da1-f6d58393cce3)
+
 </details>
 
 * * * * *
