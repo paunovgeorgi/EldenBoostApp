@@ -350,6 +350,22 @@ The admin has access to a **Dashboard** with real-time updates (every 30 seconds
    
    ![Deactivate Service](https://github.com/user-attachments/assets/bb091582-8176-4e22-a6ff-72f050257990)
 
+**Services (Edit)**
+   
+   ![Edit Service](https://github.com/user-attachments/assets/10118022-f5fc-4aa6-817c-4b156a3feafb)
+
+**Orders**
+   
+   ![Orders](https://github.com/user-attachments/assets/52a5b97e-f032-4f90-bd42-a9acacfa34aa)
+
+**Articles**
+   
+   ![Articles](https://github.com/user-attachments/assets/c533d999-4207-4fe1-977c-f27471bf5b55)
+
+**Payments**
+   
+   ![Payments](https://github.com/user-attachments/assets/dbc34eb0-1759-4b50-b0c0-6e7c37814bf8)
+
 </details>
 
 * * * * *
