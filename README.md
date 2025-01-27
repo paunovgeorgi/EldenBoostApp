@@ -1,9 +1,13 @@
-EldenBoost Application
+![EldenBoost Logo](EldenBoost/wwwroot/images/hero2.jpg "EldenBoost Logo")
+EldenBoost (Elden Ring Boosting Application)
 ======================
 
 This application was developed as a graduate project for SoftUni's C# Web Development career program.
 
 The application is built using C# on ASP.NET Core 8, with Entity Framework Core (EFCore) as the ORM and Microsoft SQL Server (MSSQL) as the database server. It features custom CSS and JavaScript for styling and interactivity.
+
+To see a preview of the application in action, click on **SHOW MEDIA** located at the bottom of each type of the **User Types** section:  
+[Anonymous User](#anonymous-user) | [Client](#client) | [Booster](#booster) | [Admin](#admin)
 
 -------------------
 
@@ -124,6 +128,47 @@ Anonymous users can access the following pages:
 -   **Themes:**\
     Users can choose from a variety of themes to customize their UX preferences.
 
+<details>
+<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+
+
+#### $${\color{lightblue}Media \space for \space Anonymous \space Registered\space User}$$
+
+**Home Page**
+   
+   ![Home Page](https://github.com/user-attachments/assets/e7da0eda-5077-404e-9d1f-e08c161affb9)
+
+**Popular Services**
+   
+   ![Popular Services](https://github.com/user-attachments/assets/02009bec-a215-461b-a915-d2aa92c84f95)
+
+**All Services**
+   
+   ![All Services](https://github.com/user-attachments/assets/73a5069b-a3b2-4e12-a0e5-fa5b041607aa)
+
+**Articles**
+   
+   ![Articles](https://github.com/user-attachments/assets/040d366d-5661-4b15-b1f6-bf1b5d1e086c)
+
+**Boosters**
+   
+   ![Boosters](https://github.com/user-attachments/assets/9544771a-0f83-4356-9832-cf116599849f)
+
+**Register | Login**
+   
+   ![Register - Login](https://github.com/user-attachments/assets/c5dade74-153a-423a-ad6a-ec1a99c63fd7)
+
+**Themes**
+   
+   ![Themes](https://github.com/user-attachments/assets/9660797f-ab86-4ebf-95c5-3c72ed995976)
+
+
+**Service Types: Standard | Option | Slider**
+   
+   ![Service Types](https://github.com/user-attachments/assets/25f01b5a-5593-4485-9e97-f962624ddef3)
+
+</details>
+
 * * * * *
 
 ### Registered User
@@ -165,6 +210,29 @@ Once a registered user purchases a service, they are treated as a **Client**. Cl
     -   **Completed Orders:**\
         The order chat is disabled, but clients can now rate their booster via a **Rate** button. Booster ratings are displayed on the **Boosters Page**.
 
+<details>
+<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+
+#### $${\color{lightblue}Media \space for \space Client \space User}$$
+
+**Cart System (Remove Item | Clear Cart)**
+   
+   ![Cart System](https://github.com/user-attachments/assets/ded72620-5736-4baf-839c-5a8bdd8b5973)
+
+**Cart System (Add to cart | Checkout)**
+   
+   ![Checkout](https://github.com/user-attachments/assets/2fd2d66f-22b8-489d-b6e8-9b2f7803ad63)
+
+**Client Profile (Update Picture | Rate Booster)**
+   
+   ![Client Profile](https://github.com/user-attachments/assets/1606b0e6-5068-4995-9b62-81aa3d08c407)
+
+**Client Profile (Order Chat)**
+   
+   ![Order Chat](https://github.com/user-attachments/assets/5ec4cf83-89c8-41a8-8b7c-46a478109ee8)
+
+</details>
+
 * * * * *
 
 ### BOOSTER
@@ -190,6 +258,25 @@ To become a booster, a registered user must submit an application detailing thei
 
     -   **Active Orders:** Include an **Order Chat** button for client communication and a **Complete Order** button.
     -   **Completed Orders:** The booster can no longer modify these orders.
+
+<details>
+<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+
+#### $${\color{lightblue}Media \space for \space Booster \space User}$$
+
+**Pending Orders (Take Order)**
+   
+   ![Pending Orders](https://github.com/user-attachments/assets/f5e45548-4825-4e1d-8330-ac95c26d82bb)
+
+**Booster Profile (Complete Order)**
+   
+   ![Complete Order](https://github.com/user-attachments/assets/b5fca9e3-5104-4bf7-a5d8-11aee93f37a3)
+
+**Booster Profile (Request Payment)**
+   
+   ![Request Payment](https://github.com/user-attachments/assets/68d3b209-b668-4474-8dea-9f070bee6a6f)
+
+</details>
 
 * * * * *
 
