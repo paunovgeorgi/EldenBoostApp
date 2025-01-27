@@ -259,6 +259,25 @@ To become a booster, a registered user must submit an application detailing thei
     -   **Active Orders:** Include an **Order Chat** button for client communication and a **Complete Order** button.
     -   **Completed Orders:** The booster can no longer modify these orders.
 
+<details>
+<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+
+#### $${\color{lightblue}Media \space for \space Booster \space User}$$
+
+**Pending Orders (Take Order)**
+   
+   ![Pending Orders](https://github.com/user-attachments/assets/f5e45548-4825-4e1d-8330-ac95c26d82bb)
+
+**Booster Profile (Complete Order)**
+   
+   ![Complete Order](https://github.com/user-attachments/assets/b5fca9e3-5104-4bf7-a5d8-11aee93f37a3)
+
+**Booster Profile (Request Payment)**
+   
+   ![Request Payment](https://github.com/user-attachments/assets/68d3b209-b668-4474-8dea-9f070bee6a6f)
+
+</details>
+
 * * * * *
 
 ### AUTHOR
