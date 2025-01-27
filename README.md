@@ -333,6 +333,25 @@ The admin has access to a **Dashboard** with real-time updates (every 30 seconds
     -   **Slider Service:** A service with a selectable range (e.g., coaching hours, item collection). Requires a max purchasable amount.
     -   **Option Service:** A service offering multiple options (e.g., boss kills, dungeon runs). Each option includes a name and price.
 
+<details>
+<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+
+#### $${\color{lightblue}Media \space for \space Admin \space User}$$
+
+**Dashboard**
+   
+   ![Dashboard](https://github.com/user-attachments/assets/8927dbbb-a55a-43c1-8245-8fd7ceca06bc)
+
+**Services (Add Service)**
+   
+   ![Add Service](https://github.com/user-attachments/assets/437d7035-ae2e-4af9-8730-9e5f06499290)
+
+**Services (Deactivate | Activate)**
+   
+   ![Deactivate Service](https://github.com/user-attachments/assets/bb091582-8176-4e22-a6ff-72f050257990)
+
+</details>
+
 * * * * *
 
 CONCLUSION
