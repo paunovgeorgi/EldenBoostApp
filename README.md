@@ -129,7 +129,7 @@ Anonymous users can access the following pages:
     Users can choose from a variety of themes to customize their UX preferences.
 
 <details>
-<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+<summary>$${\color{yellow}*SHOW \space MEDIA*}$$</summary>
 
 
 #### $${\color{lightblue}Media \space for \space Anonymous \space Registered\space User}$$
@@ -211,7 +211,7 @@ Once a registered user purchases a service, they are treated as a **Client**. Cl
         The order chat is disabled, but clients can now rate their booster via a **Rate** button. Booster ratings are displayed on the **Boosters Page**.
 
 <details>
-<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+<summary>$${\color{yellow}*SHOW \space MEDIA*}$$</summary>
 
 #### $${\color{lightblue}Media \space for \space Client \space User}$$
 
@@ -260,7 +260,7 @@ To become a booster, a registered user must submit an application detailing thei
     -   **Completed Orders:** The booster can no longer modify these orders.
 
 <details>
-<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+<summary>$${\color{yellow}*SHOW \space MEDIA*}$$</summary>
 
 #### $${\color{lightblue}Media \space for \space Booster \space User}$$
 
@@ -334,7 +334,7 @@ The admin has access to a **Dashboard** with real-time updates (every 30 seconds
     -   **Option Service:** A service offering multiple options (e.g., boss kills, dungeon runs). Each option includes a name and price.
 
 <details>
-<summary>$${\color{yellow}*SHOW MEDIA*}$$</summary>
+<summary>$${\color{yellow}*SHOW \space MEDIA*}$$</summary>
 
 #### $${\color{lightblue}Media \space for \space Admin \space User}$$
 
