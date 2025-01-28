@@ -7,7 +7,7 @@ This application was developed as a graduate project for SoftUni's C# Web Develo
 The application is built using C# on ASP.NET Core 8, with Entity Framework Core (EFCore) as the ORM and Microsoft SQL Server (MSSQL) as the database server. It features custom CSS and JavaScript for styling and interactivity.
 
 To see a preview of the application in action, click on **SHOW MEDIA** located at the bottom of each type of the **User Types** section:  
-[Anonymous User](#anonymous-user) | [Client](#client) | [Booster](#booster) | [Admin](#admin)
+[Anonymous User](#anonymous-user) | [Client](#client) | [Booster](#booster) | [Author](#author) | [Admin](#admin)
 
 -------------------
 
@@ -295,6 +295,21 @@ To become an author, a registered user must submit an application.
 3.  **My Profile Page:**
 
     -   Displays **profile stats** such as the number of articles written and their categories.
+  
+<details>
+<summary>$${\color{yellow}*SHOW \space MEDIA*}$$</summary>
+
+#### $${\color{lightblue}Media \space for \space Author \space User}$$
+
+**Author Profile**
+   
+   ![Author Profile](https://github.com/user-attachments/assets/98306970-e966-434c-be23-c72c9349efab)
+
+**Create Article**
+   
+   ![Create Article](https://github.com/user-attachments/assets/7776d193-c9e0-4ae4-864e-4e59ee093882)
+
+</details>
 
 * * * * *
 
