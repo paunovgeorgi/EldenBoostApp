@@ -2,7 +2,7 @@
 EldenBoost (Elden Ring Boosting Application)
 ======================
 
-This application was developed as a graduate project for SoftUni's C# Web Development career program.
+**This application was recognized among the top 3 :trophy: graduate projects in SoftUni's C# Web Development career program.**
 
 The application is built using C# on ASP.NET Core 8, with Entity Framework Core (EFCore) as the ORM and Microsoft SQL Server (MSSQL) as the database server. It features custom CSS and JavaScript for styling and interactivity.
 
