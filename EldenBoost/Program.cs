@@ -21,6 +21,13 @@ builder.Services.AddSignalR();
 
 var app = builder.Build();
 
+//automatic migration
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<EldenBoostDbContext>();
+    dbContext.Database.Migrate();  // Automatically applies pending migrations
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
