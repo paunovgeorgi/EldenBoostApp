@@ -2,6 +2,9 @@ using EldenBoost.Extensions;
 using EldenBoost.Hubs;
 using EldenBoost.ModelBinders;
 using Microsoft.AspNetCore.Mvc;
+using EldenBoost.Data;
+using EldenBoost.Infrastructure.Data.Models;
+using EldenBoost.Infrastructure.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
