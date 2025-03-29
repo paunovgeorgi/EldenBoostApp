@@ -2,9 +2,6 @@ using EldenBoost.Extensions;
 using EldenBoost.Hubs;
 using EldenBoost.ModelBinders;
 using Microsoft.AspNetCore.Mvc;
-using EldenBoost.Data;
-using EldenBoost.Infrastructure.Data.Models;
-using EldenBoost.Infrastructure.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,12 +21,6 @@ builder.Services.AddSignalR();
 
 var app = builder.Build();
 
-//automatic migration
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<EldenBoostDbContext>();
-    dbContext.Database.Migrate();  // Automatically applies pending migrations
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -55,7 +46,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-await app.CreateAdminRoleAsync();
+//await app.CreateAdminRoleAsync();
 
 app.EnableOnlineUsersCheck();
 
